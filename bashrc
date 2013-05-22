@@ -1,20 +1,6 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM="xterm-color"
-function parse_git_branch () {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-
-PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$(parse_git_branch)$NO_COLOUR\$ "
-export GREP_OPTIONS='--color=auto'
-alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
-
-
-export DEVLOCAL=True
-if [ -f /usr/local/etc/bash_completion ]; then
-    . /usr/local/etc/bash_completion
-fi
-source ~/.django_bash_completion
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -123,22 +109,33 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+fi
 
-PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\$(parse_git_branch)\$ "
-export FB_USER_ID=517521816
+function parse_git_branch () {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+#PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\$(parse_git_branch)\$ "
+#PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$(parse_git_branch)$NO_COLOUR\$ "
+PS1="\[\e[0;36m\]\w\[\e[0m\]\$(parse_git_branch)$NO_COLOUR\$ "
 
 cd ~/projects/HearsayLabs/fanmgmt 
-source ~/projects/HearsayLabs/virtualenv/bin/activate
 
-
+export FB_USER_ID=517521816
 #export PATH=$PATH:/Users/pkhanduri/bin/jython
-
 # Required for connecting pig with hbase: http://chase-seibert.github.com/blog/2013/02/01/getting-starting-with-hbase-and-pig.html
 #export JAVA_HOME=$(/usr/libexec/java_home)
 #export HBASE_HOME=/usr/local/Cellar/hbase/0.94.2/
 #export PIG_CLASSPATH="/usr/local/Cellar/hbase/0.94.2/libexec/conf/hbase-site.xml:/usr/local/Cellar/hbase/0.94.2/libexec/hbase-0.94.2.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/zookeeper-3.4.3.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/guava-11.0.2.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/protobuf-java-2.4.0a.jar"
 #export HBASE_CONF_DIR=/usr/local/Cellar/hbase/0.94.2/libexec/conf
+export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
+export GREP_OPTIONS='--color=auto'
+export DEVLOCAL=True
 
+alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+source ~/.django_bash_completion
+source ~/projects/HearsayLabs/virtualenv/bin/activate
+
