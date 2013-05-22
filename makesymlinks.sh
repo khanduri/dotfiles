@@ -10,7 +10,7 @@
 # VARIABLES
 source_dir=~/projects/dotfiles
 backup_dir=~/dotfiles_old
-files='vimrc vim bashrc bash_profile'
+files='screenrc vimrc vim bashrc bash_profile'
 
 # BACKUP OLD DOTFiles
 echo -n 'Creating $backup_dir for saving a backup of existing dotfiles'
