@@ -1,3 +1,5 @@
+#More annotated example at : https://github.com/px/screenrc/blob/master/.screenrc
+
 startup_message off # Turn welcome message off
 #term "screen-256color"
 #nonblock on
