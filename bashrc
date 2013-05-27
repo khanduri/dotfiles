@@ -130,12 +130,49 @@ export FB_USER_ID=517521816
 #export HBASE_HOME=/usr/local/Cellar/hbase/0.94.2/
 #export PIG_CLASSPATH="/usr/local/Cellar/hbase/0.94.2/libexec/conf/hbase-site.xml:/usr/local/Cellar/hbase/0.94.2/libexec/hbase-0.94.2.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/zookeeper-3.4.3.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/guava-11.0.2.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/protobuf-java-2.4.0a.jar"
 #export HBASE_CONF_DIR=/usr/local/Cellar/hbase/0.94.2/libexec/conf
-export PATH="/usr/local/heroku/bin:$PATH" ### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
+export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
+
 export GREP_OPTIONS='--color=auto'
 export DEVLOCAL=True
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
+alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
+alias ctags="`brew --prefix`/bin/ctags"
 
 source ~/.django_bash_completion
 source ~/projects/HearsayLabs/virtualenv/bin/activate
 
+# from http://rob.by/2013/remove-merged-branches-from-git
+function rmb {
+  current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+  if [ "$current_branch" != "master" ]; then
+    echo "WARNING: You are on branch $current_branch, NOT master."
+  fi
+  echo "Fetching merged branches..."
+  git remote prune origin
+  remote_branches=$(git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$")
+  local_branches=$(git branch --merged | grep -v 'master$' | grep -v "$current_branch$")
+  if [ -z "$remote_branches" ] && [ -z "$local_branches" ]; then
+    echo "No existing branches have been merged into $current_branch."
+  else
+    echo "This will remove the following branches:"
+    if [ -n "$remote_branches" ]; then
+      echo "$remote_branches"
+    fi
+    if [ -n "$local_branches" ]; then
+      echo "$local_branches"
+    fi
+    read -p "Continue? (y/n): " -n 1 choice
+    echo
+    if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
+      # Remove remote branches
+      git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
+      # Remove local branches
+      git branch -d `git branch --merged | grep -v 'master$' | grep -v "$current_branch$" | sed 's/origin\///g' | tr -d '\n'`
+    else
+      echo "No branches removed."
+    fi
+  fi
+}
+alias ctags='/usr/local/bin/ctags'
