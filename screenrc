@@ -5,6 +5,7 @@ startup_message off # Turn welcome message off
 #nonblock on
 #vbell off
 #msgwait 10
+defscrollback 2048
 
 #When you open a text editor like nano in screen and then close it, 
 #the text may stay visible in your terminal
@@ -17,13 +18,13 @@ bind '.' next
 
 screen    -t hsLogin         1
 screen    -t hsServer        2
-screen    -t hbaseServer     3
-screen    -t hbaseShell      4
-screen    -t hive            5
-screen    -t devShell1       6
-screen    -t devShell2       7
-screen    -t bash            8
-screen    -t bash            9
+screen    -t hbase           3
+screen    -t hive            4
+screen    -t prod            5
+screen    -t dev             6
+screen    -t local           7
+screen    -t localbash       8
+screen    -t local           9
 
 #hardstatus string '%{= kG}%{C}Screen: %{c}%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %d-%m %{W}%c %{g}]'
 #hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
