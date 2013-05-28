@@ -24,6 +24,8 @@ Bundle 'majutsushi/tagbar'
 
 Bundle 'scrooloose/nerdtree'
 
+Bundle 'scrooloose/syntastic'
+
 filetype plugin indent on     " required!
 
 " Brief help
@@ -380,5 +382,10 @@ nnoremap <leader>n :NERDTreeToggle ~/projects<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMouseMode=3
 let g:NERDTreeWinSize=30
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+let g:syntastic_python_checkers=['pylint', 'pyflakes', 'pep8', 'flake8']
 
 
