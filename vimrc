@@ -22,6 +22,8 @@ Bundle 'fholgado/minibufexpl.vim'
 
 Bundle 'majutsushi/tagbar'
 
+Bundle 'scrooloose/nerdtree'
+
 filetype plugin indent on     " required!
 
 " Brief help
@@ -351,5 +353,32 @@ nnoremap <leader>; :TagbarToggle<CR>
 " Need to run "ctags -R ."
 set tags=tags;/
 " For autoload tags Check out: http://andrewradev.com/2011/06/08/vim-and-ctags/
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+
+" Enable this for make NERDTree load every opening files
+" autocmd VimEnter * NERDTree " Make Always Load NERDTree every opening files
+" autocmd VimEnter * wincmd p " Automatically go to buffer every time open files
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+"map <leader>t :NERDTreeTabsToggle<CR>
+nnoremap <leader>n :NERDTreeToggle ~/projects<CR>
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeMouseMode=3
+let g:NERDTreeWinSize=30
 
 
