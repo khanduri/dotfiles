@@ -11,11 +11,12 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-
 " Color scheme
 Bundle 'cschlueter/vim-mustang'
 Bundle 'godlygeek/csapprox'
 Bundle 'flazz/vim-colorschemes'
+
+Bundle 'wincent/Command-T'
 
 filetype plugin indent on     " required!
 
@@ -265,4 +266,17 @@ aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CommandT shortcuts
+map <leader>ff :CommandT ~/projects/HearsayLabs/fanmgmt<CR>
+map <leader>fd :CommandT ~/projects/djangoSamples<CR>
+map <leader>fp :CommandT ~/projects<CR>
+
 
