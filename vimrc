@@ -20,6 +20,8 @@ Bundle 'wincent/Command-T'
 
 Bundle 'fholgado/minibufexpl.vim'
 
+Bundle 'majutsushi/tagbar'
+
 filetype plugin indent on     " required!
 
 " Brief help
@@ -95,14 +97,16 @@ autocmd BufWritePre * :%s/\s\+$//e
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable "Enable syntax hl
 set shell=/bin/bash
 set guioptions-=T
 let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 set gfn=Liberation\ Mono\ 10
 set encoding=utf8
 
+syntax enable "Enable syntax hl
 set background=dark
+"let g:solarized_termcolors=256
+"colorscheme solarized
 colorscheme kolor
 
 try
@@ -291,10 +295,8 @@ map <leader>fp :CommandT ~/projects<CR>
 " Not using because I don't use the vertival window
 " Use a vertical windows
 "let g:miniBufExplVSplit = 5
-
 "let g:miniBufExplSplitBelow=1 "Put the miniBufExplorer windows at the right
 "let g:miniBufExplMaxSize = 15 "Maximum size of the mini buffer explorer window
-
 "let g:miniBufExplMapWindowNavArrows = 1
 "let g:miniBufExplMapCTabSwitchBufs = 1
 "let g:miniBufExplMapWindowNavVim = 1
@@ -335,4 +337,19 @@ if has("autocmd")
       \ windo call FixMiniBufExplorerTitle() |
       \ exec oldwinnr . " wincmd w"
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TagBar
+let g:tagbar_usearrows=1
+let g:tagbar_width=30
+let g:tagbar_singleclick=1
+
+" Use leader + l to open Tagbar in Right side
+nnoremap <leader>; :TagbarToggle<CR>
+
+" Need to run "ctags -R ."
+set tags=tags;/
+" For autoload tags Check out: http://andrewradev.com/2011/06/08/vim-and-ctags/
+
 
