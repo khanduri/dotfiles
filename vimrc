@@ -32,6 +32,14 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 
+" Utils
+Bundle 'tpope/vim-fugitive'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'Lokaltog/powerline'
+
+Bundle 'vim-scripts/sort-python-imports'
+
 filetype plugin indent on     " required!
 
 " Brief help
@@ -393,5 +401,15 @@ let g:NERDTreeWinSize=30
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 let g:syntastic_python_checkers=['pylint', 'pyflakes', 'pep8', 'flake8']
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline settings
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" sort-python-imports
+map <leader>ss :PyFixImports<CR>
 
 
