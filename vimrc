@@ -189,8 +189,8 @@ nmap <silent> <leader>l :wincmd l<CR>
 " resize current buffer by +/- 5
 nnoremap <leader>1 :resize +5<cr>
 nnoremap <leader>2 :resize -5<cr>
-nnoremap <leader>- :vertical resize +5<cr>
-nnoremap <leader>= :vertical resize -5<cr>
+nnoremap <leader>3 :vertical resize +5<cr>
+nnoremap <leader>4 :vertical resize -5<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
