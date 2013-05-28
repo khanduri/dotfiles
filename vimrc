@@ -18,6 +18,8 @@ Bundle 'flazz/vim-colorschemes'
 
 Bundle 'wincent/Command-T'
 
+Bundle 'fholgado/minibufexpl.vim'
+
 filetype plugin indent on     " required!
 
 " Brief help
@@ -86,7 +88,7 @@ map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
-"au! BufWritePost $MYVIMRC source $MYVIMRC
+au! BufWritePost $MYVIMRC source $MYVIMRC
 
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -279,4 +281,58 @@ map <leader>ff :CommandT ~/projects/HearsayLabs/fanmgmt<CR>
 map <leader>fd :CommandT ~/projects/djangoSamples<CR>
 map <leader>fp :CommandT ~/projects<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MinibufferExp
+
+" Taken from http://dotfiles.org/~joaoTrindade/.vimrc
+" Show the miniBufExplorer from the start
+"let g:miniBufExplorerMoreThanOne = 0
+
+" Not using because I don't use the vertival window
+" Use a vertical windows
+"let g:miniBufExplVSplit = 5
+
+"let g:miniBufExplSplitBelow=1 "Put the miniBufExplorer windows at the right
+"let g:miniBufExplMaxSize = 15 "Maximum size of the mini buffer explorer window
+
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplMapWindowNavVim = 1
+
+let g:miniBufExplTabWrap = 1        " show complete (no broken on two lines)
+let g:miniBufExplModSelTarget = 1   " Set to 1 if using other explorer (TagList)
+let g:miniBufExplUseSingleClick = 1 " single click on tabs rather than double
+
+hi MBENormal guifg=LightBlue             " NOT CHANGED and NOT VISIBLE.
+hi MBEChanged guifg=Red                  " HAVE CHANGED and NOT VISIBLE
+hi MBEVisibleNormal term=bold cterm=bold gui=bold guifg=Green  " NOT CHANGED and VISIBLE
+hi MBEVisibleChanged term=bold cterm=bold gui=bold guifg=Green " CHANGED and VISIBLE
+
+let g:bufExplorerSortBy = "name"
+
+autocmd BufRead,BufNew :call UMiniBufExplorer
+
+" Taken from http://dev.gentoo.org/~bass/configs/vimrc.html
+" Adapt the status line according to the window
+if has("autocmd")
+  au FileType qf
+      \ if &buftype == "quickfix" |
+      \     setlocal statusline=%2*%-3.3n%0* |
+      \     setlocal statusline+=\ \[Compiler\ Messages\] |
+      \     setlocal statusline+=%=%2*\ %<%P |
+      \ endif
+
+  fun! FixMiniBufExplorerTitle()
+    if "-MiniBufExplorer-" == bufname("%")
+      setlocal statusline=%2*%-3.3n%0*
+      setlocal statusline+=\[Buffers\]
+      setlocal statusline+=%=%2*\ %<%P
+    endif
+  endfun
+
+  au BufWinEnter *
+      \ let oldwinnr=winnr() |
+      \ windo call FixMiniBufExplorerTitle() |
+      \ exec oldwinnr . " wincmd w"
+endif
 
