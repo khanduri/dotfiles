@@ -15,7 +15,7 @@ Bundle 'gmarik/vundle'
 " Color scheme
 Bundle 'cschlueter/vim-mustang'
 Bundle 'godlygeek/csapprox'
-
+Bundle 'flazz/vim-colorschemes'
 
 filetype plugin indent on     " required!
 
@@ -84,8 +84,8 @@ nmap <leader>w :w!<cr>          " Fast saving with leader + w
 map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
 
 " When vimrc is edited, reload it
-"autocmd! bufwritepost vimrc source ~/.vimrc
-au! BufWritePost $MYVIMRC source $MYVIMRC
+autocmd! bufwritepost vimrc source ~/.vimrc
+"au! BufWritePost $MYVIMRC source $MYVIMRC
 
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -100,7 +100,7 @@ set gfn=Liberation\ Mono\ 10
 set encoding=utf8
 
 set background=dark
-colorscheme mustang
+colorscheme kolor
 
 try
   lang en_US
