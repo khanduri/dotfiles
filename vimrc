@@ -300,6 +300,7 @@ aug END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CommandT shortcuts
 map <leader>ff :CommandT ~/projects/HearsayLabs/fanmgmt<CR>
+map <leader>fh :CommandT ~/projects/HearsayLabs<CR>
 map <leader>fd :CommandT ~/projects/djangoSamples<CR>
 map <leader>fp :CommandT ~/projects<CR>
 

@@ -121,7 +121,7 @@ function parse_git_branch () {
 #PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$(parse_git_branch)$NO_COLOUR\$ "
 PS1="\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 
-cd ~/projects/HearsayLabs/fanmgmt 
+cd ~/projects/HearsayLabs/fanmgmt
 
 export FB_USER_ID=517521816
 #export PATH=$PATH:/Users/pkhanduri/bin/jython
@@ -135,6 +135,7 @@ export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
 
 export GREP_OPTIONS='--color=auto'
 export DEVLOCAL=True
+export DATABASE=MYSQL
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
