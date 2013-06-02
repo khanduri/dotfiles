@@ -21,6 +21,7 @@ Bundle 'wincent/Command-T'
 Bundle 'fholgado/minibufexpl.vim'
 
 Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/AutoTag'
 
 Bundle 'scrooloose/nerdtree'
 
@@ -36,11 +37,17 @@ Bundle 'honza/vim-snippets'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-surround'
-Bundle 'Lokaltog/powerline'
 
-Bundle 'vim-scripts/sort-python-imports'
+Bundle 'ghewgill/vim-scmdiff'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'uguu-org/vim-matrix-screensaver'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/powerline'
+Bundle 'Lokaltog/powerline-fonts'
 
 filetype plugin indent on     " required!
+
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " Brief help
 " :BundleList          - list configured bundles
@@ -89,7 +96,7 @@ set tm=500
 set noerrorbells visualbell t_vb= "No sound on errors
 autocmd GUIEnter * set visualbell t_vb=
 
-" Keystrokes
+" keystrokes
 set whichwrap=h,l,~,[,] " h,l wrap bet lines, cursor keys wrap in insertion mode
 set completeopt=menuone,longest,preview " Set auto-complete form
 
@@ -104,7 +111,9 @@ let mapleader=","
 let g:mapleader=","
 
 nmap <leader>w :w!<cr>          " Fast saving with leader + w
+nmap <leader>s :vsplit<cr>      " Vertical split window
 map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
+map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
@@ -126,6 +135,7 @@ set background=dark
 "let g:solarized_termcolors=256
 "colorscheme solarized
 colorscheme kolor
+"colorscheme mustang
 
 try
   lang en_US
@@ -302,6 +312,9 @@ aug END
 map <leader>ff :CommandT ~/projects/HearsayLabs/fanmgmt<CR>
 map <leader>fh :CommandT ~/projects/HearsayLabs<CR>
 map <leader>fd :CommandT ~/projects/djangoSamples<CR>
+map <leader>fa :CommandT ~/projects/djangoSamples/effectiveDjangoTutorial<CR>
+map <leader>fo :CommandT ~/projects/djangoSamples/oneLiner/oneLiner<CR>
+map <leader>f. :CommandT ~/projects/dotfiles<CR>
 map <leader>fp :CommandT ~/projects<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -371,6 +384,10 @@ nnoremap <leader>; :TagbarToggle<CR>
 set tags=tags;/
 " For autoload tags Check out: http://andrewradev.com/2011/06/08/vim-and-ctags/
 
+autocmd BufWritePost *
+      \ if filereadable('tags') |
+      \   call system('ctags -a '.expand('%')) |
+      \ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
@@ -404,13 +421,15 @@ let g:NERDTreeWinSize=30
 let g:syntastic_python_checkers=['pylint', 'pyflakes', 'pep8', 'flake8']
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline settings
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline
+" https://powerline.readthedocs.org/en/latest/fontpatching.html#font-patching
+"set guifont=Menlo\ Bold\ for\ Powerline
+set guifont=Menlo\ Regular\ for\ Powerline
 
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['python'] = 'python,django'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" sort-python-imports
-map <leader>ss :PyFixImports<CR>
-
+set encoding=utf-8 " Necessary to show Unicode glyphs
 
