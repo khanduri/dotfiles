@@ -7,10 +7,12 @@ set t_Co=256
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+""""""""""""""""""""""""""""""""""""""""""""""""
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
 
+""""""""""""""""""""""""""""""""""""""""""""""""
 " Color scheme
 Bundle 'cschlueter/vim-mustang'
 Bundle 'godlygeek/csapprox'
@@ -33,17 +35,32 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 
+""""""""""""""""""""""""""""""""""""""""""""""""
 " Utils
+
+" <leader>t for triggering the TODO list
+Bundle 'vim-scripts/TaskList.vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-surround'
+Bundle 'sjl/gundo.vim'
 
 Bundle 'ghewgill/vim-scmdiff'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'uguu-org/vim-matrix-screensaver'
+
+" <leader><leader>w -- front word
+" <leader><leader>b -- back word
+" <leader><leader>j -- front line
+" <leader><leader>k -- back line
 Bundle 'Lokaltog/vim-easymotion'
+
 Bundle 'Lokaltog/powerline'
 Bundle 'Lokaltog/powerline-fonts'
+
+Bundle 'sjbach/lusty'
+Bundle 'mattn/gist-vim'
+
+" Bundle 'klen/python-mode'
 
 filetype plugin indent on     " required!
 
@@ -85,7 +102,7 @@ set t_RV=                      " Don't request terminal version str (for xterm)
 set so=7                       "Set 7 lines to curors when moving vertical
 set ruler                      "Always show current position
 set hid                        "Change buffer - without saving
-set nohidden
+"set nohidden
 set mouse=a
 set backspace=eol,start,indent " Set backspace config
 set whichwrap+=<,>,h,l
@@ -95,6 +112,9 @@ set showmatch                  "Show matching bracets when text indicator is ove
 set tm=500
 set noerrorbells visualbell t_vb= "No sound on errors
 autocmd GUIEnter * set visualbell t_vb=
+
+" To highlight what's under the cursor
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " keystrokes
 set whichwrap=h,l,~,[,] " h,l wrap bet lines, cursor keys wrap in insertion mode
@@ -111,15 +131,17 @@ let mapleader=","
 let g:mapleader=","
 
 nmap <leader>w :w!<cr>          " Fast saving with leader + w
-nmap <leader>s :vsplit<cr>      " Vertical split window
+nmap <leader>v :vsplit<cr>      " Vertical split window
 map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
 map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
+"nmap <leader>cw byw     # Copy work under the cursor
+"nmap <leader>cl 0yy     # Copy line under the cursor
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
 au! BufWritePost $MYVIMRC source $MYVIMRC
 
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd  * :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -132,10 +154,15 @@ set encoding=utf8
 
 syntax enable "Enable syntax hl
 set background=dark
-"let g:solarized_termcolors=256
-"colorscheme solarized
-colorscheme kolor
+let g:solarized_termcolors=256
+colorscheme solarized
+"colorscheme kolor
 "colorscheme mustang
+"colorscheme cobalt
+"colorscheme darkburn
+"colorscheme darkzen
+"colorscheme desert
+"colorscheme dusk
 
 try
   lang en_US
@@ -203,10 +230,10 @@ map <silent> <leader><cr> :nohlsearch<cr>
 
 map <leader>ba :1,300 bd!<cr> " Close all the buffers
 map <leader>bd :Bclose<cr>    " Close the current buffer
-map <leader>tn :tabnew! %<cr> " Tab configuration
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+"map <leader>tn :tabnew! %<cr> " Tab configuration
+"map <leader>te :tabedit
+"map <leader>tc :tabclose<cr>
+"map <leader>tm :tabmove
 map <leader>cd :cd %:p:h<cr>  " Switch to the directory of the open buffer
 
 map <C-right> :bn<CR>         " Moving tab using CTRL+ the arrows
@@ -307,8 +334,10 @@ aug END
 " Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CommandT shortcuts
+map <leader>f :CommandT<CR>
 map <leader>ff :CommandT ~/projects/HearsayLabs/fanmgmt<CR>
 map <leader>fh :CommandT ~/projects/HearsayLabs<CR>
 map <leader>fd :CommandT ~/projects/djangoSamples<CR>
@@ -316,6 +345,7 @@ map <leader>fa :CommandT ~/projects/djangoSamples/effectiveDjangoTutorial<CR>
 map <leader>fo :CommandT ~/projects/djangoSamples/oneLiner/oneLiner<CR>
 map <leader>f. :CommandT ~/projects/dotfiles<CR>
 map <leader>fp :CommandT ~/projects<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MinibufferExp
@@ -389,6 +419,7 @@ autocmd BufWritePost *
       \   call system('ctags -a '.expand('%')) |
       \ endif
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 
@@ -427,9 +458,15 @@ let g:syntastic_python_checkers=['pylint', 'pyflakes', 'pep8', 'flake8']
 "set guifont=Menlo\ Bold\ for\ Powerline
 set guifont=Menlo\ Regular\ for\ Powerline
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easymotion
+hi EasyMotionTarget ctermbg=none ctermfg=green
+" let g:EasyMotion_leader_key = '<Leader>'
+
+
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['python'] = 'python,django'
 
-set encoding=utf-8 " Necessary to show Unicode glyphs
+let g:LustyJugglerSuppressRubyWarning = 1
 
