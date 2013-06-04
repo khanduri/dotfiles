@@ -175,19 +175,20 @@ alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 alias ctags="`brew --prefix`/bin/ctags"
 alias ctags='/usr/local/bin/ctags'
-alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim'
 alias hist='cat ~/.bash_history | grep -i'
 alias tmux="TERM=screen-256color-bce tmux"
-
-
-source ~/.django_bash_completion
-source ~/projects/HearsayLabs/virtualenv/bin/activate
 
 
 if [[ `hostname` = *local* ]]; then
     export DEVLOCAL=True
     export DATABASE=SQLITE
+    
+    alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim'
+    
+    source ~/.django_bash_completion
+    source ~/projects/HearsayLabs/virtualenv/bin/activate
 fi
+
 
 cd ~/projects/HearsayLabs/fanmgmt
 
