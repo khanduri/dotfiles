@@ -84,6 +84,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class " Ignore some file
 set autowrite 				   " auto read when a file is changed from outside
 set cmdheight=1                " Explicitly set the height of the command line
 set number                     " Display line numbers
+set relativenumber             " Display line numbers
 set numberwidth=1              " using only 1 col (and 1 space) while possible
 set title                      " show title in console title bar
 set wildmenu                   " Menu completion in command mode on <Tab>
@@ -136,6 +137,8 @@ map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
 map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
 "nmap <leader>cw byw     # Copy work under the cursor
 "nmap <leader>cl 0yy     # Copy line under the cursor
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
