@@ -140,6 +140,7 @@ map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
+nmap <leader>s /<C-r><C-w><Enter>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
@@ -162,13 +163,6 @@ set background=light
 "colorscheme solarized
 "colorscheme kolor
 colorscheme mustang
-"colorscheme cobalt
-"colorscheme darkburn
-"colorscheme darkzen
-"colorscheme desert
-"colorscheme dusk
-"colorscheme desert256
-"colorscheme tesla
 
 try
   lang en_US
