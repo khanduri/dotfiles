@@ -103,7 +103,7 @@ set t_RV=                      " Don't request terminal version str (for xterm)
 set so=7                       "Set 7 lines to curors when moving vertical
 set ruler                      "Always show current position
 set hid                        "Change buffer - without saving
-"set nohidden
+set hidden
 set mouse=a
 set backspace=eol,start,indent " Set backspace config
 set whichwrap+=<,>,h,l
@@ -138,6 +138,7 @@ map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
 "nmap <leader>cw byw     # Copy work under the cursor
 "nmap <leader>cl 0yy     # Copy line under the cursor
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
 
 " When vimrc is edited, reload it
@@ -156,16 +157,18 @@ set gfn=Liberation\ Mono\ 10
 set encoding=utf8
 
 syntax enable "Enable syntax hl
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+set background=light
+"let g:solarized_termcolors=256
+"colorscheme solarized
 "colorscheme kolor
-"colorscheme mustang
+colorscheme mustang
 "colorscheme cobalt
 "colorscheme darkburn
 "colorscheme darkzen
 "colorscheme desert
 "colorscheme dusk
+"colorscheme desert256
+"colorscheme tesla
 
 try
   lang en_US
@@ -203,7 +206,7 @@ match OverLength /\%81v.\+/
 " In insert mode, you can paste from clipboard using CTRL+v
 inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<ENTER>i<RIGHT>
 autocmd BufEnter * silent! lcd %:p:h " Set def env based on current edit files
-nnoremap <leader>v  " +gP            " Paste using ,v in normal mode
+nnoremap <leader>p  " +gP            " Paste using ,v in normal mode
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
