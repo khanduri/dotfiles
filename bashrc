@@ -167,7 +167,11 @@ export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
 export GREP_OPTIONS='--color=auto'
 
 
-# some more ls aliases
+# some more aliases
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias c='clear'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
