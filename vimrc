@@ -16,7 +16,6 @@ Bundle 'gmarik/vundle'
 " Color scheme
 Bundle 'cschlueter/vim-mustang'
 Bundle 'godlygeek/csapprox'
-Bundle 'flazz/vim-colorschemes'
 
 Bundle 'wincent/Command-T'
 
@@ -56,10 +55,13 @@ Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'Lokaltog/powerline'
 Bundle 'Lokaltog/powerline-fonts'
+Bundle 'Lokaltog/vim-distinguished'
 
-Bundle 'sjbach/lusty'
-Bundle 'mattn/gist-vim'
+Bundle 'vim-scripts/sort-python-imports'
 
+"Bundle 'flazz/vim-colorschemes'
+" Bundle 'sjbach/lusty'
+" Bundle 'mattn/gist-vim'
 " Bundle 'klen/python-mode'
 
 filetype plugin indent on     " required!
@@ -146,7 +148,7 @@ nmap <leader>s /<C-r><C-w><Enter>
 autocmd! bufwritepost vimrc source ~/.vimrc
 au! BufWritePost $MYVIMRC source $MYVIMRC
 
-autocmd  * :%s/\s\+$//e
+autocmd * :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -162,7 +164,8 @@ set background=light
 "let g:solarized_termcolors=256
 "colorscheme solarized
 "colorscheme kolor
-colorscheme mustang
+"colorscheme mustang
+colorscheme distinguished
 
 try
   lang en_US
@@ -346,6 +349,9 @@ map <leader>fo :CommandT ~/projects/djangoSamples/oneLiner/oneLiner<CR>
 map <leader>f. :CommandT ~/projects/dotfiles<CR>
 map <leader>fp :CommandT ~/projects<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sort Python Imports
+map <leader>i :PyFixImports<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MinibufferExp
@@ -467,6 +473,4 @@ hi EasyMotionTarget ctermbg=none ctermfg=green
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['python'] = 'python,django'
-
-let g:LustyJugglerSuppressRubyWarning = 1
 
