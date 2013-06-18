@@ -150,7 +150,7 @@ function rmb {
 
 #PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\$(parse_git_branch)\$ "
 #PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$(parse_git_branch)$NO_COLOUR\$ "
-PS1="\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 
 
 export FB_USER_ID=517521816
@@ -179,6 +179,7 @@ alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 alias hist='cat ~/.bash_history | grep -i'
 alias tmux="TERM=screen-256color-bce tmux"
+alias dot="cd ~/projects/dotfiles"
 
 
 if [[ `hostname` = *local* ]]; then
