@@ -108,12 +108,12 @@ if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
-
+# Show git info in the prompt
 function parse_git_branch () {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-
+# Removed merged branches
 # from http://rob.by/2013/remove-merged-branches-from-git
 function rmb {
   current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
@@ -147,11 +147,9 @@ function rmb {
   fi
 }
 
-
 #PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\$(parse_git_branch)\$ "
 #PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$(parse_git_branch)$NO_COLOUR\$ "
 PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
-
 
 export FB_USER_ID=517521816
 #export PATH=$PATH:/Users/pkhanduri/bin/jython
@@ -163,9 +161,7 @@ export FB_USER_ID=517521816
 export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
 
-
 export GREP_OPTIONS='--color=auto'
-
 
 # some more aliases
 alias cd..='cd ..'
@@ -175,12 +171,15 @@ alias c='clear'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+# Git alias
+alias gru='git rebase upstream/master'
+alias g='git status'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
-alias hist='cat ~/.bash_history | grep -i'
+
 alias tmux="TERM=screen-256color-bce tmux"
 alias dot="cd ~/projects/dotfiles"
-
 
 if [[ `hostname` = *local* ]]; then
     export DEVLOCAL=True
@@ -192,8 +191,7 @@ if [[ `hostname` = *local* ]]; then
     
     source ~/.django_bash_completion
     source ~/projects/HearsayLabs/virtualenv/bin/activate
+    
+    cd ~/projects/HearsayLabs/fanmgmt
 fi
-
-
-cd ~/projects/HearsayLabs/fanmgmt
 
