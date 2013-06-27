@@ -163,6 +163,16 @@ export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
 
 export GREP_OPTIONS='--color=auto'
 
+# http://qq.is/article/ssh-keys-through-screen
+# Predictable SSH authentication socket location.
+SOCK="/tmp/ssh-agent-$USER-tmux"
+if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ] 
+then
+    rm -f /tmp/ssh-agent-$USER-tmux
+    ln -sf $SSH_AUTH_SOCK $SOCK
+    export SSH_AUTH_SOCK=$SOCK
+fi
+
 # some more aliases
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -192,16 +202,11 @@ if [[ `hostname` = *local* ]]; then
     source ~/.django_bash_completion
     source ~/projects/HearsayLabs/virtualenv/bin/activate
     
+    cd ~/projects/HearsayLabs/fanmgmt
+fi
+if [[ `hostname` = *prod-analytics* ]]; then
+    alias ctags='/home/pkhanduri/projects/bin/ctags-5.8/ctags'
+
+    cd ~/projects/HearsayLabs/fanmgmt
 fi
 
-# http://qq.is/article/ssh-keys-through-screen
-# Predictable SSH authentication socket location.
-SOCK="/tmp/ssh-agent-$USER-tmux"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ] 
-then
-    rm -f /tmp/ssh-agent-$USER-tmux
-    ln -sf $SSH_AUTH_SOCK $SOCK
-    export SSH_AUTH_SOCK=$SOCK
-fi
-
-cd ~/projects/HearsayLabs/fanmgmt
