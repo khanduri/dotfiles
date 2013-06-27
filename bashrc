@@ -108,6 +108,10 @@ if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
+##################################
+# Git functions
+##################################
+
 # Show git info in the prompt
 function parse_git_branch () {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -147,24 +151,19 @@ function rmb {
   fi
 }
 
-#PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\$(parse_git_branch)\$ "
-#PS1="\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$(parse_git_branch)$NO_COLOUR\$ "
-PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+##################################
+# Global exports
+##################################
 
 export FB_USER_ID=517521816
-#export PATH=$PATH:/Users/pkhanduri/bin/jython
-# Required for connecting pig with hbase: http://chase-seibert.github.com/blog/2013/02/01/getting-starting-with-hbase-and-pig.html
-#export JAVA_HOME=$(/usr/libexec/java_home)
-#export HBASE_HOME=/usr/local/Cellar/hbase/0.94.2/
-#export PIG_CLASSPATH="/usr/local/Cellar/hbase/0.94.2/libexec/conf/hbase-site.xml:/usr/local/Cellar/hbase/0.94.2/libexec/hbase-0.94.2.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/zookeeper-3.4.3.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/guava-11.0.2.jar:/usr/local/Cellar/hbase/0.94.2/libexec/lib/protobuf-java-2.4.0a.jar"
-#export HBASE_CONF_DIR=/usr/local/Cellar/hbase/0.94.2/libexec/conf
-export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
-export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
-
 export GREP_OPTIONS='--color=auto'
 
+##################################
+# SSH key forwarding
 # http://qq.is/article/ssh-keys-through-screen
 # Predictable SSH authentication socket location.
+##################################
+
 SOCK="/tmp/ssh-agent-$USER-tmux"
 if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ] 
 then
@@ -173,7 +172,10 @@ then
     export SSH_AUTH_SOCK=$SOCK
 fi
 
-# some more aliases
+##################################
+# Aliases
+##################################
+
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -191,16 +193,22 @@ alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 alias tmux="TERM=screen-256color-bce tmux"
 alias dot="cd ~/projects/dotfiles"
 
+##################################
+# Config per bos
+##################################
+
 if [[ `hostname` = *local* ]]; then
     export DEVLOCAL=True
     export DATABASE=SQLITE
     
-    alias ctags="`brew --prefix`/bin/ctags" 
     alias ctags='/usr/local/bin/ctags'
     alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim'
     
     source ~/.django_bash_completion
     source ~/projects/HearsayLabs/virtualenv/bin/activate
+
+    export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
+    export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
     
     cd ~/projects/HearsayLabs/fanmgmt
 fi
@@ -210,3 +218,8 @@ if [[ `hostname` = *prod-analytics* ]]; then
     cd ~/projects/HearsayLabs/fanmgmt
 fi
 
+##################################
+# Prompt
+##################################
+
+PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
