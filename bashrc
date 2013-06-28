@@ -217,6 +217,9 @@ if [[ `hostname` = *prod-analytics* ]]; then
 
     cd ~/projects/HearsayLabs/fanmgmt
 fi
+if [[ `hostname` = *prod-ops* ]]; then
+    tmux attach
+fi
 
 ##################################
 # Prompt
