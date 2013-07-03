@@ -134,15 +134,17 @@ let mapleader=","
 let g:mapleader=","
 
 nmap <leader>w :w!<cr>          " Fast saving with leader + w
-nmap <leader>v :vsplit<cr>      " Vertical split window
+nmap <leader>q :q<cr>           " Quit 
+nmap <leader>vv :vsplit<cr>      " Vertical split window
+nmap <leader>vc :split<cr>       " Horizontal split window
+
 map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
 map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
-"nmap <leader>cw byw     # Copy work under the cursor
-"nmap <leader>cl 0yy     # Copy line under the cursor
-nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
-nmap <leader>s /<C-r><C-w><Enter>
+nmap <leader>s /<C-r><C-w><Enter> " Lookup the term under the cursor
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
@@ -257,7 +259,6 @@ nnoremap <leader>2 :resize -5<cr>
 nnoremap <leader>3 :vertical resize +5<cr>
 nnoremap <leader>4 :vertical resize -5<cr>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language specific settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -275,7 +276,6 @@ autocmd FileType python hi SpellLocal term=reverse ctermfg=black ctermbg=darkgre
 autocmd FileType python hi Search guifg=#ffffff guibg=#0000ff gui=none ctermfg=white ctermbg=darkblue
 autocmd FileType python hi IncSearch guifg=#ffffff guibg=#8888ff gui=none ctermfg=white
 autocmd FileType python highlight SpellBad guifg=#ffffff guibg=#8888ff gui=none ctermfg=black ctermbg=darkred
-
 
 au BufEnter,Bufread *.mkd,*.md,*.mdown,*.markdown set tw=0 " markdown
 
