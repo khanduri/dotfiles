@@ -225,7 +225,12 @@ if [[ `hostname` = *prod-analytics* ]]; then
 
     cd ~/projects/HearsayLabs/fanmgmt
 fi
+if [[ `hostname` = *hsl-dev* ]]; then
+    cd ~/projects/HearsayLabs/fanmgmt
+fi
 if [[ `hostname` = *prod-ops* ]]; then
+    # I can only do this in ops. DOING THIS ON ANY OTHER BOX MIGHT
+    # RESULT IN AN INFINITE LOOP
     tmux attach
 fi
 
