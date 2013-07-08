@@ -185,8 +185,16 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Git alias
-alias gru='git rebase upstream/master'
 alias g='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gb='git branch'
+
+alias gfu='git fetch upstream'
+alias gfo='git fetch origin'
+alias gru='git rebase upstream/master'
+alias gro='git rebase origin/master'
+
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 
