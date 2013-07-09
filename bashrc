@@ -202,6 +202,12 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias dot="cd ~/projects/dotfiles"
 
 ##################################
+# Prompt
+##################################
+
+PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+
+##################################
 # Config per bos
 ##################################
 
@@ -212,13 +218,13 @@ if [[ `hostname` = *local* ]]; then
     alias ctags='/usr/local/bin/ctags'
     alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim'
     
-    source ~/.django_bash_completion
-    source ~/projects/HearsayLabs/virtualenv/bin/activate
-
     export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
     export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
-    
+
     cd ~/projects/HearsayLabs/fanmgmt
+
+    source ~/.django_bash_completion
+    source ~/projects/HearsayLabs/virtualenv/bin/activate
 fi
 if [[ `hostname` = *prod-analytics* ]]; then
     alias ctags='/home/pkhanduri/projects/bin/ctags-5.8/ctags'
@@ -233,9 +239,3 @@ if [[ `hostname` = *prod-ops* ]]; then
     # RESULT IN AN INFINITE LOOP
     tmux attach
 fi
-
-##################################
-# Prompt
-##################################
-
-PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
