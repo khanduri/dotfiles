@@ -34,6 +34,8 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 
+Bundle 'jpalardy/vim-slime'
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Utils
 
@@ -473,4 +475,8 @@ hi EasyMotionTarget ctermbg=none ctermfg=green
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['python'] = 'python,django'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Slime
+let g:slime_target = 'tmux'
 
