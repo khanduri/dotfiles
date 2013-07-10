@@ -137,15 +137,16 @@ let g:mapleader=","
 
 nmap <leader>w :w!<cr>          " Fast saving with leader + w
 nmap <leader>q :q<cr>           " Quit 
-nmap <leader>vv :vsplit<cr>      " Vertical split window
-nmap <leader>vc :split<cr>       " Horizontal split window
+nmap <leader>v :vsplit<cr>      " Vertical split window
+nmap <leader>s :split<cr>       " Horizontal split window
 
 map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
 map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
 
 map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
-nmap <leader>s /<C-r><C-w><Enter> " Lookup the term under the cursor
+" This can be done with *
+"nmap <leader>s /<C-r><C-w><Enter> " Lookup the term under the cursor
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " When vimrc is edited, reload it
