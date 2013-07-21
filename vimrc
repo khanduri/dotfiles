@@ -459,7 +459,7 @@ let g:NERDTreeWinSize=30
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 let g:syntastic_python_checkers=['pylint', 'pyflakes', 'pep8', 'flake8']
-
+"let g:syntastic_javascript_checkers=['jslint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Powerline
