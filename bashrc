@@ -199,7 +199,9 @@ alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 
 alias tmux="TERM=screen-256color-bce tmux"
+
 alias dot="cd ~/projects/dotfiles"
+alias hss="cd ~/projects/HearsayLabs/fanmgmt"
 
 alias sourceb='source ~/.bashrc'
 
