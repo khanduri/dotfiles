@@ -191,8 +191,8 @@ alias gdc='git diff --cached'
 alias gb='git branch'
 
 alias gfu='git fetch upstream'
-alias gfo='git fetch origin'
 alias gru='git rebase upstream/master'
+alias gfo='git fetch origin'
 alias gro='git rebase origin/master'
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
@@ -200,6 +200,8 @@ alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 
 alias tmux="TERM=screen-256color-bce tmux"
 alias dot="cd ~/projects/dotfiles"
+
+alias sourceb='source ~/.bashrc'
 
 ##################################
 # Prompt
