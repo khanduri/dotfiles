@@ -262,6 +262,11 @@ nnoremap <leader>2 :resize -5<cr>
 nnoremap <leader>3 :vertical resize +5<cr>
 nnoremap <leader>4 :vertical resize -5<cr>
 
+
+nnoremap <leader>za :set foldmethod=indent<cr>
+nnoremap <leader>zz :set foldlevel=99<cr>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language specific settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
