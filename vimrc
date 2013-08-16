@@ -87,8 +87,8 @@ set history=1000 			   " lines of history VIM has to remember
 set wildignore=*.swp,*.bak,*.pyc,*.class " Ignore some file
 set autowrite 				   " auto read when a file is changed from outside
 set cmdheight=1                " Explicitly set the height of the command line
-set number                     " Display line numbers
 set relativenumber             " Display line numbers
+" set number                     " Display line numbers
 set numberwidth=1              " using only 1 col (and 1 space) while possible
 set title                      " show title in console title bar
 set wildmenu                   " Menu completion in command mode on <Tab>
@@ -135,13 +135,11 @@ set smartcase    " Override 'ignore-case' if search pattern has upper case chars
 let mapleader=","
 let g:mapleader=","
 
-nmap <leader>w :w!<cr>          " Fast saving with leader + w
-nmap <leader>q :q<cr>           " Quit 
 nmap <leader>v :vsplit<cr>      " Vertical split window
 nmap <leader>s :split<cr>       " Horizontal split window
 
-map <leader>e :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
-map <leader>b :e! ~/.bashrc<cr> " Fast editing of the .bashrc
+map <leader>ev :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
+map <leader>eb :e! ~/.bashrc<cr> " Fast editing of the .bashrc
 
 map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
@@ -208,7 +206,7 @@ match OverLength /\%81v.\+/
 " In insert mode, you can paste from clipboard using CTRL+v
 inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<ENTER>i<RIGHT>
 autocmd BufEnter * silent! lcd %:p:h " Set def env based on current edit files
-nnoremap <leader>p  " +gP            " Paste using ,v in normal mode
+" nnoremap <leader>p  " +gP            " Paste in normal mode
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -238,10 +236,6 @@ map <silent> <leader><cr> :nohlsearch<cr>
 
 map <leader>ba :1,300 bd!<cr> " Close all the buffers
 map <leader>bd :Bclose<cr>    " Close the current buffer
-"map <leader>tn :tabnew! %<cr> " Tab configuration
-"map <leader>te :tabedit
-"map <leader>tc :tabclose<cr>
-"map <leader>tm :tabmove
 map <leader>cd :cd %:p:h<cr>  " Switch to the directory of the open buffer
 
 map <C-right> :bn<CR>         " Moving tab using CTRL+ the arrows
@@ -388,6 +382,10 @@ hi MBEVisibleChanged term=bold cterm=bold gui=bold guifg=Green " CHANGED and VIS
 
 let g:bufExplorerSortBy = "name"
 
+nnoremap <leader>n :MBEbn<cr>
+nnoremap <leader>p :MBEbp<cr>
+nnoremap <leader>d :MBEClose<cr>
+
 autocmd BufRead,BufNew :call UMiniBufExplorer
 
 " Taken from http://dev.gentoo.org/~bass/configs/vimrc.html
@@ -455,7 +453,7 @@ function! s:CloseIfOnlyNerdTreeLeft()
 endfunction
 
 "map <leader>t :NERDTreeTabsToggle<CR>
-nnoremap <leader>n :NERDTreeToggle ~/projects<CR>
+nnoremap <leader>tree :NERDTreeToggle ~/projects<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMouseMode=3
 let g:NERDTreeWinSize=30
