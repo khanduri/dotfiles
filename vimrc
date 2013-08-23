@@ -84,24 +84,26 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set history=1000 			   " lines of history VIM has to remember
+set pastetoggle=<F3>           " Press F3 for toggle paste mode
 set wildignore=*.swp,*.bak,*.pyc,*.class " Ignore some file
 set autowrite 				   " auto read when a file is changed from outside
 set cmdheight=1                " Explicitly set the height of the command line
+set number                     " Display line numbers
 set relativenumber             " Display line numbers
-" set number                     " Display line numbers
 set numberwidth=1              " using only 1 col (and 1 space) while possible
+set colorcolumn=80             " Mark 80th column
+
+set cmdheight=1                " Explicitly set the height of the command line
 set title                      " show title in console title bar
 set wildmenu                   " Menu completion in command mode on <Tab>
-set pastetoggle=<F3>           " Press F3 for toggle paste mode
 set cursorline
-set colorcolumn=80             " Mark 80th column
 set wildmode=list:longest,full " com-line completion <tab> (file,help,options)
 set nowrap                     " no line wrapping;
 set guioptions+=b              " add a horizontal scrollbar to the bottom
 set enc=utf-8                  " UTF-8 as the default buffer encoding
 set laststatus=2               " Always show status line, even for one window
 set scrolloff=3                " Scroll when cursor is within 3 char of top/bot
-set shiftround                 " Round indent to multiple of 'shiftwidth' for > and < commands
+set shiftround " Round indent to multiple of 'shiftwidth' for > and < commands
 set showcmd " Show (par) commands (or selection size in Visual mode) on status
 set t_RV=                      " Don't request terminal version str (for xterm)
 set so=7                       "Set 7 lines to curors when moving vertical
@@ -113,7 +115,7 @@ set backspace=eol,start,indent " Set backspace config
 set whichwrap+=<,>,h,l
 set nolazyredraw               "Don't redraw while executing macros
 set magic                      "Set magic on, for regular expressions
-set showmatch                  "Show matching bracets when text indicator is over them
+set showmatch          "Show matching bracets when text indicator is over them
 set tm=500
 set noerrorbells visualbell t_vb= "No sound on errors
 autocmd GUIEnter * set visualbell t_vb=
