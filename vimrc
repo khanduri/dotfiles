@@ -60,6 +60,7 @@ Bundle 'Lokaltog/powerline-fonts'
 Bundle 'Lokaltog/vim-distinguished'
 
 Bundle 'vim-scripts/sort-python-imports'
+Bundle 'lrvick/Conque-Shell'
 
 "Bundle 'flazz/vim-colorschemes'
 " Bundle 'sjbach/lusty'
@@ -136,6 +137,8 @@ set smartcase    " Override 'ignore-case' if search pattern has upper case chars
 " Set the leader key to a comma (,)
 let mapleader=","
 let g:mapleader=","
+
+nmap <leader>w :w<cr>      " quicksave
 
 nmap <leader>v :vsplit<cr>      " Vertical split window
 nmap <leader>s :split<cr>       " Horizontal split window
@@ -485,4 +488,10 @@ let g:snipMate.scope_aliases['python'] = 'python,django'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Slime
 let g:slime_target = 'tmux'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Conque
+nnoremap <leader>cb :ConqueTerm bash<cr>
+nnoremap <leader>cs :ConqueTerm python<cr>
+
 
