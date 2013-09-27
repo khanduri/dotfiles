@@ -1,6 +1,5 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-export TERM="xterm-color"
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -155,6 +154,8 @@ function rmb {
 # Global exports
 ##################################
 
+# export TERM="xterm-color"
+export TERM=screen-256color
 export FB_USER_ID=517521816
 export GREP_OPTIONS='--color=auto'
 
