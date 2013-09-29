@@ -35,6 +35,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 
 Bundle 'jpalardy/vim-slime'
+Bundle 'vim-scripts/EasyGrep'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Utils
@@ -493,5 +494,3 @@ let g:slime_target = 'tmux'
 " Conque
 nnoremap <leader>cb :ConqueTerm bash<cr>
 nnoremap <leader>cs :ConqueTerm python<cr>
-
-
