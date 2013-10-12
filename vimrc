@@ -36,6 +36,7 @@ Bundle 'honza/vim-snippets'
 
 Bundle 'jpalardy/vim-slime'
 Bundle 'vim-scripts/EasyGrep'
+Bundle 'davidhalter/jedi-vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Utils
@@ -146,6 +147,9 @@ nmap <leader>s :split<cr>       " Horizontal split window
 
 map <leader>ev :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
 map <leader>eb :e! ~/.bashrc<cr> " Fast editing of the .bashrc
+
+" Show full path of the current file
+map <leader>p :echo expand('%:p')<cr>
 
 map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
@@ -388,9 +392,9 @@ hi MBEVisibleChanged term=bold cterm=bold gui=bold guifg=Green " CHANGED and VIS
 
 let g:bufExplorerSortBy = "name"
 
-nnoremap <leader>n :MBEbn<cr>
-nnoremap <leader>p :MBEbp<cr>
-nnoremap <leader>d :MBEClose<cr>
+nnoremap <leader>/ :MBEbn<cr>
+nnoremap <leader>. :MBEbp<cr>
+nnoremap <leader>` :MBEClose<cr>
 
 autocmd BufRead,BufNew :call UMiniBufExplorer
 
@@ -494,3 +498,13 @@ let g:slime_target = 'tmux'
 " Conque
 nnoremap <leader>cb :ConqueTerm bash<cr>
 nnoremap <leader>cs :ConqueTerm python<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Jedi
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "1"
