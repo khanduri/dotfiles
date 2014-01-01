@@ -205,6 +205,9 @@ alias dot="cd ~/projects/dotfiles"
 alias hss="cd ~/projects/HearsayLabs/fanmgmt"
 
 alias sourceb='source ~/.bashrc'
+alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
+alias cdheroku='deactivate;cd ~/projects/herokuPlayground/;source venv/bin/activate'
+alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/activate'
 
 ##################################
 # Prompt
@@ -223,8 +226,11 @@ if [[ `hostname` = *local* ]]; then
     alias ctags='/usr/local/bin/ctags'
     alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim'
     
+    export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
     export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
     export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
+    export PATH="/usr/local/bin:$PATH" # for rabbitMQ
+
 
     cd ~/projects/HearsayLabs/fanmgmt
 
