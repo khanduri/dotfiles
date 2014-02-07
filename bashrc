@@ -76,8 +76,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -183,7 +183,8 @@ alias ...='cd ../..'
 alias c='clear'
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+# alias l='ls -CF'
+alias l='ll'
 
 # Git alias
 alias g='git status'
@@ -195,16 +196,18 @@ alias gfu='git fetch upstream'
 alias gru='git rebase upstream/master'
 alias gfo='git fetch origin'
 alias gro='git rebase origin/master'
+alias grv='git remote -v'
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 
+# Other aliases
 alias tmux="TERM=screen-256color-bce tmux"
 
+alias sourceb='source ~/.bashrc'
 alias dot="cd ~/projects/dotfiles"
 alias hss="cd ~/projects/HearsayLabs/fanmgmt"
 
-alias sourceb='source ~/.bashrc'
 alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
 alias cdheroku='deactivate;cd ~/projects/herokuPlayground/;source venv/bin/activate'
 alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/activate'
@@ -231,6 +234,7 @@ if [[ `hostname` = *local* ]]; then
     export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
     export PATH="/usr/local/bin:$PATH" # for rabbitMQ
 
+    export PYTHONPATH=/usr/local/Cellar/opencv/2.4.7.1/lib/python2.7/site-packages/:$PYTHONPATH
 
     cd ~/projects/HearsayLabs/fanmgmt
 
