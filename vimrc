@@ -161,8 +161,6 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 autocmd! bufwritepost vimrc source ~/.vimrc
 au! BufWritePost $MYVIMRC source $MYVIMRC
 
-autocmd * :%s/\s\+$//e
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
