@@ -19,11 +19,16 @@ vim
 
 ### Troubleshooting
 
+
+
 ##### Vim support for ruby and python
+- `vim --version` (make sure you see +python and +ruby in there)
 - Linux: apt-get install vim-nox
 - Mac: brew install vim
 
 ##### Command-T
+- NOTE: mavericks runs into a problem
+- `cd ~/.vim/bundle/Command-T/ruby/command-t`
 - ruby extconf.rb
 - make
 
