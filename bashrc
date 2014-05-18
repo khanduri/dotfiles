@@ -159,6 +159,13 @@ export TERM=screen-256color
 export FB_USER_ID=517521816
 export GREP_OPTIONS='--color=auto'
 
+export EVENT_NOKQUEUE=1
+export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments
+
+# AWS: elastic bean stalk
+export PATH=$PATH:~/projects/bin/AWS-ElasticBeanstalk-CLI-2.6.2/eb/macosx/python2.7/
+
 ##################################
 # SSH key forwarding
 # http://qq.is/article/ssh-keys-through-screen
@@ -189,7 +196,11 @@ alias l='ll'
 # Git alias
 alias g='git status'
 alias gd='git diff'
+alias ga='git add'
+alias gc='git checkout'
+alias gap='git add --patch'
 alias gdc='git diff --cached'
+
 alias gb='git branch'
 
 alias gfu='git fetch upstream'
@@ -200,6 +211,7 @@ alias grv='git remote -v'
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
+alias galias='git config --get-regexp alias'
 
 # Other aliases
 alias tmux="TERM=screen-256color-bce tmux"
@@ -211,6 +223,13 @@ alias hss="cd ~/projects/HearsayLabs/fanmgmt"
 alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
 alias cdheroku='deactivate;cd ~/projects/herokuPlayground/;source venv/bin/activate'
 alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/activate'
+alias cdjaw='deactivate;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate'
+alias cdjap='deactivate;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate'
+
+alias gupmaster='git fetch upstream; git rebase upstream/master master; git push origin master'
+alias gupma='git fetch upstream; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
+
+alias dz='psql -h wearhaus.c0s0yd7udzgh.us-east-1.redshift.amazonaws.com -p 5439 datazoo -U pkhanduri'
 
 ##################################
 # Prompt
@@ -219,7 +238,7 @@ alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/
 PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 
 ##################################
-# Config per bos
+# Config per box
 ##################################
 
 if [[ `hostname` = *local* ]]; then

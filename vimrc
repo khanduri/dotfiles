@@ -17,7 +17,10 @@ Bundle 'gmarik/vundle'
 Bundle 'cschlueter/vim-mustang'
 Bundle 'godlygeek/csapprox'
 
-Bundle 'wincent/Command-T'
+" Bundle 'wincent/Command-T'
+" Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'klen/python-mode'
 
 Bundle 'fholgado/minibufexpl.vim'
 
@@ -26,7 +29,7 @@ Bundle 'vim-scripts/AutoTag'
 
 Bundle 'scrooloose/nerdtree'
 
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 
 "Bundle 'msanders/snipmate.vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -94,7 +97,7 @@ set cmdheight=1                " Explicitly set the height of the command line
 set number                     " Display line numbers
 set relativenumber             " Display line numbers
 set numberwidth=1              " using only 1 col (and 1 space) while possible
-set colorcolumn=80             " Mark 80th column
+set colorcolumn=120             " Mark 80th column
 
 set cmdheight=1                " Explicitly set the height of the command line
 set title                      " show title in console title bar
@@ -135,6 +138,9 @@ set incsearch    " show 'best match so far' as you type
 set hlsearch     " highlight the items found by the search
 set ignorecase   " ignores case of letters on searches
 set smartcase    " Override 'ignore-case' if search pattern has upper case chars
+
+"Copy to clipboard
+" set clipboard=unnamed
 
 " Set the leader key to a comma (,)
 let mapleader=","
@@ -217,6 +223,10 @@ autocmd BufEnter * silent! lcd %:p:h " Set def env based on current edit files
 " nnoremap <leader>p  " +gP            " Paste in normal mode
 
 
+" Close buffer with :BD
+command! BD bp | sp | bn | bd
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -249,8 +259,8 @@ map <leader>cd :cd %:p:h<cr>  " Switch to the directory of the open buffer
 map <C-right> :bn<CR>         " Moving tab using CTRL+ the arrows
 map <C-left> :bp<CR>
 
-noremap <Space> <PageDown>          " page down
-noremap <leader><Space> <PageUp>    " page up
+" noremap <Space> <PageDown>          " page down
+" noremap <leader><Space> <PageUp>    " page up
 
 " Mapping to move between windows
 nmap <silent> <leader>k :wincmd k<CR>
@@ -351,12 +361,7 @@ aug END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CommandT shortcuts
 map <leader>f :CommandT<CR>
-map <leader>ff :CommandT ~/projects/HearsayLabs/fanmgmt<CR>
-map <leader>fh :CommandT ~/projects/HearsayLabs<CR>
-map <leader>fd :CommandT ~/projects/djangoSamples<CR>
-map <leader>fa :CommandT ~/projects/djangoSamples/effectiveDjangoTutorial<CR>
-map <leader>fo :CommandT ~/projects/djangoSamples/oneLiner/oneLiner<CR>
-map <leader>f. :CommandT ~/projects/dotfiles<CR>
+map <leader>ff :CommandT ~/projects/jawbone/pkhanduri_srv<CR>
 map <leader>fp :CommandT ~/projects<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -461,11 +466,11 @@ function! s:CloseIfOnlyNerdTreeLeft()
 endfunction
 
 "map <leader>t :NERDTreeTabsToggle<CR>
-nnoremap <leader>tree :NERDTreeToggle ~/projects<CR>
+nnoremap <leader>tree :NERDTreeToggle ~/projects/jawbone/pkhanduri_srv<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMouseMode=3
 let g:NERDTreeWinSize=30
-
+let NERDTreeIgnore = ['\.pyc$']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
@@ -506,3 +511,9 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "1"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pytho mode
+let g:pymode_lint_ignore = "E501"
+let g:pymode_rope_goto_definition_cmd = 'e'
+
