@@ -209,11 +209,18 @@ alias loglook="while read line; do echo $line | python -c 'import json,sys;obj=j
 # Prompt
 ##################################
 
-PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+PS1="\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 
 ##################################
 # Config per box
 ##################################
+
+if [[ `hostname` = *stage* ]]; then
+    PS1="\[\e[1;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+fi
+if [[ `hostname` = *pkhan-mbr* ]]; then
+    PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+fi
 
 if [[ `hostname` = *local* ]]; then
     export DEVLOCAL=True
