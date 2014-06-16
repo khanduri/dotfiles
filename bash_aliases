@@ -14,18 +14,19 @@ alias l='ll'
 # Git alias
 alias g='git status'
 alias gd='git diff'
-alias ga='git add'
 alias gc='git checkout'
 alias gap='git add --patch'
 alias gdc='git diff --cached'
 
 alias gb='git branch'
 
+alias gup="git pull"
 alias gfu='git fetch upstream'
-alias gru='git rebase upstream/master'
 alias gfo='git fetch origin'
-alias gro='git rebase origin/master'
 alias grv='git remote -v'
+
+alias ga="git add .;git commit --amend -m"                                                                                                                                                    
+alias gm="git add .;git commit -m"  
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
