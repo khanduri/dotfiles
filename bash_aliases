@@ -25,7 +25,8 @@ alias gfu='git fetch upstream'
 alias gfo='git fetch origin'
 alias grv='git remote -v'
 
-alias ga="git add .;git commit --amend -m"                                                                                                                                                    
+# alias ga="git add .;git commit --amend -m"                                                                                                                                                    
+alias ga="git commit --amend --no-edit"                                                                                                                                                    
 alias gm="git add .;git commit -m"  
 
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
