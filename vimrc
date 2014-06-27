@@ -72,6 +72,8 @@ Bundle 'lrvick/Conque-Shell'
 " Bundle 'mattn/gist-vim'
 " Bundle 'klen/python-mode'
 
+Bundle "mattn/emmet-vim"
+
 filetype plugin indent on     " required!
 
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -226,7 +228,6 @@ autocmd BufEnter * silent! lcd %:p:h " Set def env based on current edit files
 " Close buffer with :BD
 command! BD bp | sp | bn | bd
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -332,16 +333,20 @@ autocmd FileType css set sts=2
 autocmd Syntax c,cpp,vim,xml,html,xhtml,js,php,py,python set foldmethod=manual
 autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 
-"remove trailing whitespace
+" Remove trailing whitespace
+" Clear out trailing space
 "http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace
 autocmd BufWritePre *.c :%s/\s\+$//e
 autocmd BufWritePre *.cpp :%s/\s\+$//e
 autocmd BufWritePre *.c++ :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
 autocmd BufWritePre *.java :%s/\s\+$//e
-"autocmd BufWritePre *.php :%s/\s\+$//e
+autocmd BufWritePre *.php :%s/\s\+$//e
 autocmd BufWritePre *.pl :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.html :%s/\s\+$//e
+autocmd BufWritePre *.css :%s/\s\+$//e
+
 "au BufEnter,BufRead *.php,*.ctp set noexpandtab " tabs, not spaces for php, ctp
 
 " Autoclose quickfix windows when quit
