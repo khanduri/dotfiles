@@ -38,4 +38,4 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 alias sb='source ~/.bashrc'
 alias sa='source ~/.aliases'
-alias dot="cd ~/projects/dotfiles"
+alias dot="cd ~/projects/dotfiles;git pull"
