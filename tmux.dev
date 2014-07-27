@@ -1,6 +1,19 @@
 neww -n Deps
+send-keys 'cdjap;clear;./tools/run-kestrel.sh' C-m
+split-window -v
+send-keys 'cdjap; c' C-m
+
 neww -n Tasks
-neww -n Server
+
+neww -n localhost
+send-keys 'cdjap;clear;python web_gevent.py -c config_pkhanduri' C-m
+
 neww -n SRV
+send-keys 'cdjaw; c' C-m
+
+neww -n Siteops
+send-keys 'siteops; c' C-m
+
 neww -n PKHANDURI-SRV
-neww -n vim
+send-keys 'cdjap; c' C-m
+
