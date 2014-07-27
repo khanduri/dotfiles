@@ -10,7 +10,7 @@
 # VARIABLES
 source_dir=~/projects/dotfiles
 backup_dir=~/dotfiles_old
-files='tmux.conf screenrc vimrc bashrc bash_profile bash_aliases'
+files='tmux.remote tmux.dev tmux.conf screenrc vimrc bashrc bash_profile bash_aliases'
 
 # BACKUP OLD DOTFiles
 echo -n 'Creating $backup_dir for saving a backup of existing dotfiles'

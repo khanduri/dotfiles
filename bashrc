@@ -197,14 +197,16 @@ alias cdjaw='deactivate;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-en
 alias cdjap='deactivate;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate'
 
 # pkhanduri srv
-alias gupmaster='git fetch upstream; git rebase upstream/master master; git push origin master'
-alias gupma='git fetch upstream; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
+alias gupmaster='cdjap;git fetch upstream; git rebase upstream/master master; git push origin master'
+alias gupma='cdjap;git fetch upstream; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
+alias siteops='deactivate;cd ~/projects/jawbone/siteops;git pull'
 
 alias cdsolr='cd /usr/local/Cellar/solr/4.7.2/libexec/example/'
 alias startsolr='java -DzkRun -DnumShards=1 -Dbootstrap_confdir=./solr/collection1/conf -Dcollection.configName=myconf -jar start.jar'
 
 alias loglook="while read line; do echo $line | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[\'timestamp\']'; done <"
 
+alias dz='psql -h wearhaus.c0s0yd7udzgh.us-east-1.redshift.amazonaws.com -p 5439 datazoo -U pkhanduri'
 ##################################
 # Prompt
 ##################################
@@ -219,6 +221,9 @@ if [[ `hostname` = *stage* ]]; then
     PS1="\[\e[1;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 fi
 if [[ `hostname` = *pkhan-mbr* ]]; then
+    export DEVLOCAL=True
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    export JDK_HOME=$(/usr/libexec/java_home)
     PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 fi
 

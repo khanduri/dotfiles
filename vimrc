@@ -17,7 +17,7 @@ Bundle 'gmarik/vundle'
 Bundle 'cschlueter/vim-mustang'
 Bundle 'godlygeek/csapprox'
 
-" Bundle 'wincent/Command-T'
+Bundle 'wincent/Command-T'
 " Bundle 'kien/ctrlp.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'klen/python-mode'
@@ -470,7 +470,6 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-"map <leader>t :NERDTreeTabsToggle<CR>
 nnoremap <leader>tree :NERDTreeToggle ~/projects/jawbone/pkhanduri_srv<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMouseMode=3
@@ -494,6 +493,8 @@ hi EasyMotionTarget ctermbg=none ctermfg=green
 " let g:EasyMotion_leader_key = '<Leader>'
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Snipmate
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['python'] = 'python,django'
@@ -512,7 +513,7 @@ nnoremap <leader>cs :ConqueTerm python<cr>
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
+let g:jedi#usages_command = "<leader>u"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "1"
