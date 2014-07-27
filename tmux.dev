@@ -1,5 +1,3 @@
-source-file ~/.tmux.con
-
 neww -n Deps
 neww -n Tasks
 neww -n Server
