@@ -131,9 +131,9 @@ function rmb {
     echo "No existing branches have been merged into $current_branch."
   else
     echo "This will remove the following branches:"
-    if [ -n "$remote_branches" ]; then
-      echo "$remote_branches"
-    fi
+    # if [ -n "$remote_branches" ]; then
+    #   echo "$remote_branches"
+    # fi
     if [ -n "$local_branches" ]; then
       echo "$local_branches"
     fi
@@ -141,7 +141,7 @@ function rmb {
     echo
     if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
       # Remove remote branches
-      git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
+      # git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
       # Remove local branches
       git branch -d `git branch --merged | grep -v 'master$' | grep -v "$current_branch$" | sed 's/origin\///g' | tr -d '\n'`
     else
@@ -211,20 +211,20 @@ alias dz='psql -h wearhaus.c0s0yd7udzgh.us-east-1.redshift.amazonaws.com -p 5439
 # Prompt
 ##################################
 
-PS1="\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+PS1="[\d \t]\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 
 ##################################
 # Config per box
 ##################################
 
 if [[ `hostname` = *stage* ]]; then
-    PS1="\[\e[1;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+    PS1="[\d \t]\[\e[1;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 fi
 if [[ `hostname` = *pkhan-mbr* ]]; then
     export DEVLOCAL=True
     export JAVA_HOME=$(/usr/libexec/java_home)
     export JDK_HOME=$(/usr/libexec/java_home)
-    PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+    PS1="[\d \t]\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 fi
 
 
