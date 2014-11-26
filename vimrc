@@ -20,7 +20,7 @@ Bundle 'godlygeek/csapprox'
 Bundle 'wincent/Command-T'
 " Bundle 'kien/ctrlp.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'klen/python-mode'
+" Bundle 'klen/python-mode'
 
 Bundle 'fholgado/minibufexpl.vim'
 
@@ -34,12 +34,12 @@ Bundle 'scrooloose/nerdtree'
 "Bundle 'msanders/snipmate.vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+" Bundle 'garbas/vim-snipmate'
+" Bundle 'honza/vim-snippets'
 
-Bundle 'jpalardy/vim-slime'
+" Bundle 'jpalardy/vim-slime'
 Bundle 'vim-scripts/EasyGrep'
-Bundle 'davidhalter/jedi-vim'
+" Bundle 'davidhalter/jedi-vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Utils
@@ -52,7 +52,7 @@ Bundle 'sjl/gundo.vim'
 
 Bundle 'ghewgill/vim-scmdiff'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'uguu-org/vim-matrix-screensaver'
+" Bundle 'uguu-org/vim-matrix-screensaver'
 
 " <leader><leader>w -- front word
 " <leader><leader>b -- back word
@@ -65,14 +65,14 @@ Bundle 'Lokaltog/powerline-fonts'
 Bundle 'Lokaltog/vim-distinguished'
 
 Bundle 'vim-scripts/sort-python-imports'
-Bundle 'lrvick/Conque-Shell'
+" Bundle 'lrvick/Conque-Shell'
 
 "Bundle 'flazz/vim-colorschemes'
 " Bundle 'sjbach/lusty'
 " Bundle 'mattn/gist-vim'
 " Bundle 'klen/python-mode'
 
-Bundle "mattn/emmet-vim"
+" Bundle "mattn/emmet-vim"
 
 filetype plugin indent on     " required!
 
