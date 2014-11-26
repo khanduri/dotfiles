@@ -235,8 +235,8 @@ pset() {
 alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
 alias cdheroku='deactivate;cd ~/projects/herokuPlayground/;source venv/bin/activate'
 alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/activate'
-alias cdjaw='psetb r g b;deactivate;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate'
-alias cdjap='deactivate;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate'
+alias cdjaw='deactivate;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate;psetb r g b'
+alias cdjap='deactivate;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate;pset y c g'
 # pkhanduri srv
 alias gupmaster='cdjap;git fetch upstream; git checkout master; git rebase upstream/master master; git push origin master'
 alias gupma='cdjap;git fetch upstream; git checkout master-armstrong; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
@@ -259,16 +259,14 @@ PS1="[\d \t]\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_
 # Config per box
 ##################################
 
-psetb r c r
+psetb r c y
 if [[ `hostname` = *stage* ]]; then
-    PS1="[\d \t]\[\e[1;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
-    psetb r g r
+    psetb b g r
 fi
 if [[ `hostname` = *pkhan-mbr* ]]; then
     export DEVLOCAL=True
     export JAVA_HOME=$(/usr/libexec/java_home)
     export JDK_HOME=$(/usr/libexec/java_home)
-    pset y c g
     cdjap
 fi
 
