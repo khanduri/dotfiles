@@ -32,6 +32,9 @@ vim
 - ruby extconf.rb
 - make
 
+##### CTags
+https://gist.github.com/nazgob/1570678
+
 
 ### General Queries:
 

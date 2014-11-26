@@ -1,3 +1,5 @@
+send-keys 'sudo -s' C-m
+
 neww -n Deps
 send-keys 'cdjap;clear;./tools/run-kestrel.sh' C-m
 split-window -v

@@ -32,6 +32,8 @@ alias gm="git add .;git commit -m"
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 alias galias='git config --get-regexp alias'
+alias glp="git log --format='%Cgreen%h%Creset %C(yellow)%s%Creset %C(red)(%ae)%Creset' --no-merges "
+alias gm="git merge --no-commit --no-ff"
 
 # Other aliases
 alias tmux="TERM=screen-256color-bce tmux"

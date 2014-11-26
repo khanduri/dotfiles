@@ -131,9 +131,9 @@ function rmb {
     echo "No existing branches have been merged into $current_branch."
   else
     echo "This will remove the following branches:"
-    if [ -n "$remote_branches" ]; then
-      echo "$remote_branches"
-    fi
+    # if [ -n "$remote_branches" ]; then
+    #   echo "$remote_branches"
+    # fi
     if [ -n "$local_branches" ]; then
       echo "$local_branches"
     fi
@@ -141,7 +141,7 @@ function rmb {
     echo
     if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
       # Remove remote branches
-      git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
+      # git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
       # Remove local branches
       git branch -d `git branch --merged | grep -v 'master$' | grep -v "$current_branch$" | sed 's/origin\///g' | tr -d '\n'`
     else
@@ -186,19 +186,60 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 ##################################
+# Colors
+##################################
+# Normal Colors
+ck='\e[0;30m\]'        # Black
+cr='\e[0;31m\]'          # Red
+cg='\e[0;32m\]'        # Green
+cy='\e[0;33m\]'       # Yellow
+cb='\e[0;34m\]'         # Blue
+cp='\e[0;35m\]'       # Purple
+cc='\e[0;36m\]'         # Cyan
+cw='\e[0;37m\]'        # White
+# Bold
+bck='\e[1;30m\]'       # Black
+bcr='\e[1;31m\]'         # Red
+bcg='\e[1;32m\]'       # Green
+bcy='\e[1;33m\]'      # Yellow
+bcb='\e[1;34m\]'        # Blue
+bcp='\e[1;35m\]'      # Purple
+bcc='\e[1;36m\]'        # Cyan
+bcw='\e[1;37m\]'       # White
+# Background
+ock='\e[40m\]'       # Black
+ocr='\e[41m\]'         # Red
+ocg='\e[42m\]'       # Green
+ocy='\e[43m\]'      # Yellow
+ocb='\e[44m\]'        # Blue
+ocp='\e[45m\]'      # Purple
+occ='\e[46m\]'        # Cyan
+ocw='\e[47m\]'       # White
+
+NC="\e[m\]"               # Color Reset
+ED="\e[0m\]"
+
+psetb() {
+    c1=bc$1;c2=bc$2;c3=bc$3
+    PS1="[\d \t]${!c1}\h$ED:${!c2}\w$ED${!c3}\$(parse_git_branch)$ED\$" 
+}
+pset() {
+    c1=c$1;c2=c$2;c3=c$3
+    PS1="[\d \t]${!c1}\h$ED:${!c2}\w$ED${!c3}\$(parse_git_branch)$ED\$" 
+}
+
+##################################
 # Aliases
 ##################################
-
 # Local
 alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
 alias cdheroku='deactivate;cd ~/projects/herokuPlayground/;source venv/bin/activate'
 alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/activate'
-alias cdjaw='deactivate;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate'
+alias cdjaw='psetb r g b;deactivate;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate'
 alias cdjap='deactivate;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate'
-
 # pkhanduri srv
-alias gupmaster='cdjap;git fetch upstream; git rebase upstream/master master; git push origin master'
-alias gupma='cdjap;git fetch upstream; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
+alias gupmaster='cdjap;git fetch upstream; git checkout master; git rebase upstream/master master; git push origin master'
+alias gupma='cdjap;git fetch upstream; git checkout master-armstrong; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
 alias siteops='deactivate;cd ~/projects/jawbone/siteops;git pull'
 
 alias cdsolr='cd /usr/local/Cellar/solr/4.7.2/libexec/example/'
@@ -207,26 +248,26 @@ alias startsolr='java -DzkRun -DnumShards=1 -Dbootstrap_confdir=./solr/collectio
 alias loglook="while read line; do echo $line | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[\'timestamp\']'; done <"
 
 alias dz='psql -h wearhaus.c0s0yd7udzgh.us-east-1.redshift.amazonaws.com -p 5439 datazoo -U pkhanduri'
+
 ##################################
 # Prompt
 ##################################
 
-PS1="\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+PS1="[\d \t]\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 
 ##################################
 # Config per box
 ##################################
 
 if [[ `hostname` = *stage* ]]; then
-    PS1="\[\e[1;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+    PS1="[\d \t]\[\e[1;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 fi
 if [[ `hostname` = *pkhan-mbr* ]]; then
     export DEVLOCAL=True
     export JAVA_HOME=$(/usr/libexec/java_home)
     export JDK_HOME=$(/usr/libexec/java_home)
-    PS1="\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+    PS1="[\d \t]\[\e[0;33m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
 fi
-
 
 if [[ `hostname` = *local* ]]; then
     export DEVLOCAL=True
