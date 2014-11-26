@@ -261,7 +261,7 @@ PS1="[\d \t]\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_
 
 psetb r c y
 if [[ `hostname` = *stage* ]]; then
-    psetb b g r
+    psetb y g r
 fi
 if [[ `hostname` = *pkhan-mbr* ]]; then
     export DEVLOCAL=True
