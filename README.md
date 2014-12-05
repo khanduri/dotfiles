@@ -34,12 +34,6 @@ vim
 
 ##### CTags
 https://gist.github.com/nazgob/1570678
-
-
-### General Queries:
-
-##### Online Markup edit tool
-- http://georgeosddev.github.io/markdown-edit/
 ```bash
 # you have ctags but it does not work...
 $ ctags -R --exclude=.git --exclude=log *
@@ -58,6 +52,12 @@ ctags -R --exclude=.git --exclude=log *
 # puts tags file into you .gitignore (probably global) and you're all set!
 # PS. i was inspired to install ctags by https://workshops.thoughtbot.com/vim video by @r00k, thanks man!
 ```
+
+### General Queries:
+
+##### Online Markup edit tool
+- http://georgeosddev.github.io/markdown-edit/
+
 
 ##### Figuring out distribution of unix
 ```bash
