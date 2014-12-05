@@ -189,35 +189,35 @@ fi
 # Colors
 ##################################
 # Normal Colors
-ck='\e[0;30m\]'        # Black
-cr='\e[0;31m\]'          # Red
-cg='\e[0;32m\]'        # Green
-cy='\e[0;33m\]'       # Yellow
-cb='\e[0;34m\]'         # Blue
-cp='\e[0;35m\]'       # Purple
-cc='\e[0;36m\]'         # Cyan
-cw='\e[0;37m\]'        # White
+ck='\[\e[0;30m\]'        # Black
+cr='\[\e[0;31m\]'          # Red
+cg='\[\e[0;32m\]'        # Green
+cy='\[\e[0;33m\]'       # Yellow
+cb='\[\e[0;34m\]'         # Blue
+cp='\[\e[0;35m\]'       # Purple
+cc='\[\e[0;36m\]'         # Cyan
+cw='\[\e[0;37m\]'        # White
 # Bold
-bck='\e[1;30m\]'       # Black
-bcr='\e[1;31m\]'         # Red
-bcg='\e[1;32m\]'       # Green
-bcy='\e[1;33m\]'      # Yellow
-bcb='\e[1;34m\]'        # Blue
-bcp='\e[1;35m\]'      # Purple
-bcc='\e[1;36m\]'        # Cyan
-bcw='\e[1;37m\]'       # White
+bck='\[\e[1;30m\]'       # Black
+bcr='\[\e[1;31m\]'         # Red
+bcg='\[\e[1;32m\]'       # Green
+bcy='\[\e[1;33m\]'      # Yellow
+bcb='\[\e[1;34m\]'        # Blue
+bcp='\[\e[1;35m\]'      # Purple
+bcc='\[\e[1;36m\]'        # Cyan
+bcw='\[\e[1;37m\]'       # White
 # Background
-ock='\e[40m\]'       # Black
-ocr='\e[41m\]'         # Red
-ocg='\e[42m\]'       # Green
-ocy='\e[43m\]'      # Yellow
-ocb='\e[44m\]'        # Blue
-ocp='\e[45m\]'      # Purple
-occ='\e[46m\]'        # Cyan
-ocw='\e[47m\]'       # White
+ock='\[\e[40m\]'       # Black
+ocr='\[\e[41m\]'         # Red
+ocg='\[\e[42m\]'       # Green
+ocy='\[\e[43m\]'      # Yellow
+ocb='\[\e[44m\]'        # Blue
+ocp='\[\e[45m\]'      # Purple
+occ='\[\e[46m\]'        # Cyan
+ocw='\[\e[47m\]'       # White
 
-NC="\e[m\]"               # Color Reset
-ED="\e[0m\]"
+NC="\[\e[m\]"               # Color Reset
+ED="\[\e[m\]"
 
 psetb() {
     c1=bc$1;c2=bc$2;c3=bc$3
