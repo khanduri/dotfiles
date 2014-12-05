@@ -229,45 +229,25 @@ pset() {
 }
 
 ##################################
-# Aliases
-##################################
-# Local
-alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
-alias cdheroku='deactivate;cd ~/projects/herokuPlayground/;source venv/bin/activate'
-alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/activate'
-alias cdjaw='deactivate;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate;psetb r g b'
-alias cdjap='deactivate;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate;pset y c g'
-# pkhanduri srv
-alias gupmaster='cdjap;git fetch upstream; git checkout master; git rebase upstream/master master; git push origin master'
-alias gupma='cdjap;git fetch upstream; git checkout master-armstrong; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
-alias siteops='deactivate;cd ~/projects/jawbone/siteops;git pull'
-
-alias cdsolr='cd /usr/local/Cellar/solr/4.7.2/libexec/example/'
-alias startsolr='java -DzkRun -DnumShards=1 -Dbootstrap_confdir=./solr/collection1/conf -Dcollection.configName=myconf -jar start.jar'
-
-alias loglook="while read line; do echo $line | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[\'timestamp\']'; done <"
-
-alias dz='psql -h wearhaus.c0s0yd7udzgh.us-east-1.redshift.amazonaws.com -p 5439 datazoo -U pkhanduri'
-
-##################################
 # Prompt
 ##################################
 
-PS1="[\d \t]\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+# PS1="[\d \t]\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
+#pset y c g
+psetb r g b
 
 ##################################
 # Config per box
 ##################################
 
-psetb r c y
 if [[ `hostname` = *stage* ]]; then
-    psetb y g r
+    export DEVLOCAL=False
 fi
 if [[ `hostname` = *pkhan-mbr* ]]; then
     export DEVLOCAL=True
-    export JAVA_HOME=$(/usr/libexec/java_home)
-    export JDK_HOME=$(/usr/libexec/java_home)
-    cdjap
+    export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
+    export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
+    pset y c g
 fi
 
 if [[ `hostname` = *local* ]]; then

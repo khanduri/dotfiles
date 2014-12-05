@@ -2,14 +2,13 @@
 # Aliases
 ##################################
 
-alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias c='clear'
+alias cd..='cd ..'
+alias l='ll'
 alias ll='ls -alF'
 alias la='ls -A'
-# alias l='ls -CF'
-alias l='ll'
 
 # Git alias
 alias g='git status'
@@ -26,12 +25,12 @@ alias gfo='git fetch origin'
 alias grv='git remote -v'
 
 # alias ga="git add .;git commit --amend -m"                                                                                                                                                    
-alias ga="git commit --amend --no-edit"                                                                                                                                                    
-alias gm="git add .;git commit -m"  
+# alias gm="git add .;git commit -m"  
+alias ga="git commit --amend --no-edit"
 
+alias galias='git config --get-regexp alias'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
-alias galias='git config --get-regexp alias'
 alias glp="git log --format='%Cgreen%h%Creset %C(yellow)%s%Creset %C(red)(%ae)%Creset' --no-merges "
 alias gm="git merge --no-commit --no-ff"
 
@@ -40,4 +39,22 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 alias sb='source ~/.bashrc'
 alias sa='source ~/.aliases'
-alias dot="cd ~/projects/dotfiles;git pull"
+alias dot="pset r b g;cd ~/projects/dotfiles;git pull"
+
+# Local
+alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
+alias cdheroku='deactivate;cd ~/projects/herokuPlayground/;source venv/bin/activate'
+alias cdflask='deactivate;cd ~/projects/herokuPlayground/flask/;source venv/bin/activate'
+alias siteops='deactivate;pset r b c;cd ~/projects/jawbone/siteops;git pull'
+alias cdjaw='deactivate;pset r b y;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate'
+alias cdjap='deactivate;pset y c g;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate'
+
+alias gupmaster='cdjap;git fetch upstream; git checkout master; git rebase upstream/master master; git push origin master'
+alias gupma='cdjap;git fetch upstream; git checkout master-armstrong; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'
+
+alias cdsolr='cd /usr/local/Cellar/solr/4.7.2/libexec/example/'
+alias startsolr='java -DzkRun -DnumShards=1 -Dbootstrap_confdir=./solr/collection1/conf -Dcollection.configName=myconf -jar start.jar'
+# alias loglook="while read line; do echo $line | python -c 'import json,sys;obj=json.load(sys.stdin);print obj[\'timestamp\']'; done <"
+
+alias dz='psql -h wearhaus.c0s0yd7udzgh.us-east-1.redshift.amazonaws.com -p 5439 datazoo -U pkhanduri'
+
