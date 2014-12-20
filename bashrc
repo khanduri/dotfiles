@@ -247,6 +247,9 @@ if [[ `hostname` = *pkhan-mbr* ]]; then
     export DEVLOCAL=True
     export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
     export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
+
+    export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
+
     pset y c g
 fi
 
@@ -282,3 +285,5 @@ if [[ `hostname` = *prod-ops* ]]; then
     # RESULT IN AN INFINITE LOOP
     tmux attach
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

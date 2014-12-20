@@ -40,6 +40,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias sb='source ~/.bashrc'
 alias sa='source ~/.aliases'
 alias dot="pset r b g;cd ~/projects/dotfiles;git pull"
+alias blog="pset r b g;cd ~/projects/blog/khanduri.github.io/;git pull"
 
 # Local
 alias cdios='deactivate;cd ~/projects/iosAppPlayground/'
