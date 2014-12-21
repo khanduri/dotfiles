@@ -4,88 +4,93 @@ filetype off                   " required!
 " https://github.com/spf13/spf13-vim/issues/90
 set t_Co=256
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'Lokaltog/powerline-fonts'
+Plugin 'Lokaltog/vim-distinguished'
+
 " Color scheme
-Bundle 'cschlueter/vim-mustang'
-Bundle 'godlygeek/csapprox'
+" Plugin 'cschlueter/vim-mustang'
+Plugin 'godlygeek/csapprox'
 
-Bundle 'wincent/Command-T'
-" Bundle 'kien/ctrlp.vim'
-Bundle 'kien/ctrlp.vim'
-" Bundle 'klen/python-mode'
+Plugin 'wincent/Command-T'
+Plugin 'kien/ctrlp.vim'
+" Plugin 'klen/python-mode'
 
-Bundle 'fholgado/minibufexpl.vim'
+Plugin 'fholgado/minibufexpl.vim'
 
-Bundle 'majutsushi/tagbar'
-Bundle 'vim-scripts/AutoTag'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/AutoTag'
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
-" Bundle 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 
-"Bundle 'msanders/snipmate.vim'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-" Bundle 'garbas/vim-snipmate'
-" Bundle 'honza/vim-snippets'
+"Plugin 'msanders/snipmate.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'honza/vim-snippets'
 
-" Bundle 'jpalardy/vim-slime'
-Bundle 'vim-scripts/EasyGrep'
-" Bundle 'davidhalter/jedi-vim'
+Plugin 'vim-scripts/EasyGrep'
+" Plugin 'jpalardy/vim-slime'
+" Plugin 'davidhalter/jedi-vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Utils
 
 " <leader>t for triggering the TODO list
-Bundle 'vim-scripts/TaskList.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'sjl/gundo.vim'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'sjl/gundo.vim'
 
-Bundle 'ghewgill/vim-scmdiff'
-Bundle 'tomtom/tcomment_vim'
-" Bundle 'uguu-org/vim-matrix-screensaver'
+Plugin 'ghewgill/vim-scmdiff'
+Plugin 'tomtom/tcomment_vim'
+" Plugin 'uguu-org/vim-matrix-screensaver'
 
 " <leader><leader>w -- front word
 " <leader><leader>b -- back word
 " <leader><leader>j -- front line
 " <leader><leader>k -- back line
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 
-Bundle 'Lokaltog/powerline'
-Bundle 'Lokaltog/powerline-fonts'
-Bundle 'Lokaltog/vim-distinguished'
+Plugin 'vim-scripts/sort-python-imports'
+" Plugin 'lrvick/Conque-Shell'
 
-Bundle 'vim-scripts/sort-python-imports'
-" Bundle 'lrvick/Conque-Shell'
+"Plugin 'flazz/vim-colorschemes'
+" Plugin 'sjbach/lusty'
+" Plugin 'mattn/gist-vim'
+" Plugin 'klen/python-mode'
 
-"Bundle 'flazz/vim-colorschemes'
-" Bundle 'sjbach/lusty'
-" Bundle 'mattn/gist-vim'
-" Bundle 'klen/python-mode'
+" HTML and CSS hi-speed coding
+Plugin 'mattn/emmet-vim'
 
-" Bundle "mattn/emmet-vim"
-
-filetype plugin indent on     " required!
-
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed.."
+" Put your non-Plugin stuff after this line
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
