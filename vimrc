@@ -18,64 +18,76 @@ Plugin 'gmarik/vundle'
 """"""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Lokaltog/powerline-fonts'
-Plugin 'Lokaltog/vim-distinguished'
 
-" Color scheme
-" Plugin 'cschlueter/vim-mustang'
-Plugin 'godlygeek/csapprox'
-
-Plugin 'wincent/Command-T'
+" Fuzzy finder (files, mru, etc)
 Plugin 'kien/ctrlp.vim'
-" Plugin 'klen/python-mode'
 
+" Buffer explorer (for the tabs at the top)
 Plugin 'fholgado/minibufexpl.vim'
 
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/AutoTag'
+Plugin 'mileszs/ack.vim'
+" EXAMPLES:
+" o    to open (same as enter)
+" O    to open and close quickfix window
+" go   to preview file (open but maintain focus on ack.vim results)
+" t    to open in new tab
+" T    to open in new tab silently
+" h    to open in horizontal split
+" H    to open in horizontal split silently
+" v    to open in vertical split
+" gv   to open in vertical split silently
+" q    to close the quickfix window
 
-Plugin 'scrooloose/nerdtree'
-
-" Plugin 'scrooloose/syntastic'
-
-"Plugin 'msanders/snipmate.vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-" Plugin 'garbas/vim-snipmate'
-" Plugin 'honza/vim-snippets'
-
-Plugin 'vim-scripts/EasyGrep'
-" Plugin 'jpalardy/vim-slime'
-" Plugin 'davidhalter/jedi-vim'
-
-""""""""""""""""""""""""""""""""""""""""""""""""
-" Utils
-
-" <leader>t for triggering the TODO list
+" Keeping track of the TODO's in a file
 Plugin 'vim-scripts/TaskList.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'sjl/gundo.vim'
+" <leader>t for triggering the TODO list
 
-Plugin 'ghewgill/vim-scmdiff'
-Plugin 'tomtom/tcomment_vim'
-" Plugin 'uguu-org/vim-matrix-screensaver'
-
+" Moving around in vim
+Plugin 'Lokaltog/vim-easymotion'
 " <leader><leader>w -- front word
 " <leader><leader>b -- back word
 " <leader><leader>j -- front line
 " <leader><leader>k -- back line
-Plugin 'Lokaltog/vim-easymotion'
 
+" Soting python imports .. not a huge fan of this, want to write my own extension
 Plugin 'vim-scripts/sort-python-imports'
-" Plugin 'lrvick/Conque-Shell'
-
-"Plugin 'flazz/vim-colorschemes'
-" Plugin 'sjbach/lusty'
-" Plugin 'mattn/gist-vim'
-" Plugin 'klen/python-mode'
+" <leader>i -- sort import in the file
 
 " HTML and CSS hi-speed coding
 Plugin 'mattn/emmet-vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'sjl/gundo.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/AutoTag'
+Plugin 'wincent/Command-T'
+Plugin 'ghewgill/vim-scmdiff'
+Plugin 'tomtom/tcomment_vim'
+
+" Color scheme
+Plugin 'Lokaltog/vim-distinguished'
+" Plugin 'cschlueter/vim-mustang'
+" Plugin 'godlygeek/csapprox'
+" Plugin 'flazz/vim-colorschemes'
+
+" UNUSED Plugins
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'klen/python-mode'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'msanders/snipmate.vim'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'honza/vim-snippets'
+" Plugin 'vim-scripts/EasyGrep'
+" Plugin 'jpalardy/vim-slime'
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'lrvick/Conque-Shell'
+" Plugin 'sjbach/lusty'
+" Plugin 'mattn/gist-vim'
+" Plugin 'klen/python-mode'
+" Plugin 'uguu-org/vim-matrix-screensaver'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -92,7 +104,6 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -104,32 +115,31 @@ set cmdheight=1                " Explicitly set the height of the command line
 set number                     " Display line numbers
 set relativenumber             " Display line numbers
 set numberwidth=1              " using only 1 col (and 1 space) while possible
-set colorcolumn=120             " Mark 80th column
-
+set colorcolumn=80             " Mark column
 set cmdheight=1                " Explicitly set the height of the command line
 set title                      " show title in console title bar
 set wildmenu                   " Menu completion in command mode on <Tab>
-set cursorline
 set wildmode=list:longest,full " com-line completion <tab> (file,help,options)
 set nowrap                     " no line wrapping;
 set guioptions+=b              " add a horizontal scrollbar to the bottom
 set enc=utf-8                  " UTF-8 as the default buffer encoding
 set laststatus=2               " Always show status line, even for one window
 set scrolloff=3                " Scroll when cursor is within 3 char of top/bot
-set shiftround " Round indent to multiple of 'shiftwidth' for > and < commands
-set showcmd " Show (par) commands (or selection size in Visual mode) on status
+set shiftround                 " Round indent to multiple of 'shiftwidth' for > and < commands
+set showcmd                    " Show (par) commands (or selection size in Visual mode) on status
 set t_RV=                      " Don't request terminal version str (for xterm)
 set so=7                       "Set 7 lines to curors when moving vertical
 set ruler                      "Always show current position
 set hid                        "Change buffer - without saving
+set cursorline
 set hidden
 set mouse=a
-set backspace=eol,start,indent " Set backspace config
 set whichwrap+=<,>,h,l
+set tm=500
+set backspace=eol,start,indent " Set backspace config
 set nolazyredraw               "Don't redraw while executing macros
 set magic                      "Set magic on, for regular expressions
-set showmatch          "Show matching bracets when text indicator is over them
-set tm=500
+set showmatch                  "Show matching bracets when text indicator is over them
 set noerrorbells visualbell t_vb= "No sound on errors
 autocmd GUIEnter * set visualbell t_vb=
 
@@ -146,14 +156,20 @@ set hlsearch     " highlight the items found by the search
 set ignorecase   " ignores case of letters on searches
 set smartcase    " Override 'ignore-case' if search pattern has upper case chars
 
-"Copy to clipboard
-" set clipboard=unnamed
-
 " Set the leader key to a comma (,)
 let mapleader=","
 let g:mapleader=","
 
-nmap <leader>w :w<cr>      " quicksave
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => My custom commands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This can be done with *
+"nmap <leader>s /<C-r><C-w><Enter> " Lookup the term under the cursor
+
+" Shorthand for replacing
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" nmap <leader>w :w<cr>      " quicksave
 
 nmap <leader>v :vsplit<cr>      " Vertical split window
 nmap <leader>s :split<cr>       " Horizontal split window
@@ -164,15 +180,26 @@ map <leader>eb :e! ~/.bashrc<cr> " Fast editing of the .bashrc
 " Show full path of the current file
 map <leader>p :echo expand('%:p')<cr>
 
+" TODO: NO idea what this does .. figure out
 map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
 
-" This can be done with *
-"nmap <leader>s /<C-r><C-w><Enter> " Lookup the term under the cursor
-nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+" When vimrc is edited, reload it: https://github.com/powerline/powerline/issues/213
+autocmd! bufwritepost vimrc nested source ~/.vimrc
 
-" When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
-au! BufWritePost $MYVIMRC source $MYVIMRC
+" Close buffer with :BD
+command! BD bp | sp | bn | bd
+
+" Mapping to move between windows
+nmap <silent> <leader>k :wincmd k<CR>
+nmap <silent> <leader>j :wincmd j<CR>
+nmap <silent> <leader>h :wincmd h<CR>
+nmap <silent> <leader>l :wincmd l<CR>
+
+" resize current buffer by +/- 5
+nnoremap <leader>1 :resize +5<cr>
+nnoremap <leader>2 :resize -5<cr>
+nnoremap <leader>3 :vertical resize +5<cr>
+nnoremap <leader>4 :vertical resize -5<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -186,9 +213,9 @@ set encoding=utf8
 syntax enable "Enable syntax hl
 set background=light
 "let g:solarized_termcolors=256
-"colorscheme solarized
-"colorscheme kolor
-"colorscheme mustang
+" colorscheme solarized
+" colorscheme kolor
+" colorscheme mustang
 colorscheme distinguished
 
 try
@@ -215,9 +242,9 @@ set smarttab
 set expandtab
 set lbr
 set tw=500
-set ai      "Auto indent
-set si      "Smart indet
-set wrap    "Wrap lines
+set ai              "Auto indent
+set si              "Smart indet
+set wrap            "Wrap lines
 
 " http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns
 "autocmd FileType python " Prepend this to make them python specific checks
@@ -227,11 +254,6 @@ match OverLength /\%81v.\+/
 " In insert mode, you can paste from clipboard using CTRL+v
 inoremap <C-v> <ESC>:set paste<CR>"+gp<ESC>:set nopaste<ENTER>i<RIGHT>
 autocmd BufEnter * silent! lcd %:p:h " Set def env based on current edit files
-" nnoremap <leader>p  " +gP            " Paste in normal mode
-
-
-" Close buffer with :BD
-command! BD bp | sp | bn | bd
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -244,54 +266,30 @@ set undofile
 set undolevels=1000           "max lines changed that can be undone
 set undoreload=10000          "max lines saved for undo
 
-"nnoremap <leader>c <CR>:cclose<CR> " Shortcut to Close quickfix window with leader+c
-
-" Folding: auto save folding: http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
-"set viewoptions=folds
-"au BufWinLeave * silent! mkview
-"au BufWinEnter * silent! loadview
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <CR> :nohlsearch<CR>/<BS> "GRB:clear search buffer when hitting return
-
-map <silent> <leader><cr> :nohlsearch<cr>
-
-map <leader>ba :1,300 bd!<cr> " Close all the buffers
-map <leader>bd :Bclose<cr>    " Close the current buffer
-map <leader>cd :cd %:p:h<cr>  " Switch to the directory of the open buffer
-
-map <C-right> :bn<CR>         " Moving tab using CTRL+ the arrows
-map <C-left> :bp<CR>
-
-" noremap <Space> <PageDown>          " page down
-" noremap <leader><Space> <PageUp>    " page up
-
-" Mapping to move between windows
-nmap <silent> <leader>k :wincmd k<CR>
-nmap <silent> <leader>j :wincmd j<CR>
-nmap <silent> <leader>h :wincmd h<CR>
-nmap <silent> <leader>l :wincmd l<CR>
-
-" resize current buffer by +/- 5
-nnoremap <leader>1 :resize +5<cr>
-nnoremap <leader>2 :resize -5<cr>
-nnoremap <leader>3 :vertical resize +5<cr>
-nnoremap <leader>4 :vertical resize -5<cr>
-
+" nnoremap <CR> :nohlsearch<CR>/<BS> "GRB:clear search buffer when hitting return
+" map <silent> <leader><cr> :nohlsearch<cr>
+" map <leader>ba :1,300 bd!<cr> " Close all the buffers
+" map <leader>bd :Bclose<cr>    " Close the current buffer
+" map <leader>cd :cd %:p:h<cr>  " Switch to the directory of the open buffer
+" map <C-right> :bn<CR>         " Moving tab using CTRL+ the arrows
+" map <C-left> :bp<CR>
 
 nnoremap <leader>za :set foldmethod=indent<cr>
 nnoremap <leader>zz :set foldlevel=99<cr>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language specific settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap E w:<CR>:!python % <CR> " Execute Python file being edited with <Shift> + e:
 
-" TODO: lookup a way to cleanup the autocmd in the following
-" Because I need spell check
+""""""""""""
+" Python
+
+" Execute Python file being edited with <Shift> + e:
+nnoremap E w:<CR>:!python % <CR>
+
 autocmd FileType python :setlocal spell spelllang=en_us
 autocmd FileType python hi SpellBad term=reverse ctermfg=white ctermbg=darkred guifg=#ffffff guibg=#7f0000 gui=underline
 autocmd FileType python hi SpellCap guifg=#ffffff guibg=#7f007f
@@ -303,37 +301,38 @@ autocmd FileType python hi Search guifg=#ffffff guibg=#0000ff gui=none ctermfg=w
 autocmd FileType python hi IncSearch guifg=#ffffff guibg=#8888ff gui=none ctermfg=white
 autocmd FileType python highlight SpellBad guifg=#ffffff guibg=#8888ff gui=none ctermfg=black ctermbg=darkred
 
+""""""""""""
+" Markdown
+
 au BufEnter,Bufread *.mkd,*.md,*.mdown,*.markdown set tw=0 " markdown
+autocmd BufNewFile,BufRead *.mkd,*.md,*.mdown,*.markdown set spell
 
-" python formatting help
-"autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-" Enable omni completion.
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown,ctp set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php,ctp set omnifunc=phpcomplete#CompletePHP
-autocmd FileType vim set omnifunc=syntaxcomplete#Complete
+""""""""""""
+" html
 
 " http://www.brankovukelic.com/post/2091037293/turn-vim-into-powerful-javascript-editor"
-" HTML (tab width 2 chr, no wrapping)
-autocmd FileType html set sw=2
-autocmd FileType html set ts=2
-autocmd FileType html set sts=2
+" HTML (tab width, no wrapping)
+autocmd FileType html set sw=4
+autocmd FileType html set ts=4
+autocmd FileType html set sts=4
 autocmd FileType html set textwidth=0
 
-" XHTML (tab width 2 chr, no wrapping)
-autocmd FileType xhtml set sw=2
-autocmd FileType xhtml set ts=2
-autocmd FileType xhtml set sts=2
+" XHTML (tab width, no wrapping)
+autocmd FileType xhtml set sw=4
+autocmd FileType xhtml set ts=4
+autocmd FileType xhtml set sts=4
 autocmd FileType xhtml set textwidth=0
 
-" CSS (tab width 2 chr, wrap at 79th char)
-autocmd FileType css set sw=2
-autocmd FileType css set ts=2
-autocmd FileType css set sts=2
+""""""""""""
+" CSS
+
+" CSS (tab width, wrap at 79th char)
+autocmd FileType css set sw=4
+autocmd FileType css set ts=4
+autocmd FileType css set sts=4
+
+""""""""""""
+" General
 
 autocmd Syntax c,cpp,vim,xml,html,xhtml,js,php,py,python set foldmethod=manual
 autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
@@ -351,8 +350,18 @@ autocmd BufWritePre *.pl :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.html :%s/\s\+$//e
 autocmd BufWritePre *.css :%s/\s\+$//e
+autocmd BufWritePre *.scss :%s/\s\+$//e
+autocmd BufWritePre *.js :%s/\s\+$//e
+autocmd BufWritePre *.md :%s/\s\+$//e
 
-"au BufEnter,BufRead *.php,*.ctp set noexpandtab " tabs, not spaces for php, ctp
+" Enable omni completion.
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown,ctp set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php,ctp set omnifunc=phpcomplete#CompletePHP
+autocmd FileType vim set omnifunc=syntaxcomplete#Complete
 
 " Autoclose quickfix windows when quit
 " http://stackoverflow.com/questions/7476126/how-to-automatically-close-the-quick-fix-window-when-leaving-a-file
@@ -360,7 +369,6 @@ aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -435,14 +443,13 @@ if has("autocmd")
       \ exec oldwinnr . " wincmd w"
 endif
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TagBar
 let g:tagbar_usearrows=1
 let g:tagbar_width=30
 let g:tagbar_singleclick=1
 
-" Use leader + l to open Tagbar in Right side
+" Open Tagbar in Right side
 nnoremap <leader>; :TagbarToggle<CR>
 
 " Need to run "ctags -R ."
@@ -454,36 +461,35 @@ autocmd BufWritePost *
       \   call system('ctags -a '.expand('%')) |
       \ endif
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 
 " Enable this for make NERDTree load every opening files
 " autocmd VimEnter * NERDTree " Make Always Load NERDTree every opening files
 " autocmd VimEnter * wincmd p " Automatically go to buffer every time open files
-autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+" autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
-function! s:CloseIfOnlyNerdTreeLeft()
-  if exists("t:NERDTreeBufName")
-    if bufwinnr(t:NERDTreeBufName) != -1
-      if winnr("$") == 1
-        q
-      endif
-    endif
-  endif
-endfunction
-
-nnoremap <leader>tree :NERDTreeToggle ~/projects/jawbone/pkhanduri_srv<CR>
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeMouseMode=3
-let g:NERDTreeWinSize=30
-let NERDTreeIgnore = ['\.pyc$']
+" function! s:CloseIfOnlyNerdTreeLeft()
+"   if exists("t:NERDTreeBufName")
+"     if bufwinnr(t:NERDTreeBufName) != -1
+"       if winnr("$") == 1
+"         q
+"       endif
+"     endif
+"   endif
+" endfunction
+"
+" nnoremap <leader>tree :NERDTreeToggle ~/projects/jawbone/pkhanduri_srv<CR>
+" let g:NERDTreeShowBookmarks=1
+" let g:NERDTreeMouseMode=3
+" let g:NERDTreeWinSize=30
+" let NERDTreeIgnore = ['\.pyc$']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
-let g:syntastic_python_checkers=['pylint', 'pyflakes', 'pep8', 'flake8']
+" let g:syntastic_python_checkers=['pylint', 'pyflakes', 'pep8', 'flake8']
 "let g:syntastic_javascript_checkers=['jslint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -494,37 +500,35 @@ set guifont=Menlo\ Regular\ for\ Powerline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easymotion
-hi EasyMotionTarget ctermbg=none ctermfg=green
+" hi EasyMotionTarget ctermbg=none ctermfg=green
 " let g:EasyMotion_leader_key = '<Leader>'
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Snipmate
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['python'] = 'python,django'
+" let g:snipMate = {}
+" let g:snipMate.scope_aliases = {}
+" let g:snipMate.scope_aliases['python'] = 'python,django'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Slime
-let g:slime_target = 'tmux'
+" let g:slime_target = 'tmux'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Conque
-nnoremap <leader>cb :ConqueTerm bash<cr>
-nnoremap <leader>cs :ConqueTerm python<cr>
+" nnoremap <leader>cb :ConqueTerm bash<cr>
+" nnoremap <leader>cs :ConqueTerm python<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jedi
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>u"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "1"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = "<leader>d"
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>u"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+" let g:jedi#show_call_signatures = "1"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pytho mode
-let g:pymode_lint_ignore = "E501"
-let g:pymode_rope_goto_definition_cmd = 'e'
-
+" Python mode
+" let g:pymode_lint_ignore = "E501"
+" let g:pymode_rope_goto_definition_cmd = 'e'
