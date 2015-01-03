@@ -1,0 +1,16 @@
+new -n blogRunner
+send-keys 'blog;c;jekyll serve' C-m
+split-window -v
+send-keys 'blog;c;sass --watch assets/themes/the-minimum/css/:assets/themes/the-minimum/css/ --style compressed' C-m
+
+neww -n blog
+send-keys 'blog;c' C-m
+
+neww -n myOpenSource
+send-keys 'myos;c' C-m
+
+neww -n yeomanRunner
+send-keys 'yeoman;c' C-m
+
+neww -n yeoman
+send-keys 'yeoman;c' C-m

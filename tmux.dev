@@ -19,4 +19,3 @@ send-keys 'siteops; c' C-m
 
 neww -n PKHANDURI-SRV
 send-keys 'cdjap; c' C-m
-
