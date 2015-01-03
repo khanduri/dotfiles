@@ -3,9 +3,10 @@ send-keys 'sudo -s' C-m
 neww -n Deps
 send-keys 'cdjap;clear;./tools/run-kestrel.sh' C-m
 split-window -v
-send-keys 'cdjap; c' C-m
+send-keys 'cdjap; c;mongod' C-m
 
-neww -n Tasks
+neww -n Pyclips
+send-keys 'cdjap; c;python pyclipsd/start_daemon.py -c config_pkhanduri' C-m
 
 neww -n localhost
 send-keys 'cdjap;clear;python web_gevent.py -c config_pkhanduri' C-m

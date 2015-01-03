@@ -71,8 +71,8 @@ Plugin 'Lokaltog/vim-distinguished'
 " Plugin 'godlygeek/csapprox'
 " Plugin 'flazz/vim-colorschemes'
 
+Plugin 'scrooloose/nerdtree'
 " UNUSED Plugins
-" Plugin 'scrooloose/nerdtree'
 " Plugin 'klen/python-mode'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'msanders/snipmate.vim'
@@ -305,6 +305,7 @@ autocmd FileType python highlight SpellBad guifg=#ffffff guibg=#8888ff gui=none 
 " Markdown
 
 au BufEnter,Bufread *.mkd,*.md,*.mdown,*.markdown set tw=0 " markdown
+
 autocmd BufNewFile,BufRead *.mkd,*.md,*.mdown,*.markdown set spell
 
 """"""""""""
@@ -330,6 +331,13 @@ autocmd FileType xhtml set textwidth=0
 autocmd FileType css set sw=4
 autocmd FileType css set ts=4
 autocmd FileType css set sts=4
+
+""""""""""""
+" JS
+
+autocmd FileType javascript set sw=2
+autocmd FileType javascript set ts=2
+autocmd FileType javascript set sts=2
 
 """"""""""""
 " General
@@ -471,21 +479,21 @@ autocmd BufWritePost *
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
-" function! s:CloseIfOnlyNerdTreeLeft()
-"   if exists("t:NERDTreeBufName")
-"     if bufwinnr(t:NERDTreeBufName) != -1
-"       if winnr("$") == 1
-"         q
-"       endif
-"     endif
-"   endif
-" endfunction
-"
-" nnoremap <leader>tree :NERDTreeToggle ~/projects/jawbone/pkhanduri_srv<CR>
-" let g:NERDTreeShowBookmarks=1
-" let g:NERDTreeMouseMode=3
-" let g:NERDTreeWinSize=30
-" let NERDTreeIgnore = ['\.pyc$']
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+nnoremap <leader>tree :NERDTreeToggle ~/projects/yeoman/gemstore/app<CR>
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeMouseMode=3
+let g:NERDTreeWinSize=30
+let NERDTreeIgnore = ['\.pyc$']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
