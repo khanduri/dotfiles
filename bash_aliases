@@ -12,27 +12,25 @@ alias la='ls -A'
 
 # Git alias
 alias g='git status'
-alias gd='git diff'
+alias ga="git commit --amend --no-edit"
+alias gb='git branch'
 alias gc='git checkout'
-alias gap='git add --patch'
+alias gd='git diff'
+alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
+alias gm="git merge --no-commit --no-ff"
 alias gdc='git diff --cached'
 
-alias gb='git branch'
-
-alias gup="git pull"
+alias gp="git pull"
+alias gap='git add --patch'
 alias gfu='git fetch upstream'
 alias gfo='git fetch origin'
-alias grv='git remote -v'
-
-# alias ga="git add .;git commit --amend -m"                                                                                                                                                    
-# alias gm="git add .;git commit -m"  
-alias ga="git commit --amend --no-edit"
-
-alias galias='git config --get-regexp alias'
-alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias glc='git log -1 --pretty=format:"%Cgreen%ci %Cred%cr%Creset" '
 alias glp="git log --format='%Cgreen%h%Creset %C(yellow)%s%Creset %C(red)(%ae)%Creset' --no-merges "
-alias gm="git merge --no-commit --no-ff"
+alias gpa='git push origin master-armstrong'
+alias gpm='git push origin master'
+alias gpr='git push origin release'
+alias grv='git remote -v'
+alias galias='git config --get-regexp alias'
 
 # Other aliases
 alias tmux="TERM=screen-256color-bce tmux"
