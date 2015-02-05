@@ -1,6 +1,6 @@
-# INSTRUCTIONS:
+## INSTRUCTIONS:
 
-## Dotfile setup:
+### Dotfile setup:
 
 ```bash
 mkdir -p ~/projects
@@ -9,7 +9,7 @@ cd ~/projects/dotfiles
 ./makesymlinks.sh
 ```
 
-## Vim Setup:
+### Vim Setup:
 
 I use [vundle](https://github.com/gmarik/Vundle.vim) as my vim package manager. Hence we'll need to get that first. 
 
@@ -19,9 +19,14 @@ vim
 :PluginInstall
 ```
 
-### Troubleshooting
+### Tmux config
+```bash
+tmux: open up tmux
+ctrl-a y: Setup for staging server logins
+ctrl-a u: Dev setup
+```
 
-
+## Troubleshooting
 
 ##### Vim support for ruby and python
 - `vim --version` (make sure you see +python and +ruby in there)
@@ -55,7 +60,7 @@ ctags -R --exclude=.git --exclude=log *
 # PS. i was inspired to install ctags by https://workshops.thoughtbot.com/vim video by @r00k, thanks man!
 ```
 
-### General Queries:
+## General Queries:
 
 ##### Online Markup edit tool
 - http://georgeosddev.github.io/markdown-edit/
