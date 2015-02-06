@@ -19,6 +19,9 @@ vim
 :PluginInstall
 ```
 
+### Bash settings
+ - [aliases](https://github.com/khanduri/dotfiles/blob/master/bash_aliases)
+
 ### Tmux config
 ```bash
 tmux: open up tmux
