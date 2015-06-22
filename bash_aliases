@@ -18,6 +18,7 @@ alias gc='git checkout'
 alias gd='git diff'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gm="git merge --no-commit --no-ff"
+alias gs='git show --format="%aN <%aE>"'
 alias gdc='git diff --cached'
 
 alias gp="git pull"
@@ -50,6 +51,8 @@ alias yeoman="pset r y g;cd ~/projects/yeoman/"
 alias siteops='deactivate;pset y c y;cd ~/projects/jawbone/siteops;git pull'
 alias cdjaw='deactivate;pset y c y;cd ~/projects/jawbone/srv;source tools/virtualenv/srv-env/bin/activate'
 alias cdjap='deactivate;pset y c g;cd ~/projects/jawbone/pkhanduri_srv;source tools/virtualenv/srv-env/bin/activate'
+alias upgel='./scripts/upgrade-schema -c config_pkhanduri;./update-packages.sh -d'
+alias upsrv='gc master-armstrong; git pull;gc master; git pull; gc release;git pull'
 
 alias gupmaster='cdjap;git fetch upstream; git checkout master; git rebase upstream/master master; git push origin master'
 alias gupma='cdjap;git fetch upstream; git checkout master-armstrong; git rebase upstream/master-armstrong master-armstrong; git push origin master-armstrong'

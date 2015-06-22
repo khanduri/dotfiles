@@ -185,6 +185,14 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
+pbin() {
+  DATA=$(cat)
+  KEY=`curl -X POST -s -d "${DATA}" http://paste.aliph.com/documents | sed -e 's/{"key":"\(.*\)"}/\1/'`
+  URL="http://paste.aliph.com/${KEY}.json"
+  echo ${URL}
+  open ${URL}
+}
+
 ##################################
 # Colors
 ##################################
