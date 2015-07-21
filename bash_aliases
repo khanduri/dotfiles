@@ -61,3 +61,5 @@ alias cdsolr='cd /usr/local/Cellar/solr/4.7.2/libexec/example/'
 alias startsolr='java -DzkRun -DnumShards=1 -Dbootstrap_confdir=./solr/collection1/conf -Dcollection.configName=myconf -jar start.jar'
 
 alias dz='psql -h wearhaus.c0s0yd7udzgh.us-east-1.redshift.amazonaws.com -p 5439 datazoo -U pkhanduri'
+
+alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'

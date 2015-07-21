@@ -13,11 +13,13 @@ call vundle#begin()
 """"""""""""""""""""""""""""""""""""""""""""""""
 " let Vundle manage Vundle
 " required!
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'Lokaltog/powerline-fonts'
+Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'Lokaltog/powerline-fonts'
 
 " Fuzzy finder (files, mru, etc)
 Plugin 'kien/ctrlp.vim'
