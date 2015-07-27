@@ -180,11 +180,6 @@ then
     export SSH_AUTH_SOCK=$SOCK
 fi
 
-# Add bash aliases.
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
-
 pbin() {
   DATA=$(cat)
   KEY=`curl -X POST -s -d "${DATA}" http://paste.aliph.com/documents | sed -e 's/{"key":"\(.*\)"}/\1/'`
@@ -260,25 +255,24 @@ if [[ `hostname` = *pkhan-mbr* ]]; then
 
     pset y c g
 fi
-
 if [[ `hostname` = *local* ]]; then
-    export DEVLOCAL=True
-    export DATABASE=SQLITE
+    # export DEVLOCAL=True
+    # export DATABASE=SQLITE
     
     alias ctags='/usr/local/bin/ctags'
-    alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim'
+    alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'
     
     export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
-    export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
+    # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
     export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
     export PATH="/usr/local/bin:$PATH" # for rabbitMQ
 
-    export PYTHONPATH=/usr/local/Cellar/opencv/2.4.7.1/lib/python2.7/site-packages/:$PYTHONPATH
+    # export PYTHONPATH=/usr/local/Cellar/opencv/2.4.7.1/lib/python2.7/site-packages/:$PYTHONPATH
 
-    cd ~/projects/HearsayLabs/fanmgmt
+    cd ~/projects/affirm
 
-    source ~/.django_bash_completion
-    source ~/projects/HearsayLabs/virtualenv/bin/activate
+    # source ~/.django_bash_completion
+    # source ~/projects/HearsayLabs/virtualenv/bin/activate
 fi
 if [[ `hostname` = *prod-analytics* ]]; then
     alias ctags='/home/pkhanduri/projects/bin/ctags-5.8/ctags'
@@ -295,3 +289,10 @@ if [[ `hostname` = *prod-ops* ]]; then
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+
+# Add bash aliases.
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+

@@ -491,7 +491,7 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-nnoremap <leader>tree :NERDTreeToggle ~/projects/yeoman/gemstore/app<CR>
+nnoremap <leader>tra :NERDTreeToggle ~/projects/affirm/all-the-things<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMouseMode=3
 let g:NERDTreeWinSize=30
