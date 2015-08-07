@@ -16,29 +16,15 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'bling/vim-airline'
-Plugin 'itchyny/lightline.vim'
-" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-" Plugin 'Lokaltog/powerline-fonts'
-
-" Fuzzy finder (files, mru, etc)
-Plugin 'kien/ctrlp.vim'
-
-" Buffer explorer (for the tabs at the top)
-Plugin 'fholgado/minibufexpl.vim'
-
-Plugin 'mileszs/ack.vim'
-" EXAMPLES:
-" o    to open (same as enter)
-" O    to open and close quickfix window
-" go   to preview file (open but maintain focus on ack.vim results)
-" t    to open in new tab
-" T    to open in new tab silently
-" h    to open in horizontal split
-" H    to open in horizontal split silently
-" v    to open in vertical split
-" gv   to open in vertical split silently
-" q    to close the quickfix window
+" Jedi vim for python development
+Plugin 'davidhalter/jedi-vim'
+" Completion <C-Space>
+" Goto assignments <leader>g (typical goto function)
+" Goto definitions <leader>d (follow identifier as far as possible, includes imports and statements)
+" Show Documentation/Pydoc K (shows a popup with assignments)
+" Renaming <leader>r
+" Usages <leader>n (shows all the usages of a name)
+" Open module, e.g. :Pyimport os (opens the os module)
 
 " Keeping track of the TODO's in a file
 Plugin 'vim-scripts/TaskList.vim'
@@ -55,8 +41,32 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'vim-scripts/sort-python-imports'
 " <leader>i -- sort import in the file
 
+" Color scheme
+Plugin 'Lokaltog/vim-distinguished'
+" Plugin 'cschlueter/vim-mustang'
+" Plugin 'godlygeek/csapprox'
+" Plugin 'flazz/vim-colorschemes'
+
 " HTML and CSS hi-speed coding
 Plugin 'mattn/emmet-vim'
+
+" Fuzzy finder (files, mru, etc)
+Plugin 'kien/ctrlp.vim'
+
+" Buffer explorer (for the tabs at the top)
+Plugin 'fholgado/minibufexpl.vim'
+
+Plugin 'mileszs/ack.vim'
+" o    to open (same as enter)
+" O    to open and close quickfix window
+" go   to preview file (open but maintain focus on ack.vim results)
+" t    to open in new tab
+" T    to open in new tab silently
+" h    to open in horizontal split
+" H    to open in horizontal split silently
+" v    to open in vertical split
+" gv   to open in vertical split silently
+" q    to close the quickfix window
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -66,15 +76,13 @@ Plugin 'vim-scripts/AutoTag'
 Plugin 'wincent/Command-T'
 Plugin 'ghewgill/vim-scmdiff'
 Plugin 'tomtom/tcomment_vim'
-
-" Color scheme
-Plugin 'Lokaltog/vim-distinguished'
-" Plugin 'cschlueter/vim-mustang'
-" Plugin 'godlygeek/csapprox'
-" Plugin 'flazz/vim-colorschemes'
-
 Plugin 'scrooloose/nerdtree'
+Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
+
 " UNUSED Plugins
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'Lokaltog/powerline-fonts'
 " Plugin 'klen/python-mode'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'msanders/snipmate.vim'
@@ -537,8 +545,3 @@ set guifont=Menlo\ Regular\ for\ Powerline
 " let g:jedi#completions_command = "<C-Space>"
 " let g:jedi#rename_command = "<leader>r"
 " let g:jedi#show_call_signatures = "1"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python mode
-" let g:pymode_lint_ignore = "E501"
-" let g:pymode_rope_goto_definition_cmd = 'e'
