@@ -201,91 +201,72 @@ cp='\[\e[0;35m\]'       # Purple
 cc='\[\e[0;36m\]'         # Cyan
 cw='\[\e[0;37m\]'        # White
 # Bold
-bck='\[\e[1;30m\]'       # Black
-bcr='\[\e[1;31m\]'         # Red
-bcg='\[\e[1;32m\]'       # Green
-bcy='\[\e[1;33m\]'      # Yellow
-bcb='\[\e[1;34m\]'        # Blue
-bcp='\[\e[1;35m\]'      # Purple
-bcc='\[\e[1;36m\]'        # Cyan
-bcw='\[\e[1;37m\]'       # White
+cbk='\[\e[1;30m\]'       # Black
+cbr='\[\e[1;31m\]'         # Red
+cbg='\[\e[1;32m\]'       # Green
+cby='\[\e[1;33m\]'      # Yellow
+cbb='\[\e[1;34m\]'        # Blue
+cbp='\[\e[1;35m\]'      # Purple
+cbc='\[\e[1;36m\]'        # Cyan
+cbw='\[\e[1;37m\]'       # White
 # Background
-ock='\[\e[40m\]'       # Black
-ocr='\[\e[41m\]'         # Red
-ocg='\[\e[42m\]'       # Green
-ocy='\[\e[43m\]'      # Yellow
-ocb='\[\e[44m\]'        # Blue
-ocp='\[\e[45m\]'      # Purple
-occ='\[\e[46m\]'        # Cyan
-ocw='\[\e[47m\]'       # White
+ckk='\[\e[40m\]'       # Black
+ckr='\[\e[41m\]'         # Red
+ckg='\[\e[42m\]'       # Green
+cky='\[\e[43m\]'      # Yellow
+ckb='\[\e[44m\]'        # Blue
+ckp='\[\e[45m\]'      # Purple
+ckc='\[\e[46m\]'        # Cyan
+ckw='\[\e[47m\]'       # White
 
 NC="\[\e[m\]"               # Color Reset
 ED="\[\e[m\]"
-
-psetb() {
-    c1=bc$1;c2=bc$2;c3=bc$3
-    PS1="[\d \t]${!c1}\h$ED:${!c2}\w$ED${!c3}\$(parse_git_branch)$ED\$" 
-}
-pset() {
-    c1=c$1;c2=c$2;c3=c$3
-    PS1="[\d \t]${!c1}\h$ED:${!c2}\w$ED${!c3}\$(parse_git_branch)$ED\$" 
-}
 
 ##################################
 # Prompt
 ##################################
 
-# PS1="[\d \t]\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]\[\e[0;32m\]\$(parse_git_branch)\[\e[0m\]\$"
-#pset y c g
-psetb r g b
+pset() {
+    c1=c$1;c2=c$2;c3=c$3;c4=c$4
+    PS1="[\D{%F %T %Z}]${!c1}\u$ED@${!c2}\h$ED:${!c3}\w$ED${!c4}\$(parse_git_branch)$ED\$" 
+}
+
+# For an unknown box
+pset kr kr br br
+
 
 ##################################
 # Config per box
 ##################################
 
-if [[ `hostname` = *stage* ]]; then
-    export DEVLOCAL=False
-fi
-if [[ `hostname` = *pkhan-mbr* ]]; then
-    export DEVLOCAL=True
+if [[ `hostname` = *local* ]]; then
+    alias ctags='/usr/local/bin/ctags'
+    alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'
+    
     export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
     export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
 
     export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
-
-    pset y c g
-fi
-if [[ `hostname` = *local* ]]; then
-    # export DEVLOCAL=True
-    # export DATABASE=SQLITE
-    
-    alias ctags='/usr/local/bin/ctags'
-    alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'
-    
     export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
-    # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
     export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
     export PATH="/usr/local/bin:$PATH" # for rabbitMQ
 
     # export PYTHONPATH=/usr/local/Cellar/opencv/2.4.7.1/lib/python2.7/site-packages/:$PYTHONPATH
+    # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
+    # export DEVLOCAL=True
+    # export DATABASE=SQLITE
 
     cd ~/projects/affirm
 
     # source ~/.django_bash_completion
     # source ~/projects/HearsayLabs/virtualenv/bin/activate
+    pset c g r bg
 fi
-if [[ `hostname` = *prod-analytics* ]]; then
-    alias ctags='/home/pkhanduri/projects/bin/ctags-5.8/ctags'
-
-    cd ~/projects/HearsayLabs/fanmgmt
+if [[ `hostname` = *dev.affirm* ]]; then
+    pset bc y r by
 fi
-if [[ `hostname` = *hsl-dev* ]]; then
-    cd ~/projects/HearsayLabs/fanmgmt
-fi
-if [[ `hostname` = *prod-ops* ]]; then
-    # I can only do this in ops. DOING THIS ON ANY OTHER BOX MIGHT
-    # RESULT IN AN INFINITE LOOP
-    tmux attach
+if [[ `hostname` = *stage.affirm* ]]; then
+    pset bc r r br
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
