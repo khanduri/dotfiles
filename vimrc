@@ -184,8 +184,9 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 nmap <leader>v :vsplit<cr>      " Vertical split window
 nmap <leader>s :split<cr>       " Horizontal split window
 
-map <leader>ev :e! ~/.vimrc<cr>  " Fast editing of the .vimrc
-map <leader>eb :e! ~/.bashrc<cr> " Fast editing of the .bashrc
+map <leader>ev :e! ~/.vimrc<cr>        " Fast editing of .vimrc
+map <leader>eb :e! ~/.bashrc<cr>       " Fast editing of .bashrc
+map <leader>ea :e! ~/.bash_aliases<cr> " Fast editing of .bash_aliases
 
 " Show full path of the current file
 map <leader>p :echo expand('%:p')<cr>

@@ -37,13 +37,18 @@ alias galias='git config --get-regexp alias'
 alias tmux="TERM=screen-256color-bce tmux"
 
 alias sb='source ~/.bashrc'
-alias sa='source ~/.aliases'
+alias sa='source ~/.bash_aliases'
 
 alias dot="pset r b g y;cd ~/projects/dotfiles;git pull"
 
 alias blog="pset r y g;cd ~/projects/blog/khanduri.github.io/;git pull"
 alias myos="pset r y g;cd ~/projects/opensource/"
 alias yeoman="pset r y g;cd ~/projects/yeoman/"
+
+######################################
+# Affirm settings
+alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
+alias masup='cd ~/projects/affirm/all-the-things/;gc master; git pull;'
 
 ######################################
 # Jawbone settings
