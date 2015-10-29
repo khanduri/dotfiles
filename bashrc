@@ -111,9 +111,19 @@ fi
 # Git functions
 ##################################
 
-# Show git info in the prompt
-function parse_git_branch () {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+# checks if branch has something pending
+function parse_git_dirty() {
+  git diff --quiet --ignore-submodules HEAD 2>/dev/null; [ $? -eq 1 ] && echo "***"
+}
+
+# gets the current git branch
+function parse_git_branch() {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)$(parse_git_hash)/"
+}
+
+# get last commit hash prepended with @ (i.e. @8a323d0)
+function parse_git_hash() {
+  git rev-parse --short HEAD 2> /dev/null | sed "s/\(.*\)/@\1/"
 }
 
 # Removed merged branches
@@ -228,7 +238,7 @@ ED="\[\e[m\]"
 
 pset() {
     c1=c$1;c2=c$2;c3=c$3;c4=c$4
-    PS1="[\D{%F %T %Z}]${!c1}\u$ED@${!c2}\h$ED:${!c3}\w$ED${!c4}\$(parse_git_branch)$ED\$" 
+    PS1="[\D{%F %T %Z %z}]${!c1}\u$ED@${!c2}\h$ED:${!c3}\w$ED${!c4}|\$(parse_git_branch)$ED\n\$" 
 }
 
 # For an unknown box
@@ -260,6 +270,11 @@ if [[ `hostname` = *local* ]]; then
 
     # source ~/.django_bash_completion
     # source ~/projects/HearsayLabs/virtualenv/bin/activate
+
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Devel
+    source /usr/local/bin/virtualenvwrapper.sh
+
     pset c g r bg
 fi
 if [[ `hostname` = *dev.affirm* ]]; then
@@ -267,6 +282,9 @@ if [[ `hostname` = *dev.affirm* ]]; then
 fi
 if [[ `hostname` = *stage.affirm* ]]; then
     pset bc r r br
+fi
+if [[ `hostname` = *-AFF-MBP* ]]; then
+    pset c g r bg
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

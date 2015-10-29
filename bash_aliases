@@ -45,6 +45,7 @@ alias blog="pset r y g;cd ~/projects/blog/khanduri.github.io/;git pull"
 alias myos="pset r y g;cd ~/projects/opensource/"
 alias yeoman="pset r y g;cd ~/projects/yeoman/"
 
+alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 ######################################
 # Affirm settings
 alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
