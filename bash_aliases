@@ -46,10 +46,13 @@ alias myos="pset r y g;cd ~/projects/opensource/"
 alias yeoman="pset r y g;cd ~/projects/yeoman/"
 
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
+
 ######################################
-# Affirm settings
+# Current settings
 alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
 alias masup='cd ~/projects/affirm/all-the-things/;gc master; git pull;'
+
+alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | grep docker.affirm | head -n1); docker run -it --rm=true -v /nail:/nail -v /var/log/rollbar:/var/log/rollbar -v /var/data/risk:/var/data/risk -v /opt/virtualenv/frontend/etc/release/current:/affirm/etc/affirm:ro $CONTAINER /bin/bash'
 
 ######################################
 # Jawbone settings
