@@ -14,7 +14,7 @@ cd ~/projects/dotfiles
 I use [vundle](https://github.com/gmarik/Vundle.vim) as my vim package manager. Hence we'll need to get that first. 
 
 ```bash
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/plugin/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim
 :PluginInstall
 ```
