@@ -143,6 +143,7 @@ set ruler                      "Always show current position
 set hid                        "Change buffer - without saving
 set cursorline
 set hidden
+set clipboard=unnamed
 set mouse=a
 set whichwrap+=<,>,h,l
 set tm=500
