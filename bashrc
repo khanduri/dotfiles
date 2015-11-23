@@ -253,8 +253,8 @@ if [[ `hostname` = *local* ]]; then
     alias ctags='/usr/local/bin/ctags'
     alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'
     
-    # export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
-    # export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
+    export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
+    export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
 
     export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
     export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
@@ -265,6 +265,9 @@ if [[ `hostname` = *local* ]]; then
     # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
     # export DEVLOCAL=True
     # export DATABASE=SQLITE
+    export RUN_MODE='dev'
+
+    export ANDROID_HOME=/usr/local/opt/android-sdk
 
     cd ~/projects/affirm
 
