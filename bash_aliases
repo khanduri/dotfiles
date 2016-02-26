@@ -69,3 +69,10 @@ alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | gr
 
 # alias cdsolr='cd /usr/local/Cellar/solr/4.7.2/libexec/example/'
 # alias startsolr='java -DzkRun -DnumShards=1 -Dbootstrap_confdir=./solr/collection1/conf -Dcollection.configName=myconf -jar start.jar'
+#
+
+
+######################################
+# Affirm settings
+#
+alias srch='_(){ FILE_DAY=$(pwd | cut -d / -f 6-9 | sed "s/\///g"); echo "Search Day: $FILE_DAY";FILE_NAME=${1}_${FILE_DAY}; echo "output in: ~/$FILE_NAME"; zcat `find . -name "*unity*"` | grep "$1" | sort -t, -k 4 > ~/$FILE_NAME; };_ '

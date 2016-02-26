@@ -174,7 +174,7 @@ export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
 
 # AWS: elastic bean stalk
-export PATH=$PATH:~/projects/bin/AWS-ElasticBeanstalk-CLI-2.6.2/eb/macosx/python2.7/
+# export PATH=$PATH:~/projects/bin/AWS-ElasticBeanstalk-CLI-2.6.2/eb/macosx/python2.7/
 
 ##################################
 # SSH key forwarding
@@ -256,10 +256,10 @@ if [[ `hostname` = *local* ]]; then
     export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
     export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
 
-    export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
-    export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
-    export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
-    export PATH="/usr/local/bin:$PATH" # for rabbitMQ
+    # export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
+    # export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
+    # export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
+    # export PATH="/usr/local/bin:$PATH" # for rabbitMQ
 
     # export PYTHONPATH=/usr/local/Cellar/opencv/2.4.7.1/lib/python2.7/site-packages/:$PYTHONPATH
     # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
@@ -290,7 +290,7 @@ if [[ `hostname` = *-AFF-MBP* ]]; then
     pset c g r bg
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Add bash aliases.
 if [ -f ~/.bash_aliases ]; then

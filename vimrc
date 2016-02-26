@@ -188,6 +188,7 @@ nmap <leader>s :split<cr>       " Horizontal split window
 map <leader>ev :e! ~/.vimrc<cr>        " Fast editing of .vimrc
 map <leader>eb :e! ~/.bashrc<cr>       " Fast editing of .bashrc
 map <leader>ea :e! ~/.bash_aliases<cr> " Fast editing of .bash_aliases
+map <leader>es :e! ~/.ssh/config<cr>   " Fast editing of .ssh hosts
 
 " Show full path of the current file
 map <leader>p :echo expand('%:p')<cr>
