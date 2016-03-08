@@ -47,6 +47,8 @@ alias yeoman="pset r y g;cd ~/projects/yeoman/"
 
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 
+alias readme='_(){ echo "$@" >> README.md; }; _'
+
 ######################################
 # Current settings
 alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
@@ -74,5 +76,4 @@ alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | gr
 
 ######################################
 # Affirm settings
-#
-alias srch='_(){ FILE_DAY=$(pwd | cut -d / -f 6-9 | sed "s/\///g"); echo "Search Day: $FILE_DAY";FILE_NAME=${1}_${FILE_DAY}; echo "output in: ~/$FILE_NAME"; zcat `find . -name "*unity*"` | grep "$1" | sort -t, -k 4 > ~/$FILE_NAME; };_ '
+alias srch='_(){ FILE_DAY=$(pwd | cut -d / -f 6-9 | sed "s/\///g"); echo "Search Day: $FILE_DAY";FILE_NAME=${1}_${FILE_DAY}_GREP; FILE_NAME=$(echo -e "${FILE_NAME}" | tr -d "[[:space:]]"); echo "output in: ~/$FILE_NAME"; zcat `find . -name "*unity*"` | grep "$1" | sort -t, -k 4 > ~/$FILE_NAME; };_ '

@@ -49,6 +49,7 @@ Plugin 'Lokaltog/vim-distinguished'
 
 " HTML and CSS hi-speed coding
 Plugin 'mattn/emmet-vim'
+Plugin 'mattn/webapi-vim'
 
 " Fuzzy finder (files, mru, etc)
 Plugin 'kien/ctrlp.vim'
@@ -486,9 +487,9 @@ autocmd BufWritePost *
 " NERDTree
 
 " Enable this for make NERDTree load every opening files
-" autocmd VimEnter * NERDTree " Make Always Load NERDTree every opening files
+autocmd VimEnter * NERDTree " Make Always Load NERDTree every opening files
 " autocmd VimEnter * wincmd p " Automatically go to buffer every time open files
-" autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
@@ -548,3 +549,8 @@ set guifont=Menlo\ Regular\ for\ Powerline
 " let g:jedi#completions_command = "<C-Space>"
 " let g:jedi#rename_command = "<leader>r"
 " let g:jedi#show_call_signatures = "1"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Emmet-Vim shortcuts
+let g:user_emmet_leader_key='<leader>m'
+let g:user_emmet_settings=webapi#json#decode(join(readfile(expand('~/.snippets.json')), "\n"))
