@@ -238,7 +238,7 @@ ED="\[\e[m\]"
 
 pset() {
     c1=c$1;c2=c$2;c3=c$3;c4=c$4
-    PS1="[\D{%F %T %Z %z}]${!c1}\u$ED@${!c2}\h$ED:${!c3}\w$ED${!c4}|\$(parse_git_branch)$ED\n\$" 
+    PS1="[\D{%F %T %Z %z}]${!c1}\u$ED@${!c2}\h$ED:${!c3}\w$ED${!c4}|\$(parse_git_branch)$ED\n\$"  
 }
 
 # For an unknown box
@@ -253,8 +253,8 @@ if [[ `hostname` = *local* ]]; then
     alias ctags='/usr/local/bin/ctags'
     alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'
     
-    export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
-    export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
+    # export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
+    # export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
 
     # export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
     # export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
@@ -296,3 +296,6 @@ fi
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
+
+# CHANGING SHELL
+# chsh -s /bin/bash

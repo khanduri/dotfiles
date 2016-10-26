@@ -1,0 +1,12 @@
+send-keys 'sudo -s;cd /opt/virtualenv/frontend/etc/release/current/' C-m
+
+neww -n restart
+send-keys 'sudo -s' C-m
+send-keys 'supdctl restart affirm-frontend-web affirm-frontend-trainyard affirm-tasks-trainyard:worker-01 affirm-tasks-trainyard:worker-02 affirm-tasks-worker:worker-01'
+
+neww -n logs
+send-keys 'tail -f /nail/logs/frontend/*.log' C-m
+
+neww -n SRV
+send-keys 'cd /opt/code/all-the-things' C-m
+

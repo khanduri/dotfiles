@@ -73,7 +73,9 @@ alias pretty='_(){ python ~/.scripts/pretty.py ${1} > ~/temp; vim ~/temp; };_ '
 alias clean='_(){ rm ~/*_GREP; };_ '
 
 alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
+alias dataup='cd ~/projects/affirm/all-the-things/;gc plat-data; git pull;'
 alias masup='cd ~/projects/affirm/all-the-things/;gc master; git pull;'
+alias unity='cd ~/projects/affirm/all-the-things/;gc release-data-unity; git pull origin release-data-unity;'
 
 alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | grep docker.affirm | head -n1); docker run -it --rm=true -v /nail:/nail -v /var/log/rollbar:/var/log/rollbar -v /var/data/risk:/var/data/risk -v /opt/virtualenv/frontend/etc/release/current:/affirm/etc/affirm:ro $CONTAINER /bin/bash'
 

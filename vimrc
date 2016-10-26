@@ -17,7 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Jedi vim for python development
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 " Completion <C-Space>
 " Goto assignments <leader>g (typical goto function)
 " Goto definitions <leader>d (follow identifier as far as possible, includes imports and statements)
@@ -29,6 +29,9 @@ Plugin 'davidhalter/jedi-vim'
 " Keeping track of the TODO's in a file
 Plugin 'vim-scripts/TaskList.vim'
 " <leader>t for triggering the TODO list
+
+Plugin 'uguu-org/vim-matrix-screensaver'
+" :Matrix should ideally trigger the metrix screen saver
 
 " Moving around in vim
 Plugin 'Lokaltog/vim-easymotion'
@@ -181,27 +184,16 @@ let g:mapleader=","
 " Shorthand for replacing
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-" nmap <leader>w :w<cr>      " quicksave
-
 nmap <leader>v :vsplit<cr>      " Vertical split window
 nmap <leader>s :split<cr>       " Horizontal split window
 
-map <leader>ev :e! ~/.vimrc<cr>        " Fast editing of .vimrc
-map <leader>eb :e! ~/.bashrc<cr>       " Fast editing of .bashrc
 map <leader>ea :e! ~/.bash_aliases<cr> " Fast editing of .bash_aliases
+map <leader>eb :e! ~/.bashrc<cr>       " Fast editing of .bashrc
 map <leader>es :e! ~/.ssh/config<cr>   " Fast editing of .ssh hosts
+map <leader>ev :e! ~/.vimrc<cr>        " Fast editing of .vimrc
 
 " Show full path of the current file
 map <leader>p :echo expand('%:p')<cr>
-
-" TODO: NO idea what this does .. figure out
-map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
-
-" When vimrc is edited, reload it: https://github.com/powerline/powerline/issues/213
-autocmd! bufwritepost vimrc nested source ~/.vimrc
-
-" Close buffer with :BD
-command! BD bp | sp | bn | bd
 
 " Mapping to move between windows
 nmap <silent> <leader>k :wincmd k<CR>
@@ -214,6 +206,15 @@ nnoremap <leader>1 :resize +5<cr>
 nnoremap <leader>2 :resize -5<cr>
 nnoremap <leader>3 :vertical resize +5<cr>
 nnoremap <leader>4 :vertical resize -5<cr>
+
+" TODO: NO idea what this does .. figure out
+map <F5> :wall!<CR>:!sbcl --load foo.cl<CR><CR>
+
+" When vimrc is edited, reload it: https://github.com/powerline/powerline/issues/213
+autocmd! bufwritepost vimrc nested source ~/.vimrc
+
+" Close buffer with :BD
+command! BD bp | sp | bn | bd
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -487,7 +488,7 @@ autocmd BufWritePost *
 " NERDTree
 
 " Enable this for make NERDTree load every opening files
-autocmd VimEnter * NERDTree " Make Always Load NERDTree every opening files
+" autocmd VimEnter * NERDTree " Make Always Load NERDTree every opening files
 " autocmd VimEnter * wincmd p " Automatically go to buffer every time open files
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
@@ -503,7 +504,7 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-nnoremap <leader>tra :NERDTreeToggle ~/projects/affirm/all-the-things<CR>
+nnoremap <leader>tr :NERDTreeToggle ~/projects/affirm/all-the-things<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMouseMode=3
 let g:NERDTreeWinSize=30
