@@ -1,4 +1,5 @@
-send-keys 'sudo -s;cd /opt/virtualenv/frontend/etc/release/current/' C-m
+send-keys 'sudo -s' C-m
+send-keys 'cd /opt/virtualenv/frontend/etc/release/current/' C-m
 
 neww -n restart
 send-keys 'sudo -s' C-m
