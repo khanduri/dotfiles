@@ -245,6 +245,7 @@ pset() {
 pset kr kr br br
 
 
+
 ##################################
 # Config per box
 ##################################
@@ -277,6 +278,9 @@ if [[ `hostname` = *local* ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Devel
     source /usr/local/bin/virtualenvwrapper.sh
+    
+    export PATH="$PATH:~/projects/tools/arcanist/bin/"
+    export PATH="$PATH:~/projects/scripts/"
 
     pset c g r bg
 fi
@@ -290,8 +294,6 @@ if [[ `hostname` = *-AFF-MBP* ]]; then
     pset c g r bg
 fi
 
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 # Add bash aliases.
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
@@ -299,3 +301,4 @@ fi
 
 # CHANGING SHELL
 # chsh -s /bin/bash
+
