@@ -92,7 +92,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -241,57 +240,48 @@ pset() {
     PS1="[\D{%F %T %Z %z}]${!c1}\u$ED@${!c2}\h$ED:${!c3}\w$ED${!c4}|\$(parse_git_branch)$ED\n\$"  
 }
 
-# For an unknown box
-pset kr kr br br
-
-
-
 ##################################
 # Config per box
 ##################################
 
+# For an unknown box
+pset kr kr br br
+
+
 if [[ `hostname` = *local* ]]; then
-    alias ctags='/usr/local/bin/ctags'
+    # alias ctags='/usr/local/bin/ctags'
     alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'
     
     # export JAVA_HOME=$(/usr/libexec/java_home -v '1.7*')
     # export JDK_HOME=$(/usr/libexec/java_home -v '1.7*')
+    # export PYTHONPATH=/usr/local/Cellar/opencv/2.4.7.1/lib/python2.7/site-packages/:$PYTHONPATH
+    # export DEVLOCAL=True
+    # export DATABASE=SQLITE
+    # export RUN_MODE='dev'
+    # export WORKON_HOME=$HOME/.virtualenvs
+    # export PROJECT_HOME=$HOME/Devel
+    export ANDROID_HOME=/usr/local/opt/android-sdk
+
+    # source ~/.django_bash_completion
+    # source ~/projects/HearsayLabs/virtualenv/bin/activate
+    # source /usr/local/bin/virtualenvwrapper.sh
+    cd ~/projects/affirm
 
     # export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
     # export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
     # export PATH="/usr/local/sbin:$PATH" # for rabbitMQ
     # export PATH="/usr/local/bin:$PATH" # for rabbitMQ
-
-    # export PYTHONPATH=/usr/local/Cellar/opencv/2.4.7.1/lib/python2.7/site-packages/:$PYTHONPATH
     # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
-    # export DEVLOCAL=True
-    # export DATABASE=SQLITE
-    export RUN_MODE='dev'
-
-    export ANDROID_HOME=/usr/local/opt/android-sdk
-
-    cd ~/projects/affirm
-
-    # source ~/.django_bash_completion
-    # source ~/projects/HearsayLabs/virtualenv/bin/activate
-
-    export WORKON_HOME=$HOME/.virtualenvs
-    export PROJECT_HOME=$HOME/Devel
-    source /usr/local/bin/virtualenvwrapper.sh
-    
     export PATH="$PATH:~/projects/tools/arcanist/bin/"
     export PATH="$PATH:~/projects/scripts/"
 
     pset c g r bg
 fi
 if [[ `hostname` = *dev.affirm* ]]; then
-    pset bc y r by
+    pset c y r bg
 fi
 if [[ `hostname` = *stage.affirm* ]]; then
-    pset bc r r br
-fi
-if [[ `hostname` = *-AFF-MBP* ]]; then
-    pset c g r bg
+    pset c y r bg
 fi
 
 # Add bash aliases.

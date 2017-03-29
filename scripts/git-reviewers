@@ -1,5 +1,7 @@
 #!/usr/bin/env bash -ue
 
+# https://gist.github.com/alekstorm/4949628
+
 if [[ $# -lt 1 || $# -gt 2 ]]; then
   echo "Usage: git $(basename "$0" | sed 's/^git-//') <end-commit> [<start-commit>]"
   exit 1
