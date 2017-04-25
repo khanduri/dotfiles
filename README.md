@@ -33,14 +33,17 @@ ctrl-a u: Dev setup
 
 ##### Vim support for ruby and python
 - `vim --version` (make sure you see +python and +ruby in there)
-- Linux: apt-get install vim-nox
-- Mac: brew install vim
+- Linux: `apt-get install ruby rubygems vim-nox`
+- Mac: `brew install vim`
 
 ##### Command-T
-- NOTE: mavericks runs into a problem
-- `cd ~/.vim/bundle/Command-T/ruby/command-t`
-- ruby extconf.rb
-- make
+- Needs to compile from source
+```bash
+> `cd ~/.vim/bundle/Command-T/ruby/command-t`
+> ruby extconf.rb
+> make
+```
+- Also requires vim support for ruby
 
 ##### CTags
 https://gist.github.com/nazgob/1570678
