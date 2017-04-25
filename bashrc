@@ -277,6 +277,9 @@ if [[ `hostname` = *local* ]]; then
 
     pset c g r bg
 fi
+if [[ `hostname` = *sparrow* ]]; then
+    pset c y r bg
+fi
 if [[ `hostname` = *dev.affirm* ]]; then
     pset c y r bg
 fi
