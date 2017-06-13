@@ -10,7 +10,9 @@ alias l='ll'
 alias ll='ls -alF'
 alias la='ls -A'
 
-# Git alias
+######################################
+# Git
+#
 alias g='git status'
 alias ga="git commit --amend --no-edit"
 alias gb='git branch'
@@ -43,12 +45,18 @@ alias dot="pset r b g y;cd ~/projects/dotfiles;git pull"
 
 alias blog="pset r y g;cd ~/projects/blog/khanduri.github.io/;git pull"
 alias myos="pset r y g;cd ~/projects/opensource/"
-alias yeoman="pset r y g;cd ~/projects/yeoman/"
+# alias yeoman="pset r y g;cd ~/projects/yeoman/"
 
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias prettyjson='python -m json.tool'
 
-alias readme='_(){ echo "$@" >> README.md; }; _'
+alias readme='_(){ echo " - \`$@\`" >> README.md; }; _'
+
+######################################
+# Hearsay settings
+#
+# alias fanmgmt="cd /Users/pkhanduri/projects/HearsayLabs/fanmgmt; source ../virtualenv/bin/activate; ./manage.py runserver 8001"
+
 
 ######################################
 # Jawbone settings
@@ -65,8 +73,8 @@ alias readme='_(){ echo "$@" >> README.md; }; _'
 
 # alias cdsolr='cd /usr/local/Cellar/solr/4.7.2/libexec/example/'
 # alias startsolr='java -DzkRun -DnumShards=1 -Dbootstrap_confdir=./solr/collection1/conf -Dcollection.configName=myconf -jar start.jar'
-#
-#
+
+
 ######################################
 # Affirm settings
 alias srch='_(){ FILE_DAY=$(pwd | cut -d / -f 6-9 | sed "s/\///g"); echo "Search Day: $FILE_DAY";FILE_NAME=${1}_${FILE_DAY}_GREP; FILE_NAME=$(echo -e "${FILE_NAME}" | tr -d "[[:space:]]"); echo "output in: ~/$FILE_NAME"; zcat `find . -name "*unity*"` | grep "$1" | sort -t, -k 4 > ~/$FILE_NAME; };_ '
@@ -76,9 +84,9 @@ xmlline(){
     tr "\n" " " < $1 | sed "s/>[ \t]*</></g" | sed "s/<\/root><root>/<\/root>\n<root>/g"
 }
 
-alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
-alias dataup='cd ~/projects/affirm/all-the-things/;gc plat-data; git pull;'
+# alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
+# alias dataup='cd ~/projects/affirm/all-the-things/;gc plat-data; git pull;'
+# alias unity='cd ~/projects/affirm/all-the-things/;gc release-data-unity; git pull origin release-data-unity;'
 alias masup='cd ~/projects/affirm/all-the-things/;gc master; git pull;'
-alias unity='cd ~/projects/affirm/all-the-things/;gc release-data-unity; git pull origin release-data-unity;'
 
 alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | grep docker.affirm | head -n1); docker run -it --rm=true -v /nail:/nail -v /var/log/rollbar:/var/log/rollbar -v /var/data/risk:/var/data/risk -v /opt/virtualenv/frontend/etc/release/current:/affirm/etc/affirm:ro $CONTAINER /bin/bash'
