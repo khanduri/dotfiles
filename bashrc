@@ -285,16 +285,16 @@ if [[ `hostname` = *local* ]]; then
     PATH=/usr/local/share/npm/bin:$PATH
 
 
-    pset c g r bg
+    pset g g r bg
 fi
 if [[ `hostname` = *sparrow* ]]; then
-    pset c y r bg
+    pset y y r br
 fi
 if [[ `hostname` = *dev.affirm* ]]; then
-    pset c y r bg
+    pset c c r bg
 fi
 if [[ `hostname` = *stage.affirm* ]]; then
-    pset c y r bg
+    pset y y r br
 fi
 
 # Add bash aliases.
