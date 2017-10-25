@@ -276,14 +276,13 @@ if [[ `hostname` = *local* ]]; then
     # export PATH="/usr/local/bin:$PATH" # for rabbitMQ
     # export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 
+    export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
     export PATH="$PATH:$HOME/projects/tools/arcanist/bin"
     export PATH="$PATH:$HOME/projects/dotfiles/scripts"
-    export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-    if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-    PATH=/usr/local/share/npm/bin:$PATH
-
+    # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+    # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+    # PATH=/usr/local/share/npm/bin:$PATH
 
     pset g g r bg
 fi

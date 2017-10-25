@@ -89,4 +89,6 @@ xmlline(){
 # alias unity='cd ~/projects/affirm/all-the-things/;gc release-data-unity; git pull origin release-data-unity;'
 alias masup='cd ~/projects/affirm/all-the-things/;gc master; git pull;'
 
+alias build='affirm.jenkins trigger_build'
+
 alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | grep docker.affirm | head -n1); docker run -it --rm=true -v /nail:/nail -v /var/log/rollbar:/var/log/rollbar -v /var/data/risk:/var/data/risk -v /opt/virtualenv/frontend/etc/release/current:/affirm/etc/affirm:ro $CONTAINER /bin/bash'
