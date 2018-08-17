@@ -30,7 +30,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/TaskList.vim'
 " <leader>t for triggering the TODO list
 
-Plugin 'uguu-org/vim-matrix-screensaver'
+" Plugin 'uguu-org/vim-matrix-screensaver'
 " :Matrix should ideally trigger the metrix screen saver
 
 " Moving around in vim
@@ -41,7 +41,7 @@ Plugin 'Lokaltog/vim-easymotion'
 " <leader><leader>k -- back line
 
 " Soting python imports .. not a huge fan of this, want to write my own extension
-Plugin 'vim-scripts/sort-python-imports'
+" Plugin 'vim-scripts/sort-python-imports'
 " <leader>i -- sort import in the file
 
 " Color scheme
@@ -83,6 +83,9 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'itchyny/lightline.vim'
+
+" solidity syntax - smart contract
+Plugin 'tomlion/vim-solidity'
 
 " UNUSED Plugins
 " Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}

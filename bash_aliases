@@ -84,11 +84,15 @@ xmlline(){
     tr "\n" " " < $1 | sed "s/>[ \t]*</></g" | sed "s/<\/root><root>/<\/root>\n<root>/g"
 }
 
-# alias devup='cd ~/projects/affirm/all-the-things/;gc develop; git pull;'
-# alias dataup='cd ~/projects/affirm/all-the-things/;gc plat-data; git pull;'
-# alias unity='cd ~/projects/affirm/all-the-things/;gc release-data-unity; git pull origin release-data-unity;'
-alias masup='cd ~/projects/affirm/all-the-things/;gc master; git pull;'
+alias masup='cd ~/projects/isotope/;gc master; git pull;'
 
 alias build='affirm.jenkins trigger_build'
 
 alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | grep docker.affirm | head -n1); docker run -it --rm=true -v /nail:/nail -v /var/log/rollbar:/var/log/rollbar -v /var/data/risk:/var/data/risk -v /opt/virtualenv/frontend/etc/release/current:/affirm/etc/affirm:ro $CONTAINER /bin/bash'
+
+alias vim='/usr/local/bin/vim'
+
+# joinpdf -o 20180419_PrashantPassport.pdf CCI19042018_1.pdf CCI19042018_2.pdf CCI19042018_3.pdf CCI19042018_4.pdf CCI19042018_5.pdf CCI19042018_6.pdf
+alias joinpdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'

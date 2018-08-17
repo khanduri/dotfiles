@@ -140,9 +140,9 @@ function rmb {
     echo "No existing branches have been merged into $current_branch."
   else
     echo "This will remove the following branches:"
-    # if [ -n "$remote_branches" ]; then
-    #   echo "$remote_branches"
-    # fi
+    if [ -n "$remote_branches" ]; then
+      echo "$remote_branches"
+    fi
     if [ -n "$local_branches" ]; then
       echo "$local_branches"
     fi
@@ -150,7 +150,7 @@ function rmb {
     echo
     if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
       # Remove remote branches
-      # git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
+      git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
       # Remove local branches
       git branch -d `git branch --merged | grep -v 'master$' | grep -v "$current_branch$" | sed 's/origin\///g' | tr -d '\n'`
     else
@@ -171,6 +171,8 @@ export GREP_OPTIONS='--color=auto'
 export EVENT_NOKQUEUE=1
 export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
+
+export ETH_HOME="$HOME/projects/ethereum"
 
 # AWS: elastic bean stalk
 # export PATH=$PATH:~/projects/bin/AWS-ElasticBeanstalk-CLI-2.6.2/eb/macosx/python2.7/
@@ -248,7 +250,7 @@ pset() {
 pset kr kr br br
 
 
-if [[ `hostname` = *local* ]]; then
+if [[ `hostname` = *pkrypto* ]]; then
     # alias ctags='/usr/local/bin/ctags'
     alias vim='/usr/local/Cellar/vim/7.4.712_1/bin/vim'
     
@@ -268,7 +270,7 @@ if [[ `hostname` = *local* ]]; then
     # source ~/.django_bash_completion
     # source ~/projects/HearsayLabs/virtualenv/bin/activate
     # source /usr/local/bin/virtualenvwrapper.sh
-    cd ~/projects/affirm
+    cd ~/projects
 
     # export PATH="$PATH:/usr/local/Cellar/ruby/2.1.1/bin/" # gem bins
     # export PATH="/usr/local/Cellar/ruby/2.0.0-p195/bin:$PATH" # gem bins
@@ -284,7 +286,13 @@ if [[ `hostname` = *local* ]]; then
     # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
     # PATH=/usr/local/share/npm/bin:$PATH
 
+    export PATH=/usr/local/bin:$PATH
+    export PATH=/Users/pkrypto/projects/bin:$PATH
+    source /usr/local/bin/virtualenvwrapper.sh
+
+
     pset g g r bg
+    alias vim='/usr/local/bin/vim'
 fi
 if [[ `hostname` = *sparrow* ]]; then
     pset y y r br
