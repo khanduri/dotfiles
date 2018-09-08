@@ -12,3 +12,4 @@ if [ -f '/Users/pkrypto/projects/bin/google-cloud-sdk/path.bash.inc' ]; then sou
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/pkrypto/projects/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/pkrypto/projects/bin/google-cloud-sdk/completion.bash.inc'; fi
+export PATH="/usr/local/opt/sqlite/bin:$PATH"

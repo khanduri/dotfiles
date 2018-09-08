@@ -85,12 +85,8 @@ xmlline(){
 }
 
 alias masup='cd ~/projects/isotope/;gc master; git pull;'
-
-alias build='affirm.jenkins trigger_build'
-
-alias dockme='CONTAINER=$(cat /etc/supervisor/conf.d/gunicorn-frontend.conf | grep docker.affirm | head -n1); docker run -it --rm=true -v /nail:/nail -v /var/log/rollbar:/var/log/rollbar -v /var/data/risk:/var/data/risk -v /opt/virtualenv/frontend/etc/release/current:/affirm/etc/affirm:ro $CONTAINER /bin/bash'
-
 alias vim='/usr/local/bin/vim'
+alias cleanports='kill $(lsof -t -i:7000);kill $(lsof -t -i:7001);kill $(lsof -t -i:7002); kill $(lsof -t -i:8000); kill $(lsof -t -i:8001)'
 
 # joinpdf -o 20180419_PrashantPassport.pdf CCI19042018_1.pdf CCI19042018_2.pdf CCI19042018_3.pdf CCI19042018_4.pdf CCI19042018_5.pdf CCI19042018_6.pdf
 alias joinpdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'

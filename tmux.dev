@@ -1,21 +1,23 @@
-send-keys 'sudo -s' C-m
+send-keys '' C-m
 
-neww -n Deps
-send-keys 'cdjap;clear;./tools/run-kestrel.sh' C-m
+neww -n isotope
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope/api; source venv/bin/activate; export $(cat .env/local | grep -v ^# | xargs); ./run.sh' C-m
 split-window -v
-send-keys 'cdjap; c;mongod' C-m
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope/ui; REACT_APP_ENV=local yarn start' C-m
 
-neww -n Pyclips
-send-keys 'cdjap; c;python pyclipsd/start_daemon.py -c config_pkhanduri' C-m
+neww -n client-prod-uservices
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system/service_a; ./run.sh' C-m
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system/service_b; ./run.sh' C-m
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system/service_c; ./run.sh' C-m
 
-neww -n localhost
-send-keys 'cdjap;clear;python web_gevent.py -c config_pkhanduri' C-m
+neww -n client-candidate-service
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system_candidate/service_a_candidate' C-m
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system_candidate/service_b_candidate' C-m
 
-neww -n SRV
-send-keys 'cdjaw; c' C-m
+neww -n dev
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope/api; source venv/bin/activate; export $(cat .env/local | grep -v ^# | xargs)' C-m
+send-keys 'make reinit_db; mysql -u root -h localhost isotope < scripts/sql/create_demo_service_xids_and_auths.sql' 
 
-neww -n Siteops
-send-keys 'siteops; c' C-m
-
-neww -n PKHANDURI-SRV
-send-keys 'cdjap; c' C-m
