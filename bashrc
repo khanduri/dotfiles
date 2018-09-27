@@ -288,7 +288,7 @@ if [[ `hostname` = *pkrypto* ]]; then
 
     export PATH=/usr/local/bin:$PATH
     export PATH=/Users/pkrypto/projects/bin:$PATH
-    source /usr/local/bin/virtualenvwrapper.sh
+    # source /usr/local/bin/virtualenvwrapper.sh
 
 
     pset g g r bg

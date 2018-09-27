@@ -6,16 +6,16 @@ split-window -v
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope/ui; REACT_APP_ENV=local yarn start' C-m
 
 neww -n client-prod-uservices
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system/service_a; ./run.sh' C-m
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system/service_a; ./run.sh' C-m
 split-window -v
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system/service_b; ./run.sh' C-m
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system/service_b; ./run.sh' C-m
 split-window -v
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system/service_c; ./run.sh' C-m
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system/service_c; ./run.sh' C-m
 
 neww -n client-candidate-service
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system_candidate/service_a_candidate' C-m
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system_candidate/service_a_candidate' C-m
 split-window -v
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/isotope-node/example_distributed_system_candidate/service_b_candidate' C-m
+send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system_candidate/service_b_candidate' C-m
 
 neww -n dev
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope/api; source venv/bin/activate; export $(cat .env/local | grep -v ^# | xargs)' C-m

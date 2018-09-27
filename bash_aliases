@@ -84,7 +84,7 @@ xmlline(){
     tr "\n" " " < $1 | sed "s/>[ \t]*</></g" | sed "s/<\/root><root>/<\/root>\n<root>/g"
 }
 
-alias masup='cd ~/projects/isotope/;gc master; git pull;'
+alias masup='cd ~/projects/sn126/isotope/;gc master; git pull;'
 alias vim='/usr/local/bin/vim'
 alias cleanports='kill $(lsof -t -i:7000);kill $(lsof -t -i:7001);kill $(lsof -t -i:7002); kill $(lsof -t -i:8000); kill $(lsof -t -i:8001)'
 
