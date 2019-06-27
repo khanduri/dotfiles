@@ -1,4 +1,4 @@
-neww -n dbs
+rename-window dbs
 send-keys 'mongo' C-m
 split-window -v
 send-keys 'mysql' C-m
@@ -9,37 +9,40 @@ split-window -v
 send-keys 'cd /Users/pkrypto/projects/bootswatch' C-m
 
 neww -n projectskeleton
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
+selectp -L
 send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
 send-keys 'cd api; source venv/bin/activate; ' C-m
 send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
 split-window -v
 send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
-send-keys 'cd /ui; ' C-m
+send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
-split-window -h
-send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
 
 neww -n rentmgmt
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
+selectp -L
 send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
 send-keys 'cd api; source venv/bin/activate; ' C-m
 send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
 split-window -v
 send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
-send-keys 'cd /ui; ' C-m
+send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
-split-window -h
-send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
 
 neww -n brandcode
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
+selectp -L
 send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
 send-keys 'cd api; source venv/bin/activate; ' C-m
 send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
 split-window -v
 send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
-send-keys 'cd /ui; ' C-m
+send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
-split-window -h
-send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
 
 neww -n fitmgmt
 send-keys 'cd /Users/pkrypto/projects/fitmgmt' C-m
