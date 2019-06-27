@@ -1,0 +1,46 @@
+neww -n dbs
+send-keys 'mongo' C-m
+split-window -v
+send-keys 'mysql' C-m
+
+neww -n monitors
+send-keys 'cd /Users/pkrypto/projects/bootswatch; grunt' C-m
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/bootswatch' C-m
+
+neww -n projectskeleton
+send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
+send-keys 'cd /ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
+
+neww -n rentmgmt
+send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
+send-keys 'cd /ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
+
+neww -n brandcode
+send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
+send-keys 'cd /ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
+
+neww -n fitmgmt
+send-keys 'cd /Users/pkrypto/projects/fitmgmt' C-m
+
