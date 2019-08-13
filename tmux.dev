@@ -1,23 +1,23 @@
-send-keys '' C-m
+rename-window api
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
 
-neww -n isotope
-send-keys 'cd /Users/pkrypto/projects/sn126/isotope/api; source venv/bin/activate; export $(cat .env/local | grep -v ^# | xargs); ./run.sh' C-m
+neww -n ui
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
+send-keys 'cd ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
 split-window -v
-send-keys 'cd /Users/pkrypto/projects/sn126/isotope/ui; REACT_APP_ENV=local yarn start' C-m
+send-keys 'redis-server' C-m
 
-neww -n client-prod-uservices
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system/service_a; ./run.sh' C-m
-split-window -v
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system/service_b; ./run.sh' C-m
-split-window -v
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system/service_c; ./run.sh' C-m
+neww -n mysql
+send-keys 'cd /Users/pkrypto/projects/bin' C-m
 
-neww -n client-candidate-service
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system_candidate/service_a_candidate' C-m
-split-window -v
-send-keys 'cd /Users/pkrypto/projects/sn126/sdks/node/example_distributed_system_candidate/service_b_candidate' C-m
+neww -n mongo
+send-keys 'mongo' C-m
 
-neww -n dev
-send-keys 'cd /Users/pkrypto/projects/sn126/isotope/api; source venv/bin/activate; export $(cat .env/local | grep -v ^# | xargs)' C-m
-send-keys 'make reinit_db; mysql -u root -h localhost isotope < scripts/sql/create_demo_service_xids_and_auths.sql' 
+neww -n deploy
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
 
+neww -n code
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
