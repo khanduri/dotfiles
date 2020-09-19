@@ -1,17 +1,17 @@
 rename-window api
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
 send-keys 'cd api; source venv/bin/activate; ' C-m
-send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run_migration.sh; ./run_app.sh'
 
 neww -n ui
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
-split-window -v
-send-keys 'redis-server' C-m
 
 neww -n mysql
 send-keys 'cd /Users/pkrypto/projects/bin' C-m
+split-window -v
+send-keys 'redis-server' C-m
 
 neww -n mongo
 send-keys 'mongo' C-m

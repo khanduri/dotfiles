@@ -92,3 +92,6 @@ alias cleanports='kill $(lsof -t -i:7000);kill $(lsof -t -i:7001);kill $(lsof -t
 alias joinpdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+alias python='python3'
+alias pip='pip3'

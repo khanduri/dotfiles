@@ -1,9 +1,4 @@
-rename-window dbs
-send-keys 'mongo' C-m
-split-window -v
-send-keys 'mysql' C-m
-
-neww -n monitors
+rename-window monitors
 send-keys 'cd /Users/pkrypto/projects/bootswatch; grunt' C-m
 split-window -v
 send-keys 'cd /Users/pkrypto/projects/bootswatch' C-m
@@ -20,27 +15,63 @@ send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
-neww -n rentmgmt
+neww -n bytebeacon
 split-window -h
-send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
+send-keys 'cd /Users/pkrypto/projects/bytebeacon' C-m
 selectp -L
-send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
+send-keys 'cd /Users/pkrypto/projects/bytebeacon' C-m
 send-keys 'cd api; source venv/bin/activate; ' C-m
 send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
 split-window -v
-send-keys 'cd /Users/pkrypto/projects/rentmgmt' C-m
+send-keys 'cd /Users/pkrypto/projects/bytebeacon' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
-neww -n brandcode
+neww -n divshow
 split-window -h
-send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
+send-keys 'cd /Users/pkrypto/projects/divshow' C-m
 selectp -L
-send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
+send-keys 'cd /Users/pkrypto/projects/divshow' C-m
 send-keys 'cd api; source venv/bin/activate; ' C-m
 send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
 split-window -v
-send-keys 'cd /Users/pkrypto/projects/brandcode' C-m
+send-keys 'cd /Users/pkrypto/projects/divshow' C-m
+send-keys 'cd ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
+
+neww -n navigator
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/navigator' C-m
+selectp -L
+send-keys 'cd /Users/pkrypto/projects/navigator' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/navigator' C-m
+send-keys 'cd ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
+
+neww -n lightheap
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/lightheap' C-m
+selectp -L
+send-keys 'cd /Users/pkrypto/projects/lightheap' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/lightheap' C-m
+send-keys 'cd ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
+
+neww -n bytepost
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/bytepost' C-m
+selectp -L
+send-keys 'cd /Users/pkrypto/projects/bytepost' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/bytepost' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
