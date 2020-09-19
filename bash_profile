@@ -14,3 +14,4 @@ if [ -f '/Users/pkrypto/projects/bin/google-cloud-sdk/path.bash.inc' ]; then sou
 if [ -f '/Users/pkrypto/projects/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/pkrypto/projects/bin/google-cloud-sdk/completion.bash.inc'; fi
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
