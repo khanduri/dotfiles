@@ -11,7 +11,7 @@ cd ~/projects/dotfiles
 
 ### Vim Setup:
 
-I use [vundle](https://github.com/gmarik/Vundle.vim) as my vim package manager. Hence we'll need to get that first. 
+I use [vundle](https://github.com/gmarik/Vundle.vim) as my vim package manager. Hence we'll need to get that first.
 
 ```bash
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -86,4 +86,6 @@ ID=ubuntu
 ID_LIKE=debian
 PRETTY_NAME="Ubuntu precise (12.04.2 LTS)"
 VERSION_ID="12.04"
-```
+`
+``
+trigger
