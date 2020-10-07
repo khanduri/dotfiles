@@ -15,14 +15,21 @@ send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
+neww -n oss
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/bboss/vis-calendar' C-m
+selectp -L
+send-keys 'cd /Users/pkrypto/projects/bboss/vis-calendar' C-m
+send-keys 'npm start'
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/bboss/vis-calendar' C-m
+send-keys 'cd example; ' C-m
+send-keys 'npm start'
+
 neww -n bytebeacon
 split-window -h
 send-keys 'cd /Users/pkrypto/projects/bytebeacon' C-m
 selectp -L
-send-keys 'cd /Users/pkrypto/projects/bytebeacon' C-m
-send-keys 'cd api; source venv/bin/activate; ' C-m
-send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
-split-window -v
 send-keys 'cd /Users/pkrypto/projects/bytebeacon' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
