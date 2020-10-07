@@ -44,37 +44,30 @@ split-window -h
 send-keys 'cd /Users/pkrypto/projects/navigator' C-m
 selectp -L
 send-keys 'cd /Users/pkrypto/projects/navigator' C-m
-send-keys 'cd api; source venv/bin/activate; ' C-m
-send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
-split-window -v
-send-keys 'cd /Users/pkrypto/projects/navigator' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
-neww -n lightheap
+neww -n lightflare
 split-window -h
-send-keys 'cd /Users/pkrypto/projects/lightheap' C-m
+send-keys 'cd /Users/pkrypto/projects/lightflare' C-m
 selectp -L
-send-keys 'cd /Users/pkrypto/projects/lightheap' C-m
-send-keys 'cd api; source venv/bin/activate; ' C-m
-send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
-split-window -v
-send-keys 'cd /Users/pkrypto/projects/lightheap' C-m
+send-keys 'cd /Users/pkrypto/projects/lightflare' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
-neww -n bytepost
+neww -n bytecheck
 split-window -h
-send-keys 'cd /Users/pkrypto/projects/bytepost' C-m
+send-keys 'cd /Users/pkrypto/projects/bytecheck' C-m
 selectp -L
-send-keys 'cd /Users/pkrypto/projects/bytepost' C-m
-send-keys 'cd api; source venv/bin/activate; ' C-m
-send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run.sh'
-split-window -v
-send-keys 'cd /Users/pkrypto/projects/bytepost' C-m
+send-keys 'cd /Users/pkrypto/projects/bytecheck' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
-neww -n fitmgmt
-send-keys 'cd /Users/pkrypto/projects/fitmgmt' C-m
+neww -n passivecompound
+split-window -h
+send-keys 'cd /Users/pkrypto/projects/passivecompound' C-m
+selectp -L
+send-keys 'cd /Users/pkrypto/projects/passivecompound' C-m
+send-keys 'cd ui; ' C-m
+send-keys 'REACT_APP_ENV=local yarn start'
 
