@@ -1,23 +1,31 @@
 rename-window api
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
 send-keys 'cd api; source venv/bin/activate; ' C-m
-send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run_migration.sh; ./run_app.sh'
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); ./run_app.sh' C-m
 
 neww -n ui
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
 send-keys 'cd ui; ' C-m
-send-keys 'REACT_APP_ENV=local yarn start'
-
-neww -n mysql
-send-keys 'cd /Users/pkrypto/projects/bin' C-m
+send-keys 'REACT_APP_ENV=local yarn start' C-m
 split-window -v
 send-keys 'redis-server' C-m
+
+neww -n celery
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); celery -A app.task.worker.async_worker worker --loglevel=info -Q default,high_priority_lg,high_priority_sm,low_priority_lg,low_priority_sm' C-m
+split-window -v
+send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m
+send-keys 'export $(cat .env/local | grep -v ^# | xargs); celery beat -A app.task.worker.async_worker --loglevel=info ' C-m
 
 neww -n mongo
 send-keys 'mongo' C-m
 
 neww -n deploy
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
+send-keys 'kubectl get pods' C-m
 
 neww -n code
 send-keys 'cd /Users/pkrypto/projects/sn126/isotope' C-m
+send-keys 'cd api; source venv/bin/activate; ' C-m

@@ -14,3 +14,7 @@ if [ -f '/Users/pkrypto/projects/bin/google-cloud-sdk/path.bash.inc' ]; then sou
 if [ -f '/Users/pkrypto/projects/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/pkrypto/projects/bin/google-cloud-sdk/completion.bash.inc'; fi
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+

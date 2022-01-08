@@ -1,9 +1,9 @@
-rename-window monitors
+rename-window mon
 send-keys 'cd /Users/pkrypto/projects/bootswatch; grunt' C-m
 split-window -v
 send-keys 'cd /Users/pkrypto/projects/bootswatch' C-m
 
-neww -n projectskeleton
+neww -n skel
 split-window -h
 send-keys 'cd /Users/pkrypto/projects/projectskeleton' C-m
 selectp -L
@@ -26,7 +26,7 @@ send-keys 'cd /Users/pkrypto/projects/bboss/vis-calendar' C-m
 send-keys 'cd example; ' C-m
 send-keys 'npm start'
 
-neww -n bytebeacon
+neww -n landing
 split-window -h
 send-keys 'cd /Users/pkrypto/projects/bytebeacon' C-m
 selectp -L
@@ -46,7 +46,7 @@ send-keys 'cd /Users/pkrypto/projects/divshow' C-m
 send-keys 'cd ui; ' C-m
 send-keys 'REACT_APP_ENV=local yarn start'
 
-neww -n navigator
+neww -n nav
 split-window -h
 send-keys 'cd /Users/pkrypto/projects/navigator' C-m
 selectp -L
