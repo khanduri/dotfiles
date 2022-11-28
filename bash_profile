@@ -18,3 +18,4 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+export PATH="/usr/local/opt/mongodb-community@5.0/bin:$PATH"
