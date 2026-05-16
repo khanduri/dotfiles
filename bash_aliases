@@ -77,21 +77,20 @@ alias readme='_(){ echo " - \`$@\`" >> README.md; }; _'
 
 ######################################
 # Affirm settings
-alias srch='_(){ FILE_DAY=$(pwd | cut -d / -f 6-9 | sed "s/\///g"); echo "Search Day: $FILE_DAY";FILE_NAME=${1}_${FILE_DAY}_GREP; FILE_NAME=$(echo -e "${FILE_NAME}" | tr -d "[[:space:]]"); echo "output in: ~/$FILE_NAME"; zcat `find . -name "*unity*"` | grep "$1" | sort -t, -k 4 > ~/$FILE_NAME; };_ '
-alias pretty='_(){ python ~/.scripts/pretty.py ${1} > ~/temp; vim ~/temp; };_ '
-alias clean='_(){ rm ~/*_GREP; };_ '
-xmlline(){
-    tr "\n" " " < $1 | sed "s/>[ \t]*</></g" | sed "s/<\/root><root>/<\/root>\n<root>/g"
-}
-
-alias masup='cd ~/projects/sn126/isotope/;gc master; git pull;'
-alias vim='/usr/local/bin/vim'
-alias cleanports='kill $(lsof -t -i:7000);kill $(lsof -t -i:7001);kill $(lsof -t -i:7002); kill $(lsof -t -i:8000); kill $(lsof -t -i:8001)'
-
+# alias srch='_(){ FILE_DAY=$(pwd | cut -d / -f 6-9 | sed "s/\///g"); echo "Search Day: $FILE_DAY";FILE_NAME=${1}_${FILE_DAY}_GREP; FILE_NAME=$(echo -e "${FILE_NAME}" | tr -d "[[:space:]]"); echo "output in: ~/$FILE_NAME"; zcat `find . -name "*unity*"` | grep "$1" | sort -t, -k 4 > ~/$FILE_NAME; };_ '
+# alias pretty='_(){ python ~/.scripts/pretty.py ${1} > ~/temp; vim ~/temp; };_ '
+# alias clean='_(){ rm ~/*_GREP; };_ '
+# xmlline(){
+#     tr "\n" " " < $1 | sed "s/>[ \t]*</></g" | sed "s/<\/root><root>/<\/root>\n<root>/g"
+# }
+#
+# alias masup='cd ~/projects/sn126/isotope/;gc master; git pull;'
+# # alias vim='/usr/local/bin/vim'
+# alias cleanports='kill $(lsof -t -i:7000);kill $(lsof -t -i:7001);kill $(lsof -t -i:7002); kill $(lsof -t -i:8000); kill $(lsof -t -i:8001)'
+#
 # joinpdf -o 20180419_PrashantPassport.pdf CCI19042018_1.pdf CCI19042018_2.pdf CCI19042018_3.pdf CCI19042018_4.pdf CCI19042018_5.pdf CCI19042018_6.pdf
-alias joinpdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+# alias joinpdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
-alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 
-alias python='python3'
-alias pip='pip3'
+alias claude_yolo="claude --dangerously-skip-permissions"
+

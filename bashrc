@@ -294,6 +294,9 @@ if [[ `hostname` = *pkrypto* ]]; then
     pset g g r bg
     alias vim='/usr/local/bin/vim'
 fi
+if [[ `hostname` = *prashants* ]]; then
+    pset g g r bg
+fi
 if [[ `hostname` = *sparrow* ]]; then
     pset y y r br
 fi
@@ -317,3 +320,10 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:/Users/prashantkhanduri/Library/Python/3.9/bin
+export PATH=$PATH:$HOME/go/bin
+
+. "$HOME/.local/bin/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
