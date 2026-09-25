@@ -1,0 +1,8 @@
+# Local OS/editor litter only. Project outputs belong in each repo's .gitignore.
+.DS_Store
+._*
+*.swp
+*.swo
+*~
+# Machine-local assistant permissions; preserve the existing global exclusion.
+**/.claude/settings.local.json

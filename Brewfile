@@ -1,6 +1,7 @@
 # Core tools and the four language servers used by Neovim.
 brew "stow"
 brew "git"
+brew "gitleaks"
 brew "neovim"
 brew "herdr"
 brew "ripgrep"
