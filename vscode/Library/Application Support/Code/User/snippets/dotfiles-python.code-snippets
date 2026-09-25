@@ -1,0 +1,26 @@
+{
+  "Python main": {
+    "prefix": "dfmain",
+    "body": [
+      "def main() -> None:",
+      "    ${1:pass}",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()",
+      "$0"
+    ],
+    "description": "Typed Python entry point",
+    "scope": "python"
+  },
+  "Python test": {
+    "prefix": "dftest",
+    "body": [
+      "def test_${1:behavior}() -> None:",
+      "    assert ${2:True}",
+      "$0"
+    ],
+    "description": "Plain pytest test",
+    "scope": "python"
+  }
+}

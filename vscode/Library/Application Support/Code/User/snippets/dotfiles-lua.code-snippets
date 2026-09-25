@@ -1,0 +1,26 @@
+{
+  "Lua module": {
+    "prefix": "dfmodule",
+    "body": [
+      "local M = {}",
+      "",
+      "function M.${1:name}(${2:args})",
+      "  ${0}",
+      "end",
+      "",
+      "return M"
+    ],
+    "description": "Lua module",
+    "scope": "lua"
+  },
+  "Local function": {
+    "prefix": "dffn",
+    "body": [
+      "local function ${1:name}(${2:args})",
+      "  ${0}",
+      "end"
+    ],
+    "description": "Local Lua function",
+    "scope": "lua"
+  }
+}

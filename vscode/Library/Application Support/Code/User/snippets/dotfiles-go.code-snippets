@@ -1,0 +1,23 @@
+{
+  "Handle error": {
+    "prefix": "dferr",
+    "body": [
+      "if err != nil {",
+      "\treturn ${1:err}",
+      "}",
+      "$0"
+    ],
+    "description": "Explicit error return",
+    "scope": "go"
+  },
+  "Go test": {
+    "prefix": "dftest",
+    "body": [
+      "func Test${1:Behavior}(t *testing.T) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Go test (add testing import)",
+    "scope": "go"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "dotfiles-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "go"
+        ],
+        "path": "../../../../vscode/Library/Application Support/Code/User/snippets/dotfiles-go.code-snippets"
+      },
+      {
+        "language": [
+          "lua"
+        ],
+        "path": "../../../../vscode/Library/Application Support/Code/User/snippets/dotfiles-lua.code-snippets"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact"
+        ],
+        "path": "../../../../vscode/Library/Application Support/Code/User/snippets/dotfiles-javascript.code-snippets"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "../../../../vscode/Library/Application Support/Code/User/snippets/dotfiles-typescript.code-snippets"
+      },
+      {
+        "language": [
+          "python"
+        ],
+        "path": "../../../../vscode/Library/Application Support/Code/User/snippets/dotfiles-python.code-snippets"
+      }
+    ]
+  }
+}

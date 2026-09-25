@@ -41,15 +41,21 @@ def main():
         value = merge(base, private) if expected is dict else base + private
         rendered[target] = json.dumps(value, indent=2) + "\n"
     # Validate both inputs and destinations before writing either output.
+    for snippet in (source / "snippets").glob("dotfiles-*.code-snippets"):
+        target = args.output / "snippets" / snippet.name
+        if target.resolve().is_relative_to(checkout):
+            parser.error("Snippet output must not overwrite the shared checkout or its Stow symlinks")
+        rendered[target] = json.dumps(json.loads(snippet.read_text()), indent=2) + "\n"
     args.output.mkdir(parents=True, exist_ok=True)
     for target, content in rendered.items():
+        target.parent.mkdir(parents=True, exist_ok=True)
         temporary = target.with_name(target.name + ".dotfiles-tmp")
         # Exclusive creation prevents following a preexisting link.
         with temporary.open("x") as stream:
             temporary.chmod(0o600)
             stream.write(content)
         temporary.replace(target)
-    print("Applied shared VS Code settings and shortcuts with private overrides.")
+    print("Applied shared VS Code settings, shortcuts, and snippets with private overrides.")
 
 
 if __name__ == "__main__":

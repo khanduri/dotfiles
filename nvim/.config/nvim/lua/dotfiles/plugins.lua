@@ -35,7 +35,12 @@ return function(root)
       { "saghen/blink.cmp", version = "1.*", event = "InsertEnter",
         opts = {
           keymap = { preset = "default" },
-          sources = { default = { "lsp", "path", "snippets", "buffer" } },
+          sources = {
+            default = { "lsp", "path", "snippets", "buffer" },
+            providers = { snippets = { opts = {
+              search_paths = { root .. "/dotfiles-snippets", vim.fn.stdpath("config") .. "/snippets" },
+            } } },
+          },
           fuzzy = { implementation = "lua" },
         } },
     }

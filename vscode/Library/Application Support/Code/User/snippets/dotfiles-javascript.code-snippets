@@ -1,0 +1,22 @@
+{
+  "Async function": {
+    "prefix": "dfasync",
+    "body": [
+      "async function ${1:name}(${2:args}) {",
+      "  ${0}",
+      "}"
+    ],
+    "description": "Async JavaScript function",
+    "scope": "javascript,javascriptreact"
+  },
+  "ES module export": {
+    "prefix": "dffn",
+    "body": [
+      "export function ${1:name}(${2:args}) {",
+      "  ${0}",
+      "}"
+    ],
+    "description": "Exported JavaScript function",
+    "scope": "javascript,javascriptreact"
+  }
+}
