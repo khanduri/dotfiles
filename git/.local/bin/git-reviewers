@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Rank authors of lines removed or changed between two commits."""
+import collections
+import re
+import subprocess
+import sys
+
+
+def git(*args):
+    result = subprocess.run(["git", *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode:
+        raise RuntimeError(result.stderr.decode(errors="replace").strip())
+    return result.stdout
+
+
+def main():
+    if not 1 <= len(sys.argv[1:]) <= 2:
+        raise RuntimeError("Usage: git reviewers <end-commit> [<start-commit>]")
+    end = git("rev-parse", "--verify", "--end-of-options", sys.argv[1] + "^{commit}").decode().strip()
+    start_ref = sys.argv[2] if len(sys.argv) == 3 else end + "^"
+    start = git("rev-parse", "--verify", "--end-of-options", start_ref + "^{commit}").decode().strip()
+    counts = collections.Counter()
+    paths = git("diff", "--no-ext-diff", "--no-renames", "--name-only", "-z", "--diff-filter=DM", start, end)
+    for raw in paths.split(b"\0"):
+        if not raw:
+            continue
+        path = raw.decode(errors="surrogateescape")
+        diff = git("diff", "--no-ext-diff", "--no-textconv", "--no-renames", "--unified=0", start, end, "--", path)
+        for match in re.finditer(rb"^@@ -(\d+)(?:,(\d+))? \+", diff, re.MULTILINE):
+            first = int(match[1])
+            count = int(match[2]) if match[2] is not None else 1
+            if not count:
+                continue
+            blame = git("blame", "--line-porcelain", "-M", "-C", "-w", "-L", f"{first},+{count}", start, "--", path)
+            author = ""
+            for line in blame.decode(errors="replace").splitlines():
+                if line.startswith("author "):
+                    author = line[7:]
+                elif line.startswith("author-mail "):
+                    counts[(author, line[12:])] += 1
+    for (author, email), count in sorted(counts.items(), key=lambda item: (-item[1], item[0])):
+        print(f"{count:5} {author} {email}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (RuntimeError, FileNotFoundError) as error:
+        print(f"git-reviewers: {error}", file=sys.stderr)
+        sys.exit(1)
