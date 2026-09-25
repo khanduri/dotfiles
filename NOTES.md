@@ -11,6 +11,13 @@ and language-server support for Python, TypeScript/JavaScript, Go, and Lua
 (Pyright, TypeScript 7's native LSP, gopls, and Lua Language Server).
 **Automic Vault** holds API credentials outside shell startup files.
 
+## Shell prompt
+
+The shared Powerlevel10k config preserves the original dark, two-line prompt
+with a dotted connector, Git status, command duration, and clock. Keep your
+terminal’s existing Nerd Font. Apply prompt changes to an open shell with
+`source "$HOME/projects/dotfiles/zsh/.p10k.zsh"`, or open a new terminal.
+
 ## Existing installations
 
 Stow targets your home directory and links individual files. On an existing
