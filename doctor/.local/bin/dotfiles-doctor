@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""Check shared dotfiles without changing configuration or loading private rc files."""
+import argparse
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[3]
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--private", action="store_true", help="Skip Stow links on a machine with private entry points")
+    parser.add_argument("--packages", nargs="+", default=["zsh", "nvim", "git", "herdr", "vim", "vscode", "ghostty", "doctor"],
+                        choices=["zsh", "nvim", "git", "herdr", "vim", "vscode", "ghostty", "doctor", "tmux"])
+    args = parser.parse_args()
+    failures = []
+
+    def report(ok, name):
+        print(("OK   " if ok else "FAIL ") + name)
+        if not ok:
+            failures.append(name)
+
+    def probe(command, **kwargs):
+        try:
+            return subprocess.run(command, capture_output=True, timeout=30, **kwargs).returncode == 0
+        except (OSError, subprocess.TimeoutExpired):
+            return False
+
+    dependencies = {"zsh": ["zsh", "fzf"], "nvim": ["nvim", "rg", "fd", "pyright-langserver", "tsc", "gopls", "lua-language-server"],
+                    "git": ["git", "gitleaks"], "herdr": ["herdr"], "vim": ["vim"], "tmux": ["tmux"], "doctor": ["python3"]}
+    for command in dict.fromkeys(c for package in args.packages for c in dependencies.get(package, [])):
+        report(shutil.which(command) is not None, "command: " + command)
+
+    if not args.private:
+        for package in args.packages:
+            files = [p for p in (ROOT/package).rglob("*") if p.is_file()]
+            missing = sum(not (Path.home()/p.relative_to(ROOT/package)).is_symlink()
+                          or (Path.home()/p.relative_to(ROOT/package)).resolve() != p.resolve() for p in files)
+            report(not missing, f"Stow links: {package} ({missing} missing or different)")
+    else:
+        print("SKIP Stow links: private entry points own local configuration")
+
+    if "zsh" in args.packages:
+        report(probe(["zsh", "-n", str(ROOT/"zsh/.zshrc")]), "shared zsh syntax")
+        report(probe(["zsh", "-n", str(ROOT/"zsh/.p10k.zsh")]), "shared prompt syntax")
+        report((Path(os.environ.get("ZSH", str(Path.home()/".oh-my-zsh")))/"oh-my-zsh.sh").is_file(), "oh-my-zsh installed")
+
+    if "nvim" in args.packages:
+        # Clean HOME prevents loading private plugins or rc; shared core performs no downloads.
+        with tempfile.TemporaryDirectory(prefix="dotfiles-doctor-") as temporary:
+            env = {"HOME": temporary, "PATH": os.environ.get("PATH", ""), "TERM": "xterm-256color"}
+            report(probe(["nvim", "--headless", "-u", str(ROOT/"nvim/.config/nvim/init.lua"),
+                          "+lua if vim.v.errmsg ~= '' then vim.cmd('cquit 1') end", "+qa"], env=env), "isolated Neovim core startup")
+        data = Path(os.environ.get("XDG_DATA_HOME", str(Path.home()/".local/share")))
+        lock = json.loads((ROOT/"nvim/.config/nvim/plugin-lock.json").read_text())
+        report(all((data/"nvim/dotfiles/lazy"/name).is_dir() for name in lock), "shared Neovim plugins installed")
+
+    if "ghostty" in args.packages:
+        executable = shutil.which("ghostty") or "/Applications/Ghostty.app/Contents/MacOS/ghostty"
+        report(probe([executable, "+validate-config",
+                      "--config-file=" + str(ROOT/"ghostty/.config/ghostty/config.ghostty")]), "shared Ghostty configuration")
+
+    if "vscode" in args.packages:
+        code = shutil.which("code") or "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+        try:
+            result = subprocess.run([code, "--list-extensions"], capture_output=True, text=True, timeout=30)
+            installed = set(result.stdout.lower().splitlines())
+            wanted = {line.strip().lower() for line in (ROOT/"vscode/.config/vscode/extensions.txt").read_text().splitlines()
+                      if line.strip() and not line.startswith("#")}
+            report(result.returncode == 0 and wanted <= installed, f"shared VS Code extensions ({len(wanted - installed)} missing)")
+        except (OSError, subprocess.TimeoutExpired):
+            report(False, "VS Code command available")
+
+    print(f"{len(failures)} failed checks. " + ("See NOTES.md for setup and repairs." if failures else "Shared setup is ready."))
+    return bool(failures)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

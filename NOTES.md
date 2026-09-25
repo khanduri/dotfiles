@@ -31,6 +31,60 @@ want; Neovim must have only one entry point.
 Preserve personal Git overrides in `~/.gitconfig.local` before replacing
 `~/.gitconfig`; the shared config includes that file last.
 
+## Terminal appearance
+
+The `ghostty` package preserves the existing Ghostty defaults explicitly: bundled
+JetBrains Mono at 13pt, dark background/palette, and the default block cursor
+(shell integration may switch it to a bar at the prompt). No font download is needed.
+Cmd-D splits right, Cmd-Shift-D splits down, Cmd-[ / Cmd-] moves between splits,
+and Cmd-Shift-comma reloads config. The restored Powerlevel10k prompt is unchanged.
+See [Ghostty configuration](https://ghostty.org/docs/config).
+
+Ghostty loads `~/.config/ghostty/config.ghostty`, then macOS Application Support
+configuration, so existing settings in the latter can override this package.
+On a private machine, use Ghostty's `config-file` directive to load the shared
+file by path, then another private file **as a second `config-file` directive**.
+Includes run after the containing file; private settings written below an include
+in the same file do not override it. Use paths relative to that private config,
+or generate absolute paths from `$HOME` during private setup. Do not put machine
+paths into this public checkout.
+
+## Git ignores and secret scanning
+
+Git automatically reads `~/.config/git/ignore` when `core.excludesFile` and
+`XDG_CONFIG_HOME` do not select another location. It excludes OS/editor litter and
+machine-local assistant settings. Project build outputs and dependency directories
+belong in each project's `.gitignore`; example environment files remain visible.
+If a private machine already owns its global ignore file, copy these patterns into
+that file or point its `core.excludesFile` at this checkout's shared ignore file.
+Preserve any existing private patterns when combining them.
+
+`dotfiles-secrets install` installs a [Gitleaks](https://github.com/gitleaks/gitleaks)
+pre-commit hook **only in the current repository**. Run it once in each personal
+repo you want protected. It refuses to replace an existing hook or `core.hooksPath`;
+add `dotfiles-secrets check` to your existing hook manager instead. On a pull-only
+machine, invoke `git/.local/bin/dotfiles-secrets` by its full checkout path.
+
+The hook checks staged changes, including partially staged files, with secret
+values redacted. Missing Gitleaks or a finding blocks the commit. It does not scan
+old commits or local backup refs. Repository-specific Gitleaks rules and ignores
+still apply; review exceptions carefully. Hooks can be bypassed, so this does not
+replace provider rotation or server-side push protection. To uninstall our hook,
+remove only the `pre-commit` symlink pointing to this helper; leave other hooks alone.
+
+## Checking a machine
+
+Run `dotfiles-doctor` after setup or an update. It checks dependencies, expected
+Stow links, shared shell syntax, isolated Neovim startup, plugin installation,
+Ghostty config validity, and shared VS Code extensions. It makes no repairs,
+does not load private shell/editor startup files, and never requests vault tokens.
+Use `--packages git nvim` for a subset, or add `tmux` to the package list.
+Failures return a nonzero exit code; resolve them with the normal setup steps.
+
+On a private machine run
+`"$HOME/projects/dotfiles/doctor/.local/bin/dotfiles-doctor" --private`.
+This skips Stow ownership checks; private overrides still need their own validation.
+
 ## Optional fallbacks
 
 For the optional tmux fallback, run `stow tmux`. On a server, install just the
@@ -99,6 +153,22 @@ private shortcuts after shared shortcuts. Repeat these commands after pulling.
 It refuses to write into the shared checkout. Let this workflow own these files;
 avoid also syncing the same settings through VS Code Settings Sync.
 
+## Shared snippets
+
+Neovim and VS Code share ten small snippets for Python, JavaScript/TypeScript
+(including React files), Go, and Lua. Type `dfmain`, `dftest`, `dfasync`, `dffn`,
+`dftype`, `dferr`, or `dfmodule` in the applicable language and select completion.
+In VS Code they are also available through Insert Snippet; Blink uses Tab/Shift-Tab
+to navigate placeholders. Snippets are starting points; add required imports
+(such as Go's `testing`) and project-specific types.
+
+The canonical files are `vscode/Library/Application Support/Code/User/snippets/`;
+Neovim loads them by path through its snippet manifest. No new plugin is needed.
+The private VS Code renderer refreshes only `dotfiles-*.code-snippets`, preserving
+other snippet files. Reserve that filename prefix for shared files; keep private
+snippets in separately named files. Personal Neovim snippets can use
+`~/.config/nvim/snippets/*.json` (VS Code snippet syntax).
+
 ## API credentials
 
 [Automic Vault](https://github.com/automic-vault/automic-vault) is optional and
@@ -161,11 +231,16 @@ future moves require an explicit migration note.
 | `vscode/Library/Application Support/Code/User/settings.json` | VS Code settings / shared JSON input |
 | `vscode/Library/Application Support/Code/User/keybindings.json` | VS Code shortcuts / shared JSON input |
 | `vscode/.config/vscode/extensions.txt` | Shared extension IDs |
+| `vscode/Library/Application Support/Code/User/snippets/` | Shared VS Code-format snippets |
+| `ghostty/.config/ghostty/config.ghostty` | Ghostty `config-file` include |
+| `git/.config/git/ignore` | Git global exclusion patterns |
 
 `git/.local/bin/git-reviewers` is an executable helper, not a sourceable config.
 `vscode/.local/bin/dotfiles-code-extensions` and
 `vscode/.local/bin/dotfiles-code-settings` are stable executable entry points.
 Neovim's internal Lua modules and `plugin-lock.json` accompany its entry point.
+`git/.local/bin/dotfiles-secrets` and `doctor/.local/bin/dotfiles-doctor` are stable
+executable entry points.
 
 ## Migration notes
 
@@ -179,3 +254,5 @@ Language servers provide `gd`, `gr`, `K`, F2, and `,ca`; Go formats on save.
 
 Verification: `python3 tests/verify.py` checks isolated configuration loading and
 helpers; add `--lsp` to check all four language servers with the Brewfile installed.
+`python3 tests/additions.py` checks hook refusal, redacted staged-secret blocking,
+partial staging, global ignores, shared snippet inputs, and doctor behavior.

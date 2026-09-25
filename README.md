@@ -1,6 +1,6 @@
 # dotfiles
 
-macOS setup with Stow: zsh + Powerlevel10k, Neovim, Herdr, Git, and VS Code.
+macOS setup with Stow: Ghostty, zsh + Powerlevel10k, Neovim, Herdr, Git, and VS Code.
 
 ## Initial setup
 
@@ -9,12 +9,14 @@ Install [Homebrew](https://brew.sh), then:
 ```sh
 git clone https://github.com/khanduri/dotfiles.git "$HOME/projects/dotfiles"
 cd "$HOME/projects/dotfiles"
-brew bundle && stow zsh nvim git herdr vim vscode
+brew bundle && stow zsh nvim git herdr vim vscode ghostty doctor
 # Skip this clone if oh-my-zsh is already installed.
 git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
 zsh -il
 nvim --headless '+DotfilesInstall' +qa
 dotfiles-code-extensions
+dotfiles-secrets install
+dotfiles-doctor
 git config --file "$HOME/.gitconfig.local" user.name "Your Name"
 git config --file "$HOME/.gitconfig.local" user.email "your-address@example.com"
 ```
@@ -34,11 +36,12 @@ On a Mac using Stow:
 cd "$HOME/projects/dotfiles"
 git pull --ff-only
 brew bundle
-stow -n -v -R zsh nvim git herdr vim vscode
+stow -n -v -R zsh nvim git herdr vim vscode ghostty doctor
 # Review the dry run above, then apply:
-stow -R zsh nvim git herdr vim vscode
+stow -R zsh nvim git herdr vim vscode ghostty doctor
 nvim --headless '+DotfilesInstall' '+Lazy! sync' +qa
 dotfiles-code-extensions
+dotfiles-doctor
 ```
 
 Include `tmux` in both Stow commands if installed. Restart your shell and editors;
