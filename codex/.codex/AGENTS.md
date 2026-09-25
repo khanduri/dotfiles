@@ -1,0 +1,1 @@
+../../agents/.config/agents/common.md

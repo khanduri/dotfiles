@@ -256,3 +256,34 @@ Verification: `python3 tests/verify.py` checks isolated configuration loading an
 helpers; add `--lsp` to check all four language servers with the Brewfile installed.
 `python3 tests/additions.py` checks hook refusal, redacted staged-secret blocking,
 partial staging, global ignores, shared snippet inputs, and doctor behavior.
+
+## Agent instructions
+
+Shared preferences live at the stable path `agents/.config/agents/common.md`.
+Codex's stable entry point is `codex/.codex/AGENTS.md`; Claude's is `claude/.claude/CLAUDE.md`.
+The Codex entry is a symlink to the shared file, so the rules have only one source.
+Claude imports that file and optional private instructions from `~/.claude/CLAUDE.local.md`.
+
+On a personal Mac, preserve any existing instructions before installing:
+
+```sh
+stow -n -v agents codex claude
+stow agents codex claude
+```
+
+If `~/.claude/CLAUDE.md` already exists, move its contents into `~/.claude/CLAUDE.local.md` first, preserving any existing local file.
+Keep local instructions private.
+If Codex already has global instructions, combine them with these preferences using the private-machine approach below instead of replacing them.
+A non-empty `~/.codex/AGENTS.override.md` takes precedence over `AGENTS.md`; review it if the shared rules do not load.
+A custom `CODEX_HOME` needs its entry point installed there instead.
+
+On a private machine, let the private repo own the entry points.
+Claude can import `@~/projects/dotfiles/agents/.config/agents/common.md` from its private `~/.claude/CLAUDE.md`, followed by private rules.
+For Codex, combine the shared file followed by private rules into `~/.codex/AGENTS.md` as part of the private repo's setup process.
+Codex does not use Claude's `@` import syntax.
+Regenerate that combined file after pulling changes; direct Stow links and Claude imports see updates automatically.
+Keep each project's build commands and conventions in its own `AGENTS.md`.
+
+Start a new agent session after updates.
+Ask Codex to summarize its loaded instructions; use Claude's `/memory` to inspect loaded files.
+These files contain preferences only, not credentials, tool permissions, or automatic memories.

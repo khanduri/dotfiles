@@ -48,6 +48,8 @@ Include `tmux` in both Stow commands if installed. Restart your shell and editor
 [reload Herdr/tmux](NOTES.md#reloading-tools) for existing sessions.
 On a Mac with private entry points, [pull and apply using its private setup](NOTES.md#updating-machines-with-private-entry-points).
 
+Optional shared Codex/Claude instructions: [setup](NOTES.md#agent-instructions).
+
 ## Stable paths
 
 Sourceable paths are a contract; moves will be called out:
