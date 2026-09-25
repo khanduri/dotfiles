@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+"""Install missing shared VS Code extensions, without removing private ones."""
+import argparse
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--profile", help="VS Code profile; defaults to the default profile")
+    parser.add_argument("--dry-run", action="store_true")
+    args = parser.parse_args()
+    code = shutil.which("code")
+    if not code:
+        for base in (Path("/Applications"), Path.home() / "Applications"):
+            candidate = base / "Visual Studio Code.app/Contents/Resources/app/bin/code"
+            if candidate.is_file():
+                code = str(candidate)
+                break
+    if not code:
+        parser.error("Install Visual Studio Code first (brew bundle).")
+    package = Path(__file__).resolve().parents[2]
+    manifest = package / ".config/vscode/extensions.txt"
+    extensions = [line.strip() for line in manifest.read_text().splitlines()
+                  if line.strip() and not line.lstrip().startswith("#")]
+    if any(not re.fullmatch(r"[A-Za-z0-9-]+\.[A-Za-z0-9-]+", item) for item in extensions):
+        parser.error("Invalid extension identifier in shared manifest")
+    command = [code] + (["--profile", args.profile] if args.profile else [])
+    installed = set(subprocess.check_output(command + ["--list-extensions"], text=True).lower().splitlines())
+    missing = sorted(set(extensions) - installed)
+    for extension in missing:
+        print(("Would install: " if args.dry_run else "Installing: ") + extension, flush=True)
+        if not args.dry_run:
+            subprocess.run(command + ["--install-extension", extension], check=True)
+    print(f"{len(missing)} missing shared extensions; existing and private extensions retained.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except subprocess.CalledProcessError as error:
+        sys.exit(error.returncode)

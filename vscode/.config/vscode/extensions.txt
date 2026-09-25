@@ -1,0 +1,17 @@
+# Existing editor extensions, plus Go, Lua, and a Python formatter.
+anthropic.claude-code
+charliermarsh.ruff
+continue.continue
+dsznajder.es7-react-js-snippets
+ecmel.vscode-html-css
+esbenp.prettier-vscode
+golang.go
+kamikillerto.vscode-colorize
+ms-dotnettools.csdevkit
+ms-dotnettools.csharp
+ms-dotnettools.vscode-dotnet-runtime
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-pylance
+ms-python.vscode-python-envs
+sumneko.lua
