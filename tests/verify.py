@@ -3,9 +3,12 @@
 import json
 import os
 from pathlib import Path
+import pty
+import select
 import shutil
 import subprocess
 import tempfile
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -76,6 +79,56 @@ print ALIASES_OK
 '''
     assert 'ALIASES_OK' in run(['/bin/zsh', '-dfc', standalone], env=shell_env)
     print('PASS: noninteractive guard; standalone base64 and alias helpers')
+
+    tip_source = ROOT/'zsh/.config/zsh/tips.zsh'
+    tools = home/'tip-tools'
+    tools.mkdir()
+    tip_env = dict(shell_env, PATH=str(tools))
+    missing = subprocess.run(['/bin/zsh', '-dfc',
+                              f'source "{tip_source}"; dotfiles-tip git'],
+                             env=tip_env, capture_output=True, text=True)
+    assert missing.returncode == 1 and not missing.stdout
+    # Checking installation must not execute the tool itself.
+    (tools/'git').write_text('#!/bin/sh\necho UNEXPECTED_TOOL_EXECUTION\nexit 1\n')
+    (tools/'git').chmod(0o755)
+    tip = run(['/bin/zsh', '-dfc', f'source "{tip_source}"; dotfiles-tip git'], env=tip_env)
+    assert tip.startswith('Tip [git]: ') and len(tip.splitlines()) == 1
+    assert 'UNEXPECTED_TOOL_EXECUTION' not in tip
+    print('PASS: tip filtering checks installed tools without executing them')
+
+    # Real terminal prompts exercise the one-shot hook and a late private opt-out.
+    tip_home = home/'tip-shell'
+    tip_home.mkdir()
+    for disabled in (False, True):
+        (tip_home/'.zshrc').write_text(
+            f'source "{tip_source}"\nPROMPT=""\n'
+            + ('export DOTFILES_TIPS=0\n' if disabled else ''))
+        master, slave = pty.openpty()
+        process = subprocess.Popen(['/bin/zsh', '-di'], stdin=slave, stdout=slave,
+                                   stderr=slave, env=dict(env, ZDOTDIR=str(tip_home)))
+        os.close(slave)
+        output = bytearray()
+        try:
+            os.write(master, b':\n:\nexit\n')
+            deadline = time.monotonic() + 10
+            while time.monotonic() < deadline:
+                if not select.select([master], [], [], 0.1)[0]:
+                    continue
+                try:
+                    chunk = os.read(master, 65536)
+                except OSError:
+                    break  # macOS/Linux signal the closed PTY with EOF or EIO.
+                if not chunk:
+                    break
+                output.extend(chunk)
+            assert process.wait(timeout=2) == 0
+        finally:
+            if process.poll() is None:
+                process.kill()
+                process.wait()
+            os.close(master)
+        assert output.count(b'Tip [') == (0 if disabled else 1), output
+    print('PASS: one terminal tip per session; private opt-out after sourcing')
 
     fixture = home/'history'
     fixture.mkdir()

@@ -18,6 +18,23 @@ with a dotted connector, Git status, command duration, and clock. Keep your
 terminal’s existing Nerd Font. Apply prompt changes to an open shell with
 `source "$HOME/projects/dotfiles/zsh/.p10k.zsh"`, or open a new terminal.
 
+### Terminal tips
+
+Each new interactive terminal displays one random tip before its first prompt,
+chosen from a local catalog and filtered to tools installed on that Mac. Tips
+cover the shell, editors, navigation, Git, runtimes, and desktop tools; they do
+not inspect usage history or make network requests. Scripts, `zsh -ic` commands,
+and later prompts stay quiet. Random selection can repeat across sessions.
+
+Use `dotfiles-tip` for another tip, `dotfiles-tip nvim` for a specific tool, or
+`dotfiles-tip --list` to list available topics. Add `export DOTFILES_TIPS=0` to
+your private `.zshrc` to disable automatic tips; on-demand tips still work. The
+setting can appear before or after sourcing the shared config.
+
+Edit `zsh/.config/zsh/tips.zsh` to add tips. It is loaded relative to the shared
+`.zshrc`, so private machines that source by path need no new setup. On Stow
+machines, run `stow -n -v -R zsh`, review the preview, then `stow -R zsh`.
+
 ## Existing installations
 
 Stow targets your home directory and links individual files. On an existing

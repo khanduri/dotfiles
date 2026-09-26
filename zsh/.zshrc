@@ -64,4 +64,5 @@ elif [[ -r $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme ]]; then
   source "$ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme"
 fi
 [[ -r $_DOTFILES_ZSH_DIR/.p10k.zsh ]] && source "$_DOTFILES_ZSH_DIR/.p10k.zsh"
+[[ -r $_DOTFILES_ZSH_DIR/.config/zsh/tips.zsh ]] && source "$_DOTFILES_ZSH_DIR/.config/zsh/tips.zsh"
 return 0
