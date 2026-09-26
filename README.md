@@ -2,6 +2,9 @@
 
 macOS setup with Stow: Ghostty, zsh + Powerlevel10k, Neovim, Herdr, Git, and VS Code.
 
+Homebrew also installs GitHub CLI, uv, Node.js, Claude Code, Codex CLI, Rectangle,
+and OpenSuperWhisper. OpenSuperWhisper requires Apple Silicon and macOS 14 or newer.
+
 ## Initial setup
 
 Install [Homebrew](https://brew.sh), then:
@@ -49,6 +52,10 @@ Include `tmux` in both Stow commands if installed. Restart your shell and editor
 On a Mac with private entry points, [pull and apply using its private setup](NOTES.md#updating-machines-with-private-entry-points).
 
 Optional shared Codex/Claude instructions: [setup](NOTES.md#agent-instructions).
+
+To install missing Brewfile packages without a general upgrade, run
+`brew bundle --no-upgrade`. If uv was installed separately in `~/.local/bin`,
+Homebrew installs another copy; use `command -v uv` to check which one your shell uses.
 
 ## Stable paths
 
