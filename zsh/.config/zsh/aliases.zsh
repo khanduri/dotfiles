@@ -3,12 +3,16 @@ alias c='clear'
 alias l='ls -alF'
 alias ll='ls -alF'
 alias la='ls -A'
+b64e() { print -rn -- "$1" | base64; }
+b64d() { print -r -- "$1" | base64 --decode; }
+alias aliasf='print -l ${(ok)functions}'
 if command -v git >/dev/null 2>&1; then
   alias g='git status'
   alias ga='git commit --amend --no-edit'
   alias gb='git branch'
   alias gc='git checkout'
   alias gd='git diff'
+  alias ge='git commit --allow-empty -m "empty commit, trigger build"'
   alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
   alias gm='git merge --no-commit --no-ff'
   alias gs='git show --format="%aN <%aE>"'

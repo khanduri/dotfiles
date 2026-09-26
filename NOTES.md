@@ -244,6 +244,15 @@ executable entry points.
 
 ## Migration notes
 
+Shared shell startup uses Emacs keybindings, preserves existing `GOPATH`/`GOBIN`,
+and initializes zoxide, thefuck, and Bun completions when available. The standalone
+aliases file provides `b64e`/`b64d` for base64, `aliasf` to list functions, and
+`ge` for an empty build-trigger commit when Git is installed.
+
+The Brewfile uses `claude-code@latest`. If a Mac still has the conflicting
+`claude-code` cask, run `brew uninstall --cask claude-code` before
+`brew bundle --no-upgrade` to switch channels.
+
 Bash, Screen, `rmb`, project/session launchers, the custom tmux status script, and
 the legacy symlink installer were retired. Vim's editor preferences remain, while
 the old plugin collection was replaced with Snacks, WhichKey, Gitsigns, Blink,

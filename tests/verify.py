@@ -28,11 +28,16 @@ with tempfile.TemporaryDirectory(prefix='dotfiles-check-') as directory:
                      ZSH=str(home/'missing-oh-my-zsh'), PATH='/usr/bin:/bin')
     shell_test = '''
 source "$DOTFILES_TEST_ROOT/zsh/.zshrc"
+[[ $(bindkey -lL main) == 'bindkey -A emacs main' ]] || exit 1
+[[ $GOPATH == $HOME/go && $GOBIN == $HOME/go/bin ]] || exit 1
+[[ ${path[(Ie)$GOBIN]} -gt 0 ]] || exit 1
 first_path=$PATH
 first_pwd=$PWD
+bindkey -v
 source "$DOTFILES_TEST_ROOT/zsh/.zshrc"
 source "$DOTFILES_TEST_ROOT/zsh/.config/zsh/aliases.zsh"
 [[ $PATH == $first_path && $PWD == $first_pwd ]] || exit 1
+[[ $(bindkey -lL main) == 'bindkey -A viins main' ]] || exit 1
 [[ $EDITOR == nvim ]] || exit 1
 (( $+aliases[g] )) || exit 1
 (( ! $+functions[rmb] )) || exit 1
@@ -42,6 +47,35 @@ print SHELL_OK
     shell_env['POWERLEVEL9K_DISABLE_GITSTATUS'] = 'true'
     assert 'SHELL_OK' in run(['/bin/zsh', '-dic', shell_test], env=shell_env)
     print('PASS: shell composition and repeat sourcing')
+
+    # Simulate OMZ selecting vi mode before shared startup restores Emacs mode.
+    omz = home/'fake-oh-my-zsh'
+    omz.mkdir()
+    (omz/'oh-my-zsh.sh').write_text('bindkey -v\n')
+    go_test = '''
+[[ $(bindkey -lL main) == 'bindkey -A emacs main' ]] || exit 1
+[[ $GOPATH == $HOME/custom-go && $GOBIN == $EXPECTED_GOBIN ]] || exit 1
+[[ ${path[(Ie)$GOBIN]} -gt 0 ]] || exit 1
+print GO_OK
+'''
+    for gobin in ('', str(home/'custom-bin')):
+        go_env = dict(shell_env, ZSH=str(omz), GOPATH=str(home/'custom-go'),
+                      GOBIN=gobin, EXPECTED_GOBIN=gobin or str(home/'custom-go/bin'))
+        assert 'GO_OK' in run(['/bin/zsh', '-dic', go_test], env=go_env)
+    print('PASS: Emacs bindings after OMZ; custom Go paths and GOBIN fallback')
+
+    standalone = '''
+source "$DOTFILES_TEST_ROOT/zsh/.zshrc"
+(( ! ${+_DOTFILES_ZSH_LOADED} )) || exit 1
+source "$DOTFILES_TEST_ROOT/zsh/.config/zsh/aliases.zsh"
+[[ $(b64e hello) == aGVsbG8= && $(b64d aGVsbG8=) == hello ]] || exit 1
+[[ -z $(b64e '') && $(b64d $(b64e '-n a b')) == '-n a b' ]] || exit 1
+[[ $aliases[ge] == 'git commit --allow-empty -m "empty commit, trigger build"' ]] || exit 1
+[[ $(eval aliasf) == *b64e* ]] || exit 1
+print ALIASES_OK
+'''
+    assert 'ALIASES_OK' in run(['/bin/zsh', '-dfc', standalone], env=shell_env)
+    print('PASS: noninteractive guard; standalone base64 and alias helpers')
 
     fixture = home/'history'
     fixture.mkdir()

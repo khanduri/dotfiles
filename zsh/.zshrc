@@ -14,7 +14,9 @@ fi
 if [[ -n ${HOMEBREW_PREFIX:-} ]]; then
   path=("$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin" $path)
 fi
-path+=("$HOME/.local/bin" "$HOME/go/bin")
+export GOPATH=${GOPATH:-$HOME/go}
+export GOBIN=${GOBIN:-$GOPATH/bin}
+path+=("$HOME/.local/bin" "$GOBIN")
 # Automic installs its gated launchers here. Keep them ahead of upstream tools.
 [[ -x /usr/local/bin/av ]] && path=(/usr/local/bin $path)
 [[ -d $HOME/.bun/bin ]] && path+=("$HOME/.bun/bin")
@@ -41,6 +43,8 @@ zstyle ':omz:update' mode disabled
 if [[ -r $ZSH/oh-my-zsh.sh ]] && (( ! $+functions[omz] )); then
   source "$ZSH/oh-my-zsh.sh"
 fi
+# Keep Emacs navigation even when EDITOR contains "vi" or OMZ selects vi mode.
+bindkey -e
 [[ -r $_DOTFILES_ZSH_DIR/.config/zsh/aliases.zsh ]] && source "$_DOTFILES_ZSH_DIR/.config/zsh/aliases.zsh"
 
 if command -v pyenv >/dev/null 2>&1; then
@@ -50,6 +54,9 @@ fi
 if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
 fi
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
+command -v thefuck >/dev/null 2>&1 && eval "$(thefuck --alias)"
+[[ -s $HOME/.bun/_bun ]] && source "$HOME/.bun/_bun"
 
 if [[ -r ${HOMEBREW_PREFIX:-}/share/powerlevel10k/powerlevel10k.zsh-theme ]]; then
   source "$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
