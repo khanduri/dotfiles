@@ -41,7 +41,7 @@ source "$DOTFILES_TEST_ROOT/zsh/.zshrc"
 source "$DOTFILES_TEST_ROOT/zsh/.config/zsh/aliases.zsh"
 [[ $PATH == $first_path && $PWD == $first_pwd ]] || exit 1
 [[ $(bindkey -lL main) == 'bindkey -A viins main' ]] || exit 1
-[[ $EDITOR == nvim ]] || exit 1
+if command -v nvim >/dev/null 2>&1; then [[ $EDITOR == nvim ]] || exit 1; fi
 (( $+aliases[g] )) || exit 1
 (( ! $+functions[rmb] )) || exit 1
 print SHELL_OK
