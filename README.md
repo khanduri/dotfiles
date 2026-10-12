@@ -1,6 +1,7 @@
 # dotfiles
 
 macOS setup with Stow: Ghostty, zsh + Powerlevel10k, Neovim, Herdr, Git, and VS Code.
+The shell, Git, tmux, Vim, and Claude packages also work on [Ubuntu servers](NOTES.md#ubuntu-servers).
 
 Homebrew also installs GitHub CLI, uv, Node.js, Claude Code, Codex CLI, Rectangle,
 and OpenSuperWhisper. OpenSuperWhisper requires Apple Silicon and macOS 14 or newer.

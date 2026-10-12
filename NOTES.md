@@ -313,3 +313,39 @@ Keep each project's build commands and conventions in its own `AGENTS.md`.
 Start a new agent session after updates.
 Ask Codex to summarize its loaded instructions; use Claude's `/memory` to inspect loaded files.
 These files contain preferences only, not credentials, tool permissions, or automatic memories.
+
+## Claude Code status line
+
+`claude/.claude/statusline-command.sh` prints the directory, date, Git branch,
+5-hour rate-limit use, context use, session cost, and diff stats. It needs `jq`.
+`stow claude` links the script. `~/.claude/settings.json` is machine-local, so add
+this block by hand on each machine, then restart Claude Code:
+
+```json
+"statusLine": {
+  "type": "command",
+  "command": "bash ~/.claude/statusline-command.sh"
+}
+```
+
+On a host with managed Claude Code settings that set `allowManagedHooksOnly`, the
+user-level block is ignored. Copy the script to `/etc/claude-code/` and add the
+block, pointing at that copy, to `/etc/claude-code/managed-settings.json`.
+
+## Ubuntu servers
+
+The `zsh`, `git`, `tmux`, `vim`, `agents`, and `claude` packages work on Ubuntu.
+The Brewfile, Ghostty, VS Code, and Automic Vault parts are macOS-only.
+
+```sh
+sudo apt install zsh stow git tmux vim jq
+git clone https://github.com/khanduri/dotfiles.git "$HOME/projects/dotfiles"
+git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+  "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+cd "$HOME/projects/dotfiles" && stow zsh git tmux vim agents claude
+```
+
+Without Homebrew, `.zshrc` loads Powerlevel10k from oh-my-zsh's custom themes
+directory. It runs `fzf --zsh` whenever fzf is installed, which needs fzf 0.48 or
+newer; skip the apt fzf package on releases that ship an older one.
