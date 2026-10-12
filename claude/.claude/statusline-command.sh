@@ -16,6 +16,13 @@ short_model=$(echo "$model" | sed 's/^Claude //')
 home="$HOME"
 short_cwd=$(echo "$cwd" | sed "s|^$home|~|")
 
+# Remote marker: shown only over SSH, so no marker means a local session
+host_display=""
+if [ -n "${SSH_CONNECTION:-}${SSH_CLIENT:-}${SSH_TTY:-}" ]; then
+  host=$(uname -n)
+  host_display="ssh:${host%%.*} | "
+fi
+
 # Git branch (skip optional locks)
 git_branch=""
 if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
@@ -55,7 +62,8 @@ if [ -n "$lines_added" ] && [ -n "$lines_removed" ] && { [ "$lines_added" != "0"
   diff_display=" | +${lines_added} -${lines_removed}"
 fi
 
-printf "\033[1;94m%s\033[0m\033[0;32m%s\033[0m\033[0;32m%s\033[0m\033[0;33m%s\033[0m\033[0;36m%s\033[0m\033[0;35m%s\033[0m\033[0;37m%s\033[0m\033[0;90m%s\033[0m" \
+printf "\033[1;93m%s\033[0m\033[1;94m%s\033[0m\033[0;32m%s\033[0m\033[0;32m%s\033[0m\033[0;33m%s\033[0m\033[0;36m%s\033[0m\033[0;35m%s\033[0m\033[0;37m%s\033[0m\033[0;90m%s\033[0m" \
+  "$host_display" \
   "$short_cwd" \
   " | $today" \
   "$git_display" \

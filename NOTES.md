@@ -318,6 +318,8 @@ These files contain preferences only, not credentials, tool permissions, or auto
 
 `claude/.claude/statusline-command.sh` prints the directory, date, Git branch,
 5-hour rate-limit use, context use, session cost, and diff stats. It needs `jq`.
+Over SSH it starts with `ssh:<host>`, matching the `user@host` segment the zsh
+prompt shows on remote machines; neither appears in a local session.
 `stow claude` links the script. `~/.claude/settings.json` is machine-local, so add
 this block by hand on each machine, then restart Claude Code:
 

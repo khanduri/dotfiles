@@ -2,7 +2,7 @@
 # Use the same Nerd Font terminal font as before the migration.
 () {
   emulate -L zsh -o extended_glob
-  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline)
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs newline)
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs time newline)
   # Frame and separators
   typeset -g POWERLEVEL9K_MODE=nerdfont-v3
@@ -33,6 +33,12 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
   typeset -g POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=
+
+  # Host: shown only over SSH or as root, so a bare prompt means a local shell.
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=214
+  typeset -g POWERLEVEL9K_CONTEXT_{,ROOT_,REMOTE_,REMOTE_SUDO_}TEMPLATE='%B%n@%m%b'
+  typeset -g POWERLEVEL9K_CONTEXT_VISUAL_IDENTIFIER_EXPANSION=
+  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_CONTENT_EXPANSION=
 
   # Directory
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
