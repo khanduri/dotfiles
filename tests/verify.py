@@ -205,6 +205,22 @@ assert(vim.v.errmsg == "", vim.v.errmsg)
     assert 'editor.fontSize' not in json.loads((shared/'settings.json').read_text())
     print('PASS: VS Code private overrides, repeat rendering, checkout write protection')
 
+    # Codex reads .agents/skills; each Claude entry must link to that same folder.
+    shared_skills = ROOT/'skills/.agents/skills'
+    claude_skills = ROOT/'skills/.claude/skills'
+    names = sorted(p.name for p in shared_skills.iterdir()) if shared_skills.is_dir() else []
+    for name in names:
+        text = (shared_skills/name/'SKILL.md').read_text()
+        header = text.split('---\n')[1] if text.startswith('---\n') else ''
+        fields = dict(line.split(':', 1) for line in header.splitlines() if ':' in line and not line[0].isspace())
+        assert fields.get('name', '').strip() == name, f'{name}: frontmatter name must match its folder'
+        assert fields.get('description', '').strip(), f'{name}: frontmatter needs a description'
+        link = claude_skills/name
+        assert link.is_symlink() and link.readlink() == Path('../../.agents/skills')/name, f'{name}: missing Claude link'
+    linked = sorted(p.name for p in claude_skills.iterdir()) if claude_skills.is_dir() else []
+    assert linked == names, f'Claude skill links without a shared skill: {sorted(set(linked) - set(names))}'
+    print(f'PASS: {len(names)} shared skills have frontmatter and Claude links')
+
     if '--lsp' in __import__('sys').argv:
         project = home/'languages'
         project.mkdir()

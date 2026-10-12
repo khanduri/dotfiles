@@ -251,6 +251,7 @@ future moves require an explicit migration note.
 | `vscode/Library/Application Support/Code/User/snippets/` | Shared VS Code-format snippets |
 | `ghostty/.config/ghostty/config.ghostty` | Ghostty `config-file` include |
 | `git/.config/git/ignore` | Git global exclusion patterns |
+| `skills/.agents/skills/<name>/SKILL.md` | Codex and Claude skill; see [Skills](#skills) |
 
 `git/.local/bin/git-reviewers` is an executable helper, not a sourceable config.
 `vscode/.local/bin/dotfiles-code-extensions` and
@@ -313,6 +314,26 @@ Keep each project's build commands and conventions in its own `AGENTS.md`.
 Start a new agent session after updates.
 Ask Codex to summarize its loaded instructions; use Claude's `/memory` to inspect loaded files.
 These files contain preferences only, not credentials, tool permissions, or automatic memories.
+
+## Skills
+
+Reusable skills for Codex and Claude live in the opt-in `skills` package.
+Each skill has one source folder, `skills/.agents/skills/<name>/`, which Codex reads from `~/.agents/skills`.
+Claude reads `~/.claude/skills`, so each skill also needs a relative link there:
+
+```sh
+cd "$HOME/projects/dotfiles/skills"
+mkdir -p .agents/skills/my-skill
+$EDITOR .agents/skills/my-skill/SKILL.md
+ln -s ../../.agents/skills/my-skill .claude/skills/my-skill
+cd .. && stow -n -v -R skills && stow -R skills
+```
+
+`SKILL.md` starts with frontmatter whose `name` matches the folder and whose
+`description` says when to use it; scripts and references can sit beside it.
+`python3 tests/verify.py` checks both, and `dotfiles-doctor --packages skills` checks the links.
+Restow after adding files to a skill, then start a new agent session. Skills
+installed by other tools in `~/.claude/skills` stay untouched.
 
 ## Claude Code status line
 

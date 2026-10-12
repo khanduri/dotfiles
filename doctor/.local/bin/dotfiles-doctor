@@ -16,7 +16,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--private", action="store_true", help="Skip Stow links on a machine with private entry points")
     parser.add_argument("--packages", nargs="+", default=["zsh", "nvim", "git", "herdr", "vim", "vscode", "ghostty", "doctor"],
-                        choices=["zsh", "nvim", "git", "herdr", "vim", "vscode", "ghostty", "doctor", "tmux"])
+                        choices=["zsh", "nvim", "git", "herdr", "vim", "vscode", "ghostty", "doctor", "tmux",
+                                 "agents", "codex", "claude", "skills"])
     args = parser.parse_args()
     failures = []
 
@@ -38,7 +39,8 @@ def main():
 
     if not args.private:
         for package in args.packages:
-            files = [p for p in (ROOT/package).rglob("*") if p.is_file()]
+            # Directory symlinks (Claude skill entries) are Stow leaves; rglob does not descend into them.
+            files = [p for p in (ROOT/package).rglob("*") if p.is_file() or p.is_symlink()]
             missing = sum(not (Path.home()/p.relative_to(ROOT/package)).is_symlink()
                           or (Path.home()/p.relative_to(ROOT/package)).resolve() != p.resolve() for p in files)
             report(not missing, f"Stow links: {package} ({missing} missing or different)")
